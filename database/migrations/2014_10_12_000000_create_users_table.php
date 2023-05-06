@@ -15,9 +15,16 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('no_telp')->nullable();
             $table->string('password');
-            $table->rememberToken();
+            $table->string('nama_panggilan')->nullable();
+            $table->string('jenis_kelamin')->nullable();
+            $table->string('tempat_lahir')->nullable();
+            $table->date('tanggal_lahir')->nullable();
+            $table->string('foto_user')->nullable();
+            $table->string('foto_ktp')->nullable();
+            $table->text('alamat_lengkap')->nullable();
+            $table->integer('status_akun')->nullable()->comment('0 = Tidak Aktif, 1 = Aktif');
             $table->timestamps();
         });
     }

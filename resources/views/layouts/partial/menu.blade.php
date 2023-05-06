@@ -1,15 +1,6 @@
 <ul class="menu-inner py-1">
-    <!-- Dashboards -->
-    {{-- <li class="menu-item active open">
-        <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <i class="menu-icon tf-icons mdi mdi-home-outline"></i>
-            <div data-i18n="Dashboards">Dashboards</div>
-            <div class="badge bg-primary rounded-pill ms-auto">3</div>
-        </a>
-    </li> --}}
-
     <li class="menu-item">
-        <a href="app-email.html" class="menu-link">
+        <a href="{{ route('dashboard') }}" class="menu-link">
             <i class="menu-icon tf-icons mdi mdi-home-outline"></i>
             <div data-i18n="Dashboards">Dashboards</div>
         </a>
@@ -18,6 +9,12 @@
     <!-- Apps & Pages -->
     <li class="menu-header fw-light mt-4">
         <span class="menu-header-text">Apps &amp; Pages</span>
+    </li>
+    <li class="menu-item">
+        <a href="{{ route('profil') }}" class="menu-link">
+            <I class="menu-icon tf-icons mdi mdi-account"></I>
+            <div data-i18n="Profil">Profil</div>
+        </a>
     </li>
     <li class="menu-item">
         <a href="app-email.html" class="menu-link">

@@ -27,18 +27,16 @@ class AdminSeeder extends Seeder
             'name' => 'Putra Evans Pratama',
             'email' => 'admin@gmail.com',
             // 'password' => bcrypt('asd@1234')
-            'email_verified_at' => now(),
-            'remember_token' => Str::random(10),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'status_akun' => '1', // password
         ]);
         $admin->assignRole('admin');
 
         $user = User::create([
             'name' => 'User',
             'email' => 'user@gmail.com',
-            'email_verified_at' => now(),
-            'remember_token' => Str::random(10),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'status_akun' => '1', // password
         ]);
         $user->assignRole('user');
     }

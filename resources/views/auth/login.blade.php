@@ -83,9 +83,9 @@
                             @csrf
                             <div class="form-floating form-floating-outline mb-3">
                                 <input type="text" class="form-control" id="email" name="email"
-                                    placeholder="Enter your email or username" autofocus>
+                                    placeholder="Masukan email anda..." autofocus>
                                     <x-input-error :messages="$errors->get('email')" class="mt-2 ml-2 text-danger" />
-                                <label for="email">Email or Username</label>
+                                <label for="email">Email</label>
                             </div>
                             <div class="mb-3">
                                 <div class="form-password-toggle">

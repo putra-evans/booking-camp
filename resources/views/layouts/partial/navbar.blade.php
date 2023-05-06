@@ -39,9 +39,9 @@ id="layout-navbar">
                     <div class="dropdown-divider"></div>
                 </li>
                 <li>
-                    <a class="dropdown-item" href="pages-profile-user.html">
+                    <a class="dropdown-item" href="{{ route('profil') }}">
                         <i class="mdi mdi-account-outline me-2"></i>
-                        <span class="align-middle">My Profile</span>
+                        <span class="align-middle">Profil</span>
                     </a>
                 </li>
                 <li>
