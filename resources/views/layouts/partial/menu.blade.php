@@ -16,6 +16,15 @@
             <div data-i18n="Profil">Profil</div>
         </a>
     </li>
+    @role('admin')
+    <li class="menu-item">
+        <a href="{{ route('user') }}" class="menu-link">
+            <I class="menu-icon tf-icons mdi mdi-account-group"></I>
+            <div data-i18n="Profil">Data User</div>
+        </a>
+    </li>
+    @endrole
+
     <li class="menu-item">
         <a href="app-email.html" class="menu-link">
             <i class="menu-icon tf-icons mdi mdi-email-outline"></i>

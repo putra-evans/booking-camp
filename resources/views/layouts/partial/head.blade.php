@@ -31,6 +31,8 @@
 <link rel="stylesheet" href="{{asset('assets/vendor/css/pages/cards-statistics.css')}}" />
 <link rel="stylesheet" href="{{asset('assets/vendor/css/pages/cards-analytics.css')}}" />
 <!-- Helpers -->
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/waitMe/waitMe.css')}}" />
 <script src="{{asset('assets/vendor/js/helpers.js')}}"></script>
 <script src="{{asset('assets/vendor/js/template-customizer.js')}}"></script>
 <script src="{{asset('assets/js/config.js')}}"></script>
+

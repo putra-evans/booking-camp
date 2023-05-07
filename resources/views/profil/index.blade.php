@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @push('css')
+<link rel="stylesheet" href="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.css')}}" />
 @endpush
 
 @section('content')
@@ -14,8 +15,13 @@
             <div class="card mb-4">
                 <div class="user-profile-header d-flex flex-column flex-sm-row text-sm-start text-center mb-4">
                     <div class="flex-shrink-0 mt-n2 mx-sm-0 mx-auto">
+                        @if ($data[0]->foto_user == null)
                         <img src="../../assets/img/avatars/1.png" alt="user image"
                             class="d-block h-auto ms-0 ms-sm-4 rounded user-profile-img">
+                        @else
+                        <img src="{{url('/foto_user/' . $data[0]->foto_user)}}" alt="user image" width="100px"
+                            class="d-block h-auto ms-0 ms-sm-4 rounded user-profile-img" />
+                        @endif
                     </div>
                     <div class="flex-grow-1 mt-2 mt-sm-3">
                         <table class="table table-borderless">
@@ -141,7 +147,7 @@
                         </table>
                         <div
                             class="d-flex align-items-md-end align-items-sm-end align-items-end justify-content-md-end justify-content-end mx-4 flex-md-row flex-column gap-4">
-                            <a href="javascript:void(0)" class="btn btn-primary btn-sm">
+                            <a href="{{ route('edit_profil') }}" class="btn btn-primary btn-sm">
                                 <i class='mdi mdi-account-check-outline me-1'></i>Lengkapi Profile
                             </a>
                         </div>
@@ -162,5 +168,7 @@
 @endsection
 
 @push('js')
+<script src="{{asset('assets/vendor/libs/sweetalert2/sweetalert2.js')}}"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 @include('profil.js')
 @endpush

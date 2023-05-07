@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,10 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/edit_profil', [ProfilController::class, 'form_add'])->name('edit_profil');
+    Route::post('/store_foto', [ProfilController::class, 'store_foto'])->name('store_foto');
+    Route::post('/store_edit', [ProfilController::class, 'store_edit'])->name('store_edit');
+    Route::post('/store_ktp', [ProfilController::class, 'store_ktp'])->name('store_ktp');
     Route::get('/profil', [ProfilController::class, 'index'])->name('profil');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -33,11 +38,11 @@ Route::middleware('auth')->group(function () {
 
 Route::group(['middleware' => ['role:admin']], function () {
 
-    // Route::get('/home', [HomeController::class, 'index'])->name('home');
-    // KATEGORI ROUTE
-    // Route::get('halaman-user', [UserController::class, 'index'])->name('halaman-user');
-    // Route::post('update-user', [UserController::class, 'update'])->name('update-user');
-    // Route::post('hapus-user',   [UserController::class, 'destroy'])->name('hapus-user');
+    // LIST DATA USER
+    Route::get('/user', [UserController::class, 'index'])->name('user');
+    Route::get('halaman-user', [UserController::class, 'index'])->name('halaman-user');
+    Route::post('update-user', [UserController::class, 'update'])->name('update-user');
+    Route::post('hapus-user',   [UserController::class, 'destroy'])->name('hapus-user');
 
 
     // // KATEGORI ROUTE
