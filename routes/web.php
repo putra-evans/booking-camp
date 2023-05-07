@@ -40,9 +40,10 @@ Route::group(['middleware' => ['role:admin']], function () {
 
     // LIST DATA USER
     Route::get('/user', [UserController::class, 'index'])->name('user');
-    Route::get('halaman-user', [UserController::class, 'index'])->name('halaman-user');
-    Route::post('update-user', [UserController::class, 'update'])->name('update-user');
-    Route::post('hapus-user',   [UserController::class, 'destroy'])->name('hapus-user');
+    Route::post('get_user', [UserController::class, 'get_user'])->name('get_user');
+    Route::post('destroy',   [UserController::class, 'destroy'])->name('destroy');
+    Route::post('aktif_akun',   [UserController::class, 'aktif_akun'])->name('aktif_akun');
+    Route::post('nonaktif_akun',   [UserController::class, 'nonaktif_akun'])->name('nonaktif_akun');
 
 
     // // KATEGORI ROUTE
