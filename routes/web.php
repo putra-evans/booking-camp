@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\user\BookingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -72,27 +73,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 Route::group(['middleware' => ['role:user']], function () {
 
-    // Route::get('/beranda', [FrontController::class, 'index'])->name('beranda');
-    // Route::post('add-cart', [FrontController::class, 'store'])->name('add-cart');
-    // Route::post('view-cart', [FrontController::class, 'view_cart'])->name('view-cart');
-    // Route::post('count-cart', [FrontController::class, 'count_cart'])->name('count-cart');
-    // Route::get('view-checkout', [FrontController::class, 'view_checkout'])->name('view-checkout');
-    // Route::get('get-cities', [FrontController::class, 'getCities'])->name('get-cities');
-    // Route::post('get-ongkir', [FrontController::class, 'check_ongkir'])->name('get-ongkir');
-    // Route::post('save-pemesanan',   [FrontController::class, 'store_pemesanan'])->name('save-pemesanan');
-    // Route::get('my-order', [FrontController::class, 'view_order'])->name('my-order');
-    // Route::post('view-myorder', [FrontController::class, 'list_myorder'])->name('view-myorder');
-
-    // Route::get('view-detail', [FrontController::class, 'get_detail'])->name('view-detail');
-    // Route::post('upload-bayar', [FrontController::class, 'upload_pembayaran'])->name('upload-bayar');
-
-
-    // Route::get('tambah-produk', [FrontController::class, 'tambah_produk'])->name('tambah-produk');
-    // Route::get('kurang-produk', [FrontController::class, 'kurang_produk'])->name('kurang-produk');
-
-    // Route::get('delete-keranjang', [FrontController::class, 'delete_keranjang'])->name('delete-keranjang');
-
-    // Route::post('konfirmasi-pesanan', [FrontController::class, 'konfirmasi_pesanan'])->name('konfirmasi-pesanan');
+    Route::get('/booking', [BookingController::class, 'index'])->name('booking');
 });
 
 
