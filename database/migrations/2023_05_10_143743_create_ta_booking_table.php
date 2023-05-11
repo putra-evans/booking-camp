@@ -13,14 +13,11 @@ return new class extends Migration
     {
         Schema::create('ta_booking', function (Blueprint $table) {
             $table->bigIncrements('id_booking');
-            $table->bigInteger('id_kavling');
             $table->bigInteger('id_user');
             $table->string('no_booking');
-            $table->date('tanggal_masuk');
-            $table->date('tanggal_keluar');
             $table->integer('lama_menginap');
             $table->integer('total_biaya');
-            $table->integer('status_kavling')->comment('0 = Tidak Aktif, 1 = Aktif');
+            $table->integer('status_pesanan')->comment('0 = Booking, 1 = Belum Bayar');
             $table->timestamps();
         });
     }

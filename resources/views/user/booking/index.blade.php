@@ -14,30 +14,50 @@
     </h4>
     <!-- Header -->
     <div class="row gy-4">
-        <div class="col-8">
+        <div class="col-8 loading-kalender">
             <div class="card p-2">
                 <div class="card-header">
-                    <span>Kavling tersedia</span>
+                    <span>Kavling tersedia :</span>
                 </div>
-                <div class="card-body">
-                    @foreach($booking as $p)
-                    <button type="button" class="btn btn-twitter waves-effect waves-light mt-2 mb-2 mr-2 {{ $p->id_booking == null ? '' : 'disabled' }}" style="width: 80px !important"> {{$p->kode_kavling}}</button>
-                    @endforeach
+                <div class="card-body" id="tbody_button">
                 </div>
             </div>
         </div>
         <div class="col-4">
             <div class="card">
                 <div class="card-header">
-                    <span>Cek tanggal</span>
-                    <span id="log"></span>
-
+                    <span>Cek tanggal :</span>
                 </div>
                 <div class="card-body loading-kalender">
                     <div id="calendar"></div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="row gy-4 pt-3">
+        <div class="col-12 loading-kalender">
+            <div class="card p-2">
+                <div class="card-header">
+                    <span>Kavling dipilih :</span>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th class="text-center">No</th>
+                              <th class="text-center">Kavling Dipilih</th>
+                              <th class="text-center">Tanggal Dipilih</th>
+                              <th class="text-center">Aksi</th>
+                            </tr>
+                          </thead>
+                          <tbody id="tbody_dipilih">
 
+                          </tbody>
+                        </table>
+                      </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

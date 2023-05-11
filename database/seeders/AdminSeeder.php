@@ -39,5 +39,13 @@ class AdminSeeder extends Seeder
             'status_akun' => '1', // password
         ]);
         $user->assignRole('user');
+
+        $user2 = User::create([
+            'name' => 'User 1',
+            'email' => 'user1@gmail.com',
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'status_akun' => '1', // password
+        ]);
+        $user2->assignRole('user');
     }
 }

@@ -1,4 +1,6 @@
 <script>
+    let tanggal_pilih = '';
+
     const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
             confirmButton: 'btn btn-success',
@@ -22,22 +24,143 @@
         });
     }
 
+
+    function load_kavling(data) {
+        var rows = '';
+        var i = 0;
+        $.each(data, function (key, value) {
+            let disable = '';
+            if (value.id_booking == null) {
+                disable = '';
+            } else {
+                disable = 'disabled';
+            }
+            $('#tbody_button').append(
+                '<button type="button" class="BtnPilihKavling btn btn-twitter waves-effect waves-light ' +
+                disable + '" data-id="' + value.id_ms_kavling + '" data-tanggal_pilih="' + tanggal_pilih +
+                '" data-nama_kavling="' + value.nama_kavling +
+                '" style="width: 80px !important;margin:5px">' + value.kode_kavling + '</button>');
+        });
+    }
+
     function calender() {
-        loading($('.loading-kalender'));
         jSuites.calendar(document.getElementById('calendar'), {
             format: 'YYYY-MM-DD',
             onupdate: function (a, b) {
-                console.log(b);
-
+                loading($('.loading-kalender'));
+                tanggal_pilih = b;
+                let postData = {
+                    'tgl_dipilih': tanggal_pilih
+                };
+                $('#tbody_button').empty();
+                axios.post("{{ route('get_booking') }}", postData)
+                    .then(function (res) {
+                        load_kavling(res.data)
+                        $('.loading-kalender').waitMe('hide');
+                    })
             },
             onchange: function (instance, value) {
                 readonly: true
             }
         });
-
-        $('.loading-kalender').waitMe('hide');
-
     }
+
+
+
+    $(document).on('click', '.BtnPilihKavling', function (e) {
+        e.preventDefault();
+        let id_kavling = $(this).data('id')
+        let nama_kavling = $(this).data('nama_kavling')
+
+        let postData = {
+            'id_kavling': id_kavling,
+            'tgl_dipilih': tanggal_pilih,
+            'nama_kavling': nama_kavling
+        };
+
+        $("#simpan_pengalaman").html(
+            '<i class="spinner-grow spinner-grow-sm mr-2" role="status" aria-hidden="true"></i> DIPROSES...'
+        );
+        $("#simpan_pengalaman").addClass('disabled');
+        loading($('#formTambah'));
+        swalWithBootstrapButtons.fire({
+            title: 'Konfirmasi',
+            text: 'Apakah anda ingin menyimpan data ini ?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, simpan!',
+            cancelButtonText: 'Tidak, batalkan!',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.post(`${url}/api/pengalamankerja`, postData)
+                    .then(function (response) {
+                        console.log('then', response);
+                        swalWithBootstrapButtons.fire({
+                            title: 'Berhasil',
+                            text: 'Data berhasil ditambahkan.',
+                            icon: 'success',
+                            confirmButtonText: '<i class="fas fa-check"></i> Oke',
+                            showCancelButton: false,
+                        });
+                        getAllData();
+                        $('#formTambah').waitMe('hide');
+                        $('#addPengalaman').modal('toggle');
+
+                    })
+                    .catch(function (error) {
+                        if (error.response.status == 422) {
+                            $('#formTambah').addClass('was-validated');
+                            swalWithBootstrapButtons.fire({
+                                title: 'Batal',
+                                text: 'Simpan data dibatalkan',
+                                icon: 'error',
+                                confirmButtonText: '<i class="fas fa-check"></i> Oke',
+                                showCancelButton: false,
+                            }).then((result) => {
+                                if (result.value) {
+                                    $.each(error.response.data, function (key, value) {
+                                        console.log(value[0]);
+                                        if (key != 'isi') {
+                                            $('input[name="' + key +
+                                                '"], textarea[name="' + key +
+                                                '"], select[name="' + key + '"]'
+                                            ).closest('div.required').find(
+                                                'div.invalid-feedback').text(
+                                                value[0]);
+                                        } else {
+                                            $('#pesanErr').html(value);
+                                        }
+                                    });
+                                    $('#formTambah').waitMe('hide');
+                                }
+                            })
+                        }
+                    });
+                $('#formTambah').waitMe('hide');
+                $("#simpan_pengalaman").html('Simpan');
+                $("#simpan_pengalaman").removeClass('disabled');
+
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                swalWithBootstrapButtons.fire({
+                    title: 'Batal',
+                    text: 'Simpan data dibatalkan',
+                    icon: 'error',
+                    confirmButtonText: '<i class="fas fa-check"></i> Oke',
+                    showCancelButton: false,
+                })
+                $('#formTambah').waitMe('hide');
+                $("#simpan_pengalaman").html('Simpan');
+                $("#simpan_pengalaman").removeClass('disabled');
+            }
+        })
+    });
+
+
+
+
+
+
+
 
 
 

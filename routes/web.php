@@ -74,6 +74,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 Route::group(['middleware' => ['role:user']], function () {
 
     Route::get('/booking', [BookingController::class, 'index'])->name('booking');
+    Route::post('get_booking', [BookingController::class, 'get_booking'])->name('get_booking');
 });
 
 
