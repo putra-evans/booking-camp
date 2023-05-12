@@ -35,27 +35,69 @@
         </div>
     </div>
     <div class="row gy-4 pt-3">
-        <div class="col-12 loading-kalender">
-            <div class="card p-2">
-                <div class="card-header">
-                    <span>Kavling dipilih :</span>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                          <thead>
-                            <tr>
-                              <th class="text-center">No</th>
-                              <th class="text-center">Kavling Dipilih</th>
-                              <th class="text-center">Tanggal Dipilih</th>
-                              <th class="text-center">Aksi</th>
-                            </tr>
-                          </thead>
-                          <tbody id="tbody_dipilih">
-
-                          </tbody>
-                        </table>
-                      </div>
+        <div class="col-12">
+            <div class="col-xl-12">
+                <h6 class="text-muted">Daftar Booking</h6>
+                <div class="card text-center mb-3">
+                    <div class="card-header">
+                        <div class="nav-align-top">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button type="button" class="nav-link d-flex flex-column gap-1 active waves-effect"
+                                        role="tab" data-bs-toggle="tab" data-bs-target="#navs-draft-booking" id="draft_booking"
+                                        aria-controls="navs-draft-booking" aria-selected="true">
+                                        <i class="tf-icons mdi mdi-arrow-down-bold-box"></i> Draft Booking</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button type="button" class="nav-link d-flex flex-column gap-1 waves-effect" role="tab"
+                                        data-bs-toggle="tab" data-bs-target="#navs-booking"
+                                        aria-controls="navs-booking" aria-selected="false" tabindex="-1">
+                                        <i class="tf-icons mdi mdi-pin"></i> Booking</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button type="button" class="nav-link d-flex flex-column gap-1 waves-effect" role="tab"
+                                        data-bs-toggle="tab" data-bs-target="#navs-selesai"
+                                        aria-controls="navs-selesai" aria-selected="false" tabindex="-1">
+                                            <i class="tf-icons mdi mdi-check-circle"></i>
+                                        Selesai</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content pb-0">
+                            <div class="tab-pane fade show active" id="navs-draft-booking" role="tabpanel">
+                                <table class="table table-bordered" id="tbl_draft">
+                                    <thead>
+                                      <tr>
+                                        <th class="text-center">No</th>
+                                        <th class="text-center">Kavling Dipilih</th>
+                                        <th class="text-center">Jumlah/Malam</th>
+                                        <th class="text-center">Harga</th>
+                                        <th class="text-center">Tanggal Dipilih</th>
+                                        <th class="text-center">Aksi</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody id="tbody_organisasi">
+                                    </tbody>
+                                  </table>
+                            </div>
+                            <div class="tab-pane fade" id="navs-booking" role="tabpanel">
+                                <h4 class="card-title">Profile</h4>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                                </p>
+                                <a href="javascript:void(0)" class="btn btn-secondary waves-effect waves-light">Go
+                                    somewhere</a>
+                            </div>
+                            <div class="tab-pane fade" id="navs-selesai" role="tabpanel">
+                                <h4 class="card-title">Message</h4>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                                </p>
+                                <a href="javascript:void(0)" class="btn btn-secondary waves-effect waves-light">Go
+                                    somewhere</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

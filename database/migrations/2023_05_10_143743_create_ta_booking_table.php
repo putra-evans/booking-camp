@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('ta_booking', function (Blueprint $table) {
             $table->bigIncrements('id_booking');
             $table->bigInteger('id_user');
+            $table->bigInteger('id_kavling');
             $table->string('no_booking');
-            $table->integer('lama_menginap');
-            $table->integer('total_biaya');
+            $table->date('tanggal_booking');
+            $table->integer('lama_menginap')->nullable();
+            $table->integer('total_biaya')->nullable();
             $table->integer('status_pesanan')->comment('0 = Booking, 1 = Belum Bayar');
             $table->timestamps();
         });

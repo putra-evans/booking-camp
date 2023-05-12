@@ -75,6 +75,9 @@ Route::group(['middleware' => ['role:user']], function () {
 
     Route::get('/booking', [BookingController::class, 'index'])->name('booking');
     Route::post('get_booking', [BookingController::class, 'get_booking'])->name('get_booking');
+    Route::post('booking_kavling', [BookingController::class, 'booking_kavling'])->name('booking_kavling');
+    Route::get('draft_booking', [BookingController::class, 'draft_booking'])->name('draft_booking');
+    Route::post('destroy_booking', [BookingController::class, 'destroy_booking'])->name('destroy_booking');
 });
 
 
