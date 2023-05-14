@@ -15,11 +15,11 @@ return new class extends Migration
             $table->bigIncrements('id_booking');
             $table->bigInteger('id_user');
             $table->bigInteger('id_kavling');
-            $table->string('no_booking');
+            $table->string('no_booking')->nullable();
             $table->date('tanggal_booking');
-            $table->integer('lama_menginap')->nullable();
-            $table->integer('total_biaya')->nullable();
-            $table->integer('status_pesanan')->comment('0 = Booking, 1 = Belum Bayar');
+            $table->string('lama_menginap');
+            $table->string('total_biaya');
+            $table->integer('status_pesanan')->comment('0 = Belum Booking, 1 = Berhasil Booking');
             $table->timestamps();
         });
     }

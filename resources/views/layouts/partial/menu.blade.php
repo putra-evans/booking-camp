@@ -29,18 +29,18 @@
     <li class="menu-item">
             <a href="{{ route('booking') }}" class="menu-link">
                 <i class="menu-icon tf-icons mdi mdi-cart-arrow-down"></i>
-                <div data-i18n="Email">Booking</div>
+                <div data-i18n="booking">Booking</div>
             </a>
         </li>
     @endrole
 
     <li class="menu-item">
         <a href="app-email.html" class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-email-outline"></i>
-            <div data-i18n="Email">Email</div>
+            <i class="menu-icon tf-icons mdi mdi-file-document-outline"></i>
+            <div data-i18n="Email">Pesanan</div>
         </a>
     </li>
-    <li class="menu-item">
+    {{-- <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class='menu-icon tf-icons mdi mdi-file-document-outline'></i>
             <div data-i18n="Invoice">Invoice</div>
@@ -67,5 +67,5 @@
                 </a>
             </li>
         </ul>
-    </li>
+    </li> --}}
 </ul>

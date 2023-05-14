@@ -10,7 +10,7 @@
 
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="fw-bold py-3 mb-4">
-        <span class="text-muted fw-light"></span> List User
+        <span class="text-muted fw-light"></span> Booking kavling
     </h4>
     <!-- Header -->
     <div class="row gy-4">
@@ -48,7 +48,7 @@
                                         aria-controls="navs-draft-booking" aria-selected="true">
                                         <i class="tf-icons mdi mdi-arrow-down-bold-box"></i> Draft Booking</button>
                                 </li>
-                                <li class="nav-item" role="presentation">
+                                {{-- <li class="nav-item" role="presentation">
                                     <button type="button" class="nav-link d-flex flex-column gap-1 waves-effect" role="tab"
                                         data-bs-toggle="tab" data-bs-target="#navs-booking"
                                         aria-controls="navs-booking" aria-selected="false" tabindex="-1">
@@ -60,7 +60,7 @@
                                         aria-controls="navs-selesai" aria-selected="false" tabindex="-1">
                                             <i class="tf-icons mdi mdi-check-circle"></i>
                                         Selesai</button>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                     </div>
@@ -76,13 +76,21 @@
                                         <th class="text-center">Harga</th>
                                         <th class="text-center">Tanggal Dipilih</th>
                                         <th class="text-center">Aksi</th>
+                                        <th class="font-weight-bold align-middle text-center">
+                                            <div class="custom-control custom-checkbox">
+                                                <label class="custom-control-label font-weight-bolder" for="checkAll"></label>
+                                            </div>
+                                        </th>
                                       </tr>
                                     </thead>
                                     <tbody id="tbody_organisasi">
                                     </tbody>
                                   </table>
+                                  <div class="pt-3 float-right">
+                                    <button type="button" class="btn btn-whatsapp waves-effect btnBookingSekarang"> <i class="tf-icons mdi mdi-check-decagram me-1"></i>Booking Sekarang</button>
+                                  </div>
                             </div>
-                            <div class="tab-pane fade" id="navs-booking" role="tabpanel">
+                            {{-- <div class="tab-pane fade" id="navs-booking" role="tabpanel">
                                 <h4 class="card-title">Profile</h4>
                                 <p class="card-text">With supporting text below as a natural lead-in to additional content.
                                 </p>
@@ -95,7 +103,7 @@
                                 </p>
                                 <a href="javascript:void(0)" class="btn btn-secondary waves-effect waves-light">Go
                                     somewhere</a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

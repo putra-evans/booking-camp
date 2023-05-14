@@ -89,26 +89,31 @@
             if (result.isConfirmed) {
                 axios.post("{{ route('booking_kavling') }}", postData)
                     .then(function (response) {
+
+
                         swalWithBootstrapButtons.fire({
                             title: 'Berhasil',
                             text: 'Berhasil booking kavling.',
                             icon: 'success',
-                            confirmButtonText: '<i class="fas fa-check"></i> Oke',
-                            showCancelButton: false,
+                            showConfirmButton: false,
+                            timer: 1500
                         });
-                        window.location.reload();
+                        setTimeout(() => {
+                    window.location.reload();
+                    }, "2000");
                         getDataDraftBooking();
                         $('.loading-kalender').waitMe('hide');
                     })
                     .catch(function (error) {
+
                         if (error.response.status == 422) {
                             $('.loading-kalender').addClass('was-validated');
                             swalWithBootstrapButtons.fire({
                                 title: 'Batal',
                                 text: 'Booking dibatalkan',
                                 icon: 'error',
-                                confirmButtonText: '<i class="fas fa-check"></i> Oke',
-                                showCancelButton: false,
+                                showConfirmButton: false,
+                                timer: 1500
                             }).then((result) => {
                                 if (result.value) {
                                     $.each(error.response.data, function (key, value) {
@@ -126,6 +131,14 @@
                                     $('.loading-kalender').waitMe('hide');
                                 }
                             })
+                        } else if(error.response.status == 403){
+                            swalWithBootstrapButtons.fire({
+                            title: 'Batal',
+                            text: 'Akun anda tidak aktif',
+                            icon: 'error',
+                            showConfirmButton: false,
+                            timer: 1500
+                })
                         }
                     });
                 $('.loading-kalender').waitMe('hide');
@@ -134,8 +147,8 @@
                     title: 'Batal',
                     text: 'Booking dibatalkan',
                     icon: 'error',
-                    confirmButtonText: '<i class="fas fa-check"></i> Oke',
-                    showCancelButton: false,
+                    showConfirmButton: false,
+                    timer: 1500
                 })
                 $('.loading-kalender').waitMe('hide');
             }
@@ -149,25 +162,23 @@
     function draft_booking(data) {
         if (data === undefined || data.length == 0) {
             $('#tbody_organisasi').append("<tr>\
-                        			<td colspan='6' class='text-center'>Belum ada data</td>\
+                        			<td colspan='7' class='text-center'>Belum ada data</td>\
                         			</tr>");
+            $(".btnBookingSekarang").prop("disabled",true);
+
         } else {
             var rows = '';
             var i = 0;
             $.each(data, function (key, value) {
+                console.log
                 $('#tbody_organisasi').append("<tr>\
-                        			<td class='text-center'>" + ++i +
-                    "</td>\
-                        			<td><button type='button' style='width: 80px !important;margin:5px' class='btn btn-twitter waves-effect waves-light'>" +
-                    value
-                    .kode_kavling + "</button></td>\
-                                    <td class='text-center'>1 Malam</td>\
-                        			<td class='text-center'>Rp. " + numberWithCommas(25000) + "</td>\
+                        			<td class='text-center'>" + ++i + "</td>\
+                        			<td><button type='button' style='width: 80px !important;margin:5px' class='btn btn-twitter waves-effect waves-light'>" + value.kode_kavling + "</button></td>\
+                                    <td class='text-center'>"+value.lama_menginap+" Malam</td>\
+                        			<td class='text-center'>Rp. " + numberWithCommas(value.total_biaya) + "</td>\
                         			<td>" + tgl_indo(value.tanggal_booking)  + "</td>\
-                        			<td class='text-center'><button type='button' title='Hapus data' data-id='" + value
-                    .id_booking +
-                    "' class='btn btn-icon btn-danger waves-effect waves-light' id='BtnHapus'><span class='fa-regular fa-trash-can'></span></button>&nbsp;<button type='button' title='Detail data' data-slug='" +
-                    value.slug + "' class='btn btn-icon btn-primary waves-effect waves-light' id='BtnDetail'><span class='fa-solid fa-circle-info'></span></button></td>\
+                        			<td class='text-center'><button type='button' title='Hapus data' data-id='" + value.id_booking + "' class='btn btn-icon btn-danger waves-effect waves-light' id='BtnHapus'><span class='fa-regular fa-trash-can'></span></button>&nbsp;</td>\
+                        			<td class='text-center'><div class='custom-control custom-checkbox mt-0 pt-0'><input style='color: 'red' !important' type='checkbox' class='custom-control-input' name='checkid[]' id='"+value.id_booking+"' value='"+value.id_booking+"'><label class='custom-control-label font-weight-bolder' for='"+value.id_booking+"'></label></div></td>\
                         			</tr>");
             });
         }
@@ -204,27 +215,77 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 axios.post("{{ route('destroy_booking') }}", postData).then(function (r) {
-                    swalWithBootstrapButtons.fire(
-                        'Terhapus',
-                        'Data berhasil dihapus.',
-                        'success'
-                    )
+                    swalWithBootstrapButtons.fire({
+                            title: 'Berhasil',
+                            text: 'Berhasil terhapus.',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                     getDataDraftBooking();
+                    setTimeout(() => {
+                    window.location.reload();
+                    }, "2000");
 
                 });
             } else if (
                 /* Read more about handling dismissals below */
                 result.dismiss === Swal.DismissReason.cancel
             ) {
-                swalWithBootstrapButtons.fire(
-                    'Dibatalkan',
-                    'Data anda aman :)',
-                    'error'
-                )
+                swalWithBootstrapButtons.fire({
+                            title: 'Dibatalkan',
+                            text: 'Batal booking kavling.',
+                            icon: 'error',
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
             }
         })
     });
 
+
+    $(document).on('click', '.btnBookingSekarang', function(e) {
+        e.preventDefault();
+        $('#tbl_draft > tbody input[type=checkbox]').prop('checked', true).trigger('change');
+        let token = [];
+        $.each($('#tbl_draft > tbody input[type=checkbox]:checked'), function() {
+            token.push($(this).val());
+        });
+        const postData = {
+            'id_booking': token,
+        };
+        swalWithBootstrapButtons.fire({
+            title: 'Apakah anda yakin?',
+            text: "Semua Draft Booking akan diproses!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, Booking Sekarang!',
+            cancelButtonText: 'Tidak, batal!',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.post("{{ route('proses_booking') }}", postData).then(function (r) {
+                    swalWithBootstrapButtons.fire(
+                        'Terhapus',
+                        'Data berhasil dihapus.',
+                        'success'
+                    )
+                    getDataDraftBooking();
+                });
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire({
+                            title: 'Dibatalkan',
+                            text: 'Batal booking kavling.',
+                            icon: 'error',
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
+            }
+        })
+
+    });
 
     function tgl_indo(date) {
         var hasil = date.split("-");
