@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\Pesanan_userController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ProfileController;
@@ -46,6 +47,11 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::post('destroy',   [UserController::class, 'destroy'])->name('destroy');
     Route::post('aktif_akun',   [UserController::class, 'aktif_akun'])->name('aktif_akun');
     Route::post('nonaktif_akun',   [UserController::class, 'nonaktif_akun'])->name('nonaktif_akun');
+
+    Route::get('list-pesanan-user', [Pesanan_userController::class, 'index'])->name('list-pesanan-user');
+    Route::get('list-pesanan-diproses', [Pesanan_userController::class, 'list_diproses'])->name('list-pesanan-diproses');
+    Route::get('list-pesanan-diterima', [Pesanan_userController::class, 'list_diterima'])->name('list-pesanan-diterima');
+    Route::get('list-pesanan-dibatalkan', [Pesanan_userController::class, 'list_dibatalkan'])->name('list-pesanan-dibatalkan');
 });
 
 Route::group(['middleware' => ['role:user']], function () {
@@ -58,10 +64,12 @@ Route::group(['middleware' => ['role:user']], function () {
     Route::post('proses_booking', [BookingController::class, 'proses_booking'])->name('proses_booking');
 
     Route::get('user-pesanan', [PesananController::class, 'index'])->name('user-pesanan');
-    Route::post('get_detail_pesanan', [PesananController::class, 'get_detail_pesanan'])->name('get_detail_pesanan');
-    Route::post('list_booking', [PesananController::class, 'list_booking'])->name('list_booking');
+
     Route::post('/upload_pembayaran', [PesananController::class, 'upload_pembayaran'])->name('upload_pembayaran');
 });
+
+Route::post('get_detail_pesanan', [PesananController::class, 'get_detail_pesanan'])->name('get_detail_pesanan');
+Route::post('list_booking', [PesananController::class, 'list_booking'])->name('list_booking');
 
 
 require __DIR__ . '/auth.php';

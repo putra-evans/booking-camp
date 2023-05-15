@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('no_booking');
             $table->string('total_menginap');
             $table->string('final_biaya');
-            $table->integer('status_final')->comment('0 = Belum Bayar, 1 = Bayar, 2 = batal');
+            $table->integer('status_final')->comment('0 = Belum Bayar, 1 = Pembayaran diproses, 2 = pembayaran diterima, 3 = pembayaran ditolak');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
