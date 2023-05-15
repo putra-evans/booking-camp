@@ -12,21 +12,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ms_kavling', function (Blueprint $table) {
-            $table->bigIncrements('id_kavling');
-            $table->string('kode_kavling');
-            $table->string('nama_kavling');
-            $table->integer('status_kavling')->comment('0 = Tidak Aktif, 1 = Aktif');
+        Schema::create('ta_file_pembayaran', function (Blueprint $table) {
+            $table->bigIncrements('id_file_pembayaran');
+            $table->bigInteger('id_final_booking');
+            $table->bigInteger('id_user');
+            $table->string('no_booking');
+            $table->string('nama_file_pembayaran');
+            $table->string('ctt_pembayaran');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
-
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('ms_kavling');
+        Schema::dropIfExists('ta_file_pembayaran');
     }
 };

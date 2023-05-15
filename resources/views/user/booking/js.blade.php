@@ -265,8 +265,8 @@
             if (result.isConfirmed) {
                 axios.post("{{ route('proses_booking') }}", postData).then(function (r) {
                     swalWithBootstrapButtons.fire(
-                        'Terhapus',
-                        'Data berhasil dihapus.',
+                        'Dibooking',
+                        'Silahkan lakukan upload bukti pembayaran pada menu Pesanan.',
                         'success'
                     )
                     getDataDraftBooking();

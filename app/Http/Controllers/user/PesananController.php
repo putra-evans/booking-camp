@@ -36,13 +36,29 @@ class PesananController extends Controller
                     return $lama_inap;
                 })
                 ->addColumn('total_biaya', function ($item) {
-                    $total = '<button type="button" class="btn btn-text-danger text-bold waves-effect waves-light">Rp. ' . number_format($item->final_biaya) . '</button>';
+                    if ($item->status_final == 0) {
+                        $total = '<button type="button" class="btn btn-text-danger text-bold waves-effect waves-light">Rp. ' . number_format($item->final_biaya) . '</button>';
+                    } else if ($item->status_final == 1) {
+                        $total = '<button type="button" class="btn btn-text-warning text-bold waves-effect waves-light">Rp. ' . number_format($item->final_biaya) . '</button>';
+                    } else if ($item->status_final == 2) {
+                        $total = '<button type="button" class="btn btn-text-success text-bold waves-effect waves-light">Rp. ' . number_format($item->final_biaya) . '</button>';
+                    }
                     return $total;
                 })
                 ->addColumn('action', function ($item) {
-                    $btn = '<button type="button" data-id="' . $item->id_final_booking . '" title="Detail data" class="btn btn-icon btn-primary waves-effect waves-light" id="BtnDetail"><span class="fa-solid fa-circle-info"></span></button>
-                    <button type="button" data-id="' . $item->id_final_booking . '" title="Hapus data" class="btn btn-icon btn-danger waves-effect waves-light" id="BtnHapus"><span class="fa-regular fa-trash-can"></span></button>
-                    ';
+                    if ($item->status_final == 0) {
+                        $btn = '<button type="button" data-id="' . $item->id_final_booking . '" data-no_booking="' . $item->no_booking . '" title="Detail data" class="btn btn-icon btn-primary waves-effect waves-light" id="BtnDetail"><span class="fa-solid fa-circle-info"></span></button>
+                        <button type="button" data-id="' . $item->id_final_booking . '" data-no_booking="' . $item->no_booking . '" title="Upload Bukti Pembayaran" class="btn btn-icon btn-info waves-effect waves-light" id="BtnUploadPembayaran"><span class="mdi mdi-upload"></span></button>
+
+                        ';
+                    } else if ($item->status_final == 1) {
+                        $total = '<button type="button" class="btn btn-text-warning text-bold waves-effect waves-light">Rp. ' . number_format($item->final_biaya) . '</button>';
+                    } else if ($item->status_final == 2) {
+                        $total = '<button type="button" class="btn btn-text-success text-bold waves-effect waves-light">Rp. ' . number_format($item->final_biaya) . '</button>';
+                    }
+                    // $btn = '<button type="button" data-id="' . $item->id_final_booking . '" data-no_booking="' . $item->no_booking . '" title="Detail data" class="btn btn-icon btn-primary waves-effect waves-light" id="BtnDetail"><span class="fa-solid fa-circle-info"></span></button>
+                    // <button type="button" data-id="' . $item->id_final_booking . '" title="Hapus data" class="btn btn-icon btn-danger waves-effect waves-light" id="BtnHapus"><span class="fa-regular fa-trash-can"></span></button>
+                    // ';
                     return $btn;
                 })
                 ->rawColumns(['action', 'status_pesanan', 'lama_inap', 'total_biaya'])
@@ -51,5 +67,26 @@ class PesananController extends Controller
         return view('user.pesanan.index', [
             // 'kabkota' => $city
         ]);
+    }
+
+
+    public function get_detail_pesanan(Request $request)
+    {
+        $data_booking = DB::table('ta_final_booking')
+            ->join('users', 'users.id', '=', 'ta_final_booking.id_user')
+            ->where('ta_final_booking.id_final_booking', $request->id)
+            ->get();
+        return response()->json($data_booking, 200);
+    }
+
+    public function list_booking(Request $request)
+    {
+        $no_booking = $request->no_booking;
+        $booking =  DB::table('ta_booking as A')
+            ->join('ms_kavling as B', 'A.id_kavling', '=', 'B.id_kavling')
+            ->where('A.no_booking', '=', $no_booking)
+            ->orderBy('A.id_booking', 'DESC')
+            ->get();
+        return response()->json($booking, 200);
     }
 }

@@ -36,13 +36,12 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
 
 {{-- modal detal --}}
-<div class="modal-onboarding modal fade animate__animated" data-bs-backdrop="static" data-bs-keyboard="false" id="detailUser"
+<div class="modal-onboarding modal fade animate__animated" data-bs-backdrop="static" data-bs-keyboard="false" id="detailBooking"
     tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
@@ -55,104 +54,169 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="card mb-4">
-                                <h4 class="card-header">Detail Profil</h4>
+                                <h4 class="card-header"> <u> Detail Booking :</u></h4>
                                 <!-- Account -->
                                 <div class="card-body">
-                                    <table class="table">
+                                    <table class="table table-borderless">
                                         <tr>
-                                            <td>
-                                                <div class="d-flex align-items-start align-items-sm-center gap-4">
-                                                    <img src="" alt="Belum ada upload foto user" class="d-block rounded open-img-profil" width="200px" id="fotoProfil" data-bs-toggle='modal' data-bs-target='#ModalFoto' />
-                                                </div>
+                                            <td width="20%">
+                                                <i class="mdi mdi-account-outline mdi-24px"></i><span class="fw-semibold mx-2">Nama
+                                                    Lengkap</span>
                                             </td>
-                                            <td>
-                                                <div class="d-flex align-items-start align-items-sm-center gap-4">
-                                                    <img src="" alt="Belum ada upload KTP" class="d-block rounded open-img-ktp" width="200px" id="fotoKtp" data-bs-toggle='modal' data-bs-target='#ModalFoto' />
-                                                </div>
-                                                </form>
+                                            <td width="2%">
+                                                :
+                                            </td>
+                                            <td width="78%">
+                                                <span id="nama_lengkap"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="20%">
+                                                <i class="mdi mdi-email-outline mdi-24px"></i><span
+                                                    class="fw-semibold mx-2">Email</span>
+                                            </td>
+                                            <td width="2%">
+                                                :
+                                            </td>
+                                            <td width="78%">
+                                                <span id="email"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="20%">
+                                                <i class="mdi mdi-phone-outline mdi-24px"></i><span class="fw-semibold mx-2">No
+                                                    Telp</span>
+                                            </td>
+                                            <td width="2%">
+                                                :
+                                            </td>
+                                            <td width="78%">
+                                                <span id="no_telp"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="20%">
+                                                <span class="mdi mdi-ab-testing mdi-24px"></span><span class="fw-semibold mx-2">No Booking</span>
+                                            </td>
+                                            <td width="2%">
+                                                :
+                                            </td>
+                                            <td width="78%">
+                                                <span id="no_booking"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="20%">
+                                                <span class="mdi mdi-campfire mdi-24px"></span><span
+                                                    class="fw-semibold mx-2">Lama Menginap</span>
+                                            </td>
+                                            <td width="2%">
+                                                :
+                                            </td>
+                                            <td width="78%">
+                                                <span id="total_menginap"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="20%">
+                                                <span class="mdi mdi-currency-usd mdi-24px"></span><span
+                                                    class="fw-semibold mx-2">Total Biaya</span>
+                                            </td>
+                                            <td width="2%">
+                                                :
+                                            </td>
+                                            <td width="78%">
+                                                <span id="final_biaya"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="20%">
+                                                <span class="mdi mdi-cash-sync mdi-24px"></span><span
+                                                    class="fw-semibold mx-2">Status</span>
+                                            </td>
+                                            <td width="2%">
+                                                :
+                                            </td>
+                                            <td width="78%">
+                                                <span id="status_final"></span>
                                             </td>
                                         </tr>
                                     </table>
+                                <h4 class="card-header mt-5"> <u>List Kavling :</u> </h4>
+                                <table class="table table-bordered" id="tbl_list_booking">
+                                    <thead>
+                                      <tr>
+                                        <th class="text-center">No</th>
+                                        <th class="text-center">Kavling Dipilih</th>
+                                        <th class="text-center">Jumlah/Malam</th>
+                                        <th class="text-center">Harga</th>
+                                        <th class="text-center">Tanggal Dipilih</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody id="tbody_booking">
+                                    </tbody>
+                                  </table>
                                 </div>
                                 <div class="card-body pt-2 mt-1">
-                                    <div class="row mt-2 gy-4">
-                                        <div class="col-md-6">
-                                            <div class="form-floating form-floating-outline">
-                                                <input readonly class="form-control" type="text" id="nama_lengkap"
-                                                    name="nama_lengkap" value="" autofocus />
-                                                <label for="nama_lengkap">Nama Lengkap</label>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-floating form-floating-outline">
-                                                <input readonly class="form-control" type="text" name="nama_panggilan"
-                                                    id="nama_panggilan" value="" />
-                                                <label for="nama_panggilan">Nama Panggilan</label>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-floating form-floating-outline">
-                                                <input readonly class="form-control" type="text" id="email" name="email"
-                                                    value="" readonly />
-                                                <label for="email">E-mail</label>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-floating form-floating-outline">
-                                                <input readonly type="text" class="form-control" id="no_telp"
-                                                    name="no_telp" value="" />
-                                                <label for="no_telp">No Telp</label>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="input-group input-group-merge">
-                                                <div class="form-floating form-floating-outline">
-                                                    <input readonly type="text" id="tempat_lahir" name="tempat_lahir"
-                                                        class="form-control" value="" />
-                                                    <label for="tempat_lahir">Tempat Lahir</label>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-floating form-floating-outline">
-                                                <input readonly type="date" class="form-control" id="tanggal_lahir"
-                                                    name="tanggal_lahir" value="" />
-                                                <label for="tanggal_lahir">Tanggal Lahir</label>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-floating form-floating-outline">
-                                                <input readonly type="text" class="form-control" id="jenis_kelamin"
-                                                    name="jenis_kelamin" value="" />
-                                                <label for="jenis_kelamin">Jenis Kelamin</label>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-floating form-floating-outline">
-                                                <input type="text" class="form-control" value="" id="status_akun" name="status_akun" readonly />
-                                                <label for="state">Status Akun</label>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="form-floating form-floating-outline">
-                                                <textarea readonly name="alamat_lengkap" id="alamat_lengkap"
-                                                    class="form-control h-px-100"></textarea>
-                                                <label for="zipCode">Alamat Lengkap</label>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <br>
                                     <span style="color: red;font-size: 12px">Note : <br>
                                         <li>Apabila data yang diinputkan user sudah <b>Benar dan Valid</b></li>
                                         <li>Silahkan lakukan update status akun dengan cara <b>Klik Status Akun Saat Ini</b></li>
                                     </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-0">
+                <button type="button" class="btn btn-label-danger" data-bs-dismiss="modal">Keluar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{{-- modal upload bukti pembayaran --}}
+<div class="modal-onboarding modal fade animate__animated" data-bs-backdrop="static" data-bs-keyboard="false" id="uploadPembayaran"
+    tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card mb-4">
+                                <h4 class="card-header"> <u> Upload Bukti Pembayaran :</u></h4>
+                                <div class="card-body">
+                                    <form id="formTambah" method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="row mt-2 gy-4">
+                                            <input required class="form-control" type="hidden" id="id_usernya" name="id_usernya" value="" readonly />
+                                            <div class="col-md-6">
+                                                <div class="form-floating form-floating-outline required">
+                                                    <input required class="form-control" type="file" id="bukti_pembayaran" name="bukti_pembayaran" value="" autofocus />
+                                                    <label for="bukti_pembayaran">Nama Lengkap</label>
+                                                    <div class="invalid-feedback"></div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-floating form-floating-outline required">
+                                                   <textarea required name="alamat_lengkap" id="alamat_lengkap" class="form-control h-px-100"></textarea>
+                                                    <label for="zipCode">Alamat Lengkap</label>
+                                                    <div class="invalid-feedback"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4">
+                                            <button type="submit" class="btn btn-primary" id="edit_profil">Edit Profil</button>
+                                            <a href="" class="btn btn-outline-secondary">Cancel</a>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
