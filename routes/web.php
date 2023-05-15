@@ -4,6 +4,7 @@ use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\user\BookingController;
+use App\Http\Controllers\user\PesananController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -45,41 +46,18 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::post('destroy',   [UserController::class, 'destroy'])->name('destroy');
     Route::post('aktif_akun',   [UserController::class, 'aktif_akun'])->name('aktif_akun');
     Route::post('nonaktif_akun',   [UserController::class, 'nonaktif_akun'])->name('nonaktif_akun');
-
-
-    // // KATEGORI ROUTE
-    // Route::get('halaman-kategori', [KategoriController::class, 'index'])->name('halaman-kategori');
-    // Route::post('save-kategori',   [KategoriController::class, 'store'])->name('simpan-kategori');
-    // Route::post('hapus-kategori',   [KategoriController::class, 'destroy'])->name('hapus-kategori');
-    // Route::post('update-kategori',   [KategoriController::class, 'update'])->name('update-kategori');
-
-    // // PRODUK ROUTE
-    // Route::get('halaman-produk', [ProdukController::class, 'index'])->name('halaman-produk');
-    // Route::post('save-produk',   [ProdukController::class, 'store'])->name('simpan-produk');
-    // Route::post('hapus-produk',   [ProdukController::class, 'destroy'])->name('hapus-produk');
-    // Route::post('update-produk',   [ProdukController::class, 'update'])->name('update-produk');
-    // Route::get('get-jenis-beras',   [ProdukController::class, 'get_kategori'])->name('get-jenis-beras');
-    // // PRODUK PMESANAN
-    // Route::get('halaman-pemesanan', [PemesananController::class, 'index'])->name('halaman-pemesanan');
-    // Route::get('detail-pemesanan', [PemesananController::class, 'get_detail'])->name('detail-pemesanan');
-    // Route::get('get-file', [PemesananController::class, 'get_file'])->name('get-file');
-    // Route::post('update-status', [PemesananController::class, 'update_status'])->name('update-status');
-
-    // Route::get('get-laporan', [LaporanController::class, 'index'])->name('get-laporan');
-
-    // Route::get('lap-penjualan', [LaporanController::class, 'laporan_penjualan'])->name('lap-penjualan');
-    // Route::get('lap-persediaan', [LaporanController::class, 'laporan_persediaan'])->name('lap-persediaan');
 });
 
 Route::group(['middleware' => ['role:user']], function () {
-
+    // BOOKING USER
     Route::get('/booking', [BookingController::class, 'index'])->name('booking');
     Route::post('get_booking', [BookingController::class, 'get_booking'])->name('get_booking');
     Route::post('booking_kavling', [BookingController::class, 'booking_kavling'])->name('booking_kavling');
     Route::get('draft_booking', [BookingController::class, 'draft_booking'])->name('draft_booking');
     Route::post('destroy_booking', [BookingController::class, 'destroy_booking'])->name('destroy_booking');
     Route::post('proses_booking', [BookingController::class, 'proses_booking'])->name('proses_booking');
-    Route::get('pesanan', [BookingController::class, 'pesanan'])->name('pesanan');
+
+    Route::get('user-pesanan', [PesananController::class, 'index'])->name('user-pesanan');
 });
 
 

@@ -35,7 +35,7 @@
     @endrole
 
     <li class="menu-item">
-        <a href="app-email.html" class="menu-link">
+        <a href="{{ route('user-pesanan') }}" class="menu-link">
             <i class="menu-icon tf-icons mdi mdi-file-document-outline"></i>
             <div data-i18n="Email">Pesanan</div>
         </a>
