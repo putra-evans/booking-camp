@@ -26,6 +26,7 @@
                                     <th width="25%">No Booking</th>
                                     <th width="20%" class="text-center">Lama Menginap</th>
                                     <th width="25%" class="text-center">Total Biaya</th>
+                                    <th width="15%" class="text-center">Bukti Pembayaran</th>
                                     <th width="15%" class="text-center">Status</th>
                                     <th width="10%" class="text-center">Actions</th>
                                 </tr>
@@ -180,7 +181,7 @@
 {{-- modal upload bukti pembayaran --}}
 <div class="modal-onboarding modal fade animate__animated" data-bs-backdrop="static" data-bs-keyboard="false" id="uploadPembayaran"
     tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header border-0">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
@@ -190,48 +191,42 @@
                 <div class="row">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="card mb-4">
-                                <h4 class="card-header"> <u> Upload Bukti Pembayaran :</u></h4>
-                                <div class="card-body">
-                                    <form id="formTambah" method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
-                                        @csrf
-                                        <div class="row mt-2 gy-4">
-                                            <input required class="form-control" type="hidden" id="id_usernya" name="id_usernya" value="" readonly />
-                                            <div class="col-md-6">
-                                                <div class="form-floating form-floating-outline required">
-                                                    <input required class="form-control" type="file" id="bukti_pembayaran" name="bukti_pembayaran" value="" autofocus />
-                                                    <label for="bukti_pembayaran">Nama Lengkap</label>
-                                                    <div class="invalid-feedback"></div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-floating form-floating-outline required">
-                                                   <textarea required name="alamat_lengkap" id="alamat_lengkap" class="form-control h-px-100"></textarea>
-                                                    <label for="zipCode">Alamat Lengkap</label>
-                                                    <div class="invalid-feedback"></div>
-                                                </div>
-                                            </div>
+                            <h4 class="card-header"> <u> Upload Bukti Pembayaran :</u></h4>
+                            <form id="formUpload" method="POST" class="needs-validation" novalidate enctype="multipart/form-data">
+                                @csrf
+                                <div class="row mt-2 gy-4">
+                                    <input required class="form-control" type="hidden" id="id_final_booking" name="id_final_booking" value="" readonly />
+                                    <input required class="form-control" type="hidden" id="no_booking_final" name="no_booking_final" value="" readonly />
+                                    <div class="col-md-12">
+                                        <div class="form-floating form-floating-outline required">
+                                            <input required class="form-control" type="file" id="bukti_pembayaran" name="bukti_pembayaran" value="" autofocus />
+                                            <label for="bukti_pembayaran">Upload Bukti Pembayaran</label>
+                                            <div class="invalid-feedback"></div>
                                         </div>
-                                        <div class="mt-4">
-                                            <button type="submit" class="btn btn-primary" id="edit_profil">Edit Profil</button>
-                                            <a href="" class="btn btn-outline-secondary">Cancel</a>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-floating form-floating-outline required">
+                                            <textarea required name="ctt_pembayaran" id="ctt_pembayaran" class="form-control h-px-100"></textarea>
+                                            <label for="zipCode">Catatan Pembayaran</label>
+                                            <div class="invalid-feedback"></div>
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="mt-4">
+                                    <button type="submit" class="btn btn-primary" id="upload_pembayaran">Upload</button>
+                                    <button type="button" class="btn btn-label-danger" data-bs-dismiss="modal">Keluar</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer border-0">
-                <button type="button" class="btn btn-label-danger" data-bs-dismiss="modal">Keluar</button>
             </div>
         </div>
     </div>
 </div>
 
 <!-- Modal Show Image -->
-<div class="modal fade" id="ModalFoto" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="LIhatBukti" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <img width="100%" id="imgku" src=""></img>

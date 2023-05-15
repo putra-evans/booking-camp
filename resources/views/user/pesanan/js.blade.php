@@ -57,6 +57,11 @@
 
                 },
                 {
+                    data: 'file_pembayaran',
+                    name: 'file_pembayaran',
+                    className: 'text-center'
+                },
+                {
                     data: 'status_pesanan',
                     name: 'status_pesanan',
                     className: 'text-center'
@@ -153,66 +158,111 @@
 
     $(document).on('click', '#BtnUploadPembayaran', function (e) {
         e.stopPropagation();
+        reset();
         let id = $(this).data('id');
         let no_booking = $(this).data('no_booking');
+        $('#id_final_booking').val(id);
+        $('#no_booking_final').val(no_booking);
         $('#uploadPembayaran').modal('show');
     });
 
 
+    function reset() {
+        $('#errEntry').html('');
+        $('#errSuccess').html('');
+        $('form#formUpload').trigger('reset');
+        $('form#formUpload').removeClass('was-validated');
+    }
 
 
 
-
-
-    // OPEN IMG
-    $(document).on('click', '.open-img-profil', function (e) {
+    $(document).on('submit', '#formUpload', function (e) {
         e.preventDefault();
-        var img = $('.open-img-profil').attr('src');
-        $('#imgku').attr('src', img);
-        $('#detailUser').modal('show');
-    });
-    $(document).on('click', '.open-img-ktp', function (e) {
-        e.preventDefault();
-        var img = $('.open-img-ktp').attr('src');
-        $('#imgku').attr('src', img);
-        $('#detailUser').modal('show');
-    });
-
-    $(document).on('click', '#BtnHapus', function (e) {
-        e.preventDefault();
-        let id = $(this).data('id');
-        postData = {
-            'id': id
-        };
+        var form = $(this)[0];
+        var postData = new FormData(form);
+        $("#upload_pembayaran").html(
+            '<i class="spinner-grow spinner-grow-sm mr-2" role="status" aria-hidden="true"></i> DIPROSES...'
+        );
+        $("#upload_pembayaran").addClass('disabled');
+        loading($('#formUpload'));
         swalWithBootstrapButtons.fire({
-            title: 'Apakah anda yakin?',
-            text: "Aksi ini tidak dapat dibatalkan!",
+            title: 'Konfirmasi',
+            text: 'Apakah anda ingin menyimpan data ini ?',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Ya, hapus!',
-            cancelButtonText: 'Tidak, batal!',
+            confirmButtonText: 'Ya, simpan!',
+            cancelButtonText: 'Tidak, batalkan!',
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.post("{{ route('destroy') }}", postData).then(function (r) {
-                    swalWithBootstrapButtons.fire(
-                        'Terhapus',
-                        'Data berhasil dihapus.',
-                        'success'
-                        )
-                        $('#listPesanan').DataTable().ajax.reload();
-                });
-            } else if (
-                /* Read more about handling dismissals below */
-                result.dismiss === Swal.DismissReason.cancel
-            ) {
-                swalWithBootstrapButtons.fire(
-                    'Dibatalkan',
-                    'Data anda aman :)',
-                    'error'
-                )
+                axios.post("{{ route('upload_pembayaran') }}", postData)
+                    .then(function (response) {
+                        console.log('then', response);
+                        swalWithBootstrapButtons.fire({
+                            title: 'Berhasil',
+                            text: 'Data berhasil ditambahkan.',
+                            icon: 'success',
+                            confirmButtonText: '<i class="fas fa-check"></i> Oke',
+                            showCancelButton: false,
+                        });
+                        getData();
+                        $('#formUpload').waitMe('hide');
+                        $('#uploadPembayaran').modal('toggle');
+
+                    })
+                    .catch(function (error) {
+                        if (error.response.status == 422) {
+                            $('#formUpload').addClass('was-validated');
+                            swalWithBootstrapButtons.fire({
+                                title: 'Batal',
+                                text: 'Periksa kembali form inputan anda, jangan sampai ada data kosong',
+                                icon: 'error',
+                                confirmButtonText: '<i class="fas fa-check"></i> Oke',
+                                showCancelButton: false,
+                            }).then((result) => {
+                                if (result.value) {
+                                    $.each(error.response.data, function (key, value) {
+                                        console.log(value[0]);
+                                        if (key != 'isi') {
+                                            $('input[name="' + key +
+                                                '"], textarea[name="' + key +
+                                                '"], select[name="' + key + '"]'
+                                            ).closest('div.required').find(
+                                                'div.invalid-feedback').text(
+                                                value[0]);
+                                        } else {
+                                            $('#pesanErr').html(value);
+                                        }
+                                    });
+                                    $('#formUpload').waitMe('hide');
+                                }
+                            })
+                        }
+                    });
+                $('#formUpload').waitMe('hide');
+                $("#upload_pembayaran").html('Upload');
+                $("#upload_pembayaran").removeClass('disabled');
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                swalWithBootstrapButtons.fire({
+                    title: 'Batal',
+                    text: 'Simpan data dibatalkan',
+                    icon: 'error',
+                    confirmButtonText: '<i class="fas fa-check"></i> Oke',
+                    showCancelButton: false,
+                })
+                $('#formUpload').waitMe('hide');
+                $("#upload_pembayaran").html('Upload');
+                $("#upload_pembayaran").removeClass('disabled');
             }
         })
     });
+
+    // OPEN IMG
+    $(document).on('click', '#lihat_bukti', function (e) {
+        e.preventDefault();
+        let img = $(this).data('img');
+        $('#imgku').attr('src', img);
+    });
+
 
     function numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

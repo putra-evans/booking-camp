@@ -23,6 +23,12 @@
             <div data-i18n="Profil">Data User</div>
         </a>
     </li>
+    <li class="menu-item">
+        <a href="{{ route('user-pesanan') }}" class="menu-link">
+            <i class="menu-icon tf-icons mdi mdi-file-document-outline"></i>
+            <div data-i18n="Email">Pesanan User</div>
+        </a>
+    </li>
     @endrole
 
     @role('user')
@@ -32,14 +38,15 @@
                 <div data-i18n="booking">Booking</div>
             </a>
         </li>
+        <li class="menu-item">
+            <a href="{{ route('user-pesanan') }}" class="menu-link">
+                <i class="menu-icon tf-icons mdi mdi-file-document-outline"></i>
+                <div data-i18n="Email">Pesanan</div>
+            </a>
+        </li>
     @endrole
 
-    <li class="menu-item">
-        <a href="{{ route('user-pesanan') }}" class="menu-link">
-            <i class="menu-icon tf-icons mdi mdi-file-document-outline"></i>
-            <div data-i18n="Email">Pesanan</div>
-        </a>
-    </li>
+
     {{-- <li class="menu-item">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class='menu-icon tf-icons mdi mdi-file-document-outline'></i>

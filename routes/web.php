@@ -60,6 +60,7 @@ Route::group(['middleware' => ['role:user']], function () {
     Route::get('user-pesanan', [PesananController::class, 'index'])->name('user-pesanan');
     Route::post('get_detail_pesanan', [PesananController::class, 'get_detail_pesanan'])->name('get_detail_pesanan');
     Route::post('list_booking', [PesananController::class, 'list_booking'])->name('list_booking');
+    Route::post('/upload_pembayaran', [PesananController::class, 'upload_pembayaran'])->name('upload_pembayaran');
 });
 
 
