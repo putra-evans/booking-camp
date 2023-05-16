@@ -57,6 +57,12 @@
 
                 },
                 {
+                    data: 'tgl_dibuat',
+                    name: 'tgl_dibuat',
+                    className: 'text-center'
+
+                },
+                {
                     data: 'total_biaya',
                     name: 'total_biaya',
                     className: 'text-center'
@@ -79,6 +85,51 @@
             }],
         });
     }
+
+    // batalkan pesanan
+    $(document).on('click', '#BtnBatalkan', function (e) {
+        e.preventDefault();
+        let id = $(this).data('id');
+        let no_booking = $(this).data('no_booking');
+        postData = {
+            'id': id,
+            'no_booking': no_booking,
+        };
+        loading($('#list_belum_bayar'));
+        swalWithBootstrapButtons.fire({
+            title: 'Konfirmasi',
+            text: 'Apakah anda ingin membatalkan data ini ?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, simpan!',
+            cancelButtonText: 'Tidak, batalkan!',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.post("{{ route('batalkan-pesanan') }}", postData)
+                    .then(function (response) {
+                        console.log('then', response);
+                        swalWithBootstrapButtons.fire({
+                            title: 'Berhasil',
+                            text: 'Data berhasil ditambahkan.',
+                            icon: 'success',
+                            confirmButtonText: '<i class="fas fa-check"></i> Oke',
+                            showCancelButton: false,
+                        });
+                        getDataBelumBayar();
+                        $('#list_belum_bayar').waitMe('hide');
+                    });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                swalWithBootstrapButtons.fire({
+                    title: 'Batal',
+                    text: 'Aksi dibatalkan',
+                    icon: 'error',
+                    confirmButtonText: '<i class="fas fa-check"></i> Oke',
+                    showCancelButton: false,
+                })
+                $('#list_belum_bayar').waitMe('hide');
+            }
+        })
+    });
 
 
 

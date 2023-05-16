@@ -214,7 +214,7 @@
                             $('#formUpload').addClass('was-validated');
                             swalWithBootstrapButtons.fire({
                                 title: 'Batal',
-                                text: 'Periksa kembali form inputan anda, jangan sampai ada data kosong',
+                                text: 'Periksa kembali form inputan anda, jangan sampai ada data kosong dan tipe file sesuai',
                                 icon: 'error',
                                 confirmButtonText: '<i class="fas fa-check"></i> Oke',
                                 showCancelButton: false,

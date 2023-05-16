@@ -52,6 +52,8 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::get('list-pesanan-diproses', [Pesanan_userController::class, 'list_diproses'])->name('list-pesanan-diproses');
     Route::get('list-pesanan-diterima', [Pesanan_userController::class, 'list_diterima'])->name('list-pesanan-diterima');
     Route::get('list-pesanan-dibatalkan', [Pesanan_userController::class, 'list_dibatalkan'])->name('list-pesanan-dibatalkan');
+
+    Route::post('batalkan-pesanan', [Pesanan_userController::class, 'batalkan_pesanan'])->name('batalkan-pesanan');
 });
 
 Route::group(['middleware' => ['role:user']], function () {

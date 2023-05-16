@@ -54,8 +54,9 @@
                                     <thead>
                                         <tr>
                                             <th width="5%" class="text-center">No</th>
-                                            <th width="25%">No Booking</th>
-                                            <th width="20%" class="text-center">Lama Menginap</th>
+                                            <th width="15%">No Booking</th>
+                                            <th width="15%" class="text-center">Lama Menginap</th>
+                                            <th width="15%" class="text-center">Tanggal Booking</th>
                                             <th width="20%" class="text-center">Total Biaya</th>
                                             <th width="15%" class="text-center">Status</th>
                                             <th width="15%" class="text-center">Actions</th>

@@ -23,7 +23,8 @@ class BookingController extends Controller
             ->select('A.id_kavling as id_ms_kavling', 'A.kode_kavling', 'A.nama_kavling', 'B.*')
             ->leftjoin('ta_booking as B', function (JoinClause $join) use ($tgl_dipilih) {
                 $join->on('B.id_kavling', '=', 'A.id_kavling')
-                    ->where('B.tanggal_booking', '=',   $tgl_dipilih);
+                    ->where('B.tanggal_booking', '=',   $tgl_dipilih)
+                    ->where('B.status_pesanan', '!=',   3);
             })
             ->orderBy('A.id_kavling', 'ASC')
             ->get();
