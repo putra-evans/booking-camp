@@ -54,6 +54,7 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::get('list-pesanan-dibatalkan', [Pesanan_userController::class, 'list_dibatalkan'])->name('list-pesanan-dibatalkan');
 
     Route::post('batalkan-pesanan', [Pesanan_userController::class, 'batalkan_pesanan'])->name('batalkan-pesanan');
+    Route::post('proses_pembayaran', [Pesanan_userController::class, 'proses_pembayaran'])->name('proses_pembayaran');
 });
 
 Route::group(['middleware' => ['role:user']], function () {
@@ -72,6 +73,8 @@ Route::group(['middleware' => ['role:user']], function () {
 
 Route::post('get_detail_pesanan', [PesananController::class, 'get_detail_pesanan'])->name('get_detail_pesanan');
 Route::post('list_booking', [PesananController::class, 'list_booking'])->name('list_booking');
+
+Route::get('cetak_invoice/{id}', [Pesanan_userController::class, 'cetak_invoice'])->name('cetak_invoice');
 
 
 require __DIR__ . '/auth.php';

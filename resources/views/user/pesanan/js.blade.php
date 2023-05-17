@@ -34,7 +34,9 @@
             responsive: false,
             scrollX: true,
             autoWidth: false,
+            bDestroy: true,
             ajax: "{{ route('user-pesanan') }}",
+
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex',

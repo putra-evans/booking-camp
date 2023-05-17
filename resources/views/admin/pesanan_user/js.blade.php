@@ -28,10 +28,11 @@
         getDataBelumBayar();
     });
 
-// ------------------------------------------------------------------------------------------------Belum Bayar
+    // ------------------------------------------------------------------------------------------------Belum Bayar
     $(document).on('click', '#btnBelumBayar', function (e) {
         getDataBelumBayar();
     });
+
     function getDataBelumBayar() {
         'use strict';
         var list_belum_bayar = $("#list_belum_bayar").DataTable({
@@ -49,6 +50,10 @@
                 {
                     data: 'no_booking',
                     name: 'no_booking'
+                },
+                {
+                    data: 'name',
+                    name: 'name'
                 },
                 {
                     data: 'lama_inap',
@@ -134,7 +139,7 @@
 
 
 
-// ------------------------------------------------------------------------------------------------Diproses
+    // ------------------------------------------------------------------------------------------------Diproses
 
     $(document).on('click', '#btnDiproses', function (e) {
         getDataDiproses();
@@ -159,8 +164,18 @@
                     name: 'no_booking'
                 },
                 {
+                    data: 'name',
+                    name: 'name'
+                },
+                {
                     data: 'lama_inap',
                     name: 'lama_inap',
+                    className: 'text-center'
+
+                },
+                {
+                    data: 'tgl_dibuat',
+                    name: 'tgl_dibuat',
                     className: 'text-center'
 
                 },
@@ -192,11 +207,52 @@
             }],
         });
     }
+    // proses bukti pembayaran pesanan
+    $(document).on('click', '#BtnProsesPembayaran', function (e) {
+        e.preventDefault();
+        let id = $(this).data('id');
+        let no_booking = $(this).data('no_booking');
+        // loading($('#list_diproses'));
+        Swal.fire({
+            title: 'Validasi Pembayaran',
+            input: 'select',
+            inputOptions: {
+                '2': 'Pembayaran Diterima',
+                '3': 'Pembayaran Ditolak',
+            },
+            inputPlaceholder: 'Silahkan pilih',
+            showCancelButton: true,
+            inputValidator: (value) => {
+                return new Promise((resolve) => {
+                    if (value != '') {
+                        postData = {
+                            'id': id,
+                            'no_booking': no_booking,
+                            'status': value,
+                        };
+                        axios.post("{{ route('proses_pembayaran') }}", postData)
+                            .then(function (response) {
+                                console.log('then', response);
+                                swalWithBootstrapButtons.fire({
+                                    title: 'Berhasil',
+                                    text: 'Data berhasil ditambahkan.',
+                                    icon: 'success',
+                                    confirmButtonText: '<i class="fas fa-check"></i> Oke',
+                                    showCancelButton: false,
+                                });
+                                getDataDiproses();
+                            });
+                    } else {
+                        resolve('Silahkan pilih, jangan sampai kosong')
+                    }
+                })
+            }
+        })
+    });
 
+    // ------------------------------------------------------------------------------------------------Diterima
 
-// ------------------------------------------------------------------------------------------------Diterima
-
-$(document).on('click', '#btnDiterima', function (e) {
+    $(document).on('click', '#btnDiterima', function (e) {
         getDataDiterima();
     });
 
@@ -219,8 +275,18 @@ $(document).on('click', '#btnDiterima', function (e) {
                     name: 'no_booking'
                 },
                 {
+                    data: 'name',
+                    name: 'name'
+                },
+                {
                     data: 'lama_inap',
                     name: 'lama_inap',
+                    className: 'text-center'
+
+                },
+                {
+                    data: 'tgl_dibuat',
+                    name: 'tgl_dibuat',
                     className: 'text-center'
 
                 },
@@ -254,9 +320,9 @@ $(document).on('click', '#btnDiterima', function (e) {
     }
 
 
-// ------------------------------------------------------------------------------------------------Ditolak
+    // ------------------------------------------------------------------------------------------------Ditolak
 
-$(document).on('click', '#btnDibatalkan', function (e) {
+    $(document).on('click', '#btnDibatalkan', function (e) {
         getDataDibatalkan();
     });
 
@@ -279,8 +345,18 @@ $(document).on('click', '#btnDibatalkan', function (e) {
                     name: 'no_booking'
                 },
                 {
+                    data: 'name',
+                    name: 'name'
+                },
+                {
                     data: 'lama_inap',
                     name: 'lama_inap',
+                    className: 'text-center'
+
+                },
+                {
+                    data: 'tgl_dibuat',
+                    name: 'tgl_dibuat',
                     className: 'text-center'
 
                 },
@@ -343,17 +419,17 @@ $(document).on('click', '#btnDibatalkan', function (e) {
             $.each(data, function (key, value) {
                 console.log
                 $('#tbody_booking').append("<tr>\
-                        			<td class='text-center'>" + ++i + "</td>\
-                        			<td class='text-center'><button type='button' style='width: 80px !important;margin:5px' class='btn btn-twitter waves-effect waves-light'>" + value.kode_kavling + "</button></td>\
-                                    <td class='text-center'>"+value.lama_menginap+" Malam</td>\
+                        			<td class='text-center'>" + ++i +
+                    "</td>\
+                        			<td class='text-center'><button type='button' style='width: 80px !important;margin:5px' class='btn btn-twitter waves-effect waves-light'>" +
+                    value.kode_kavling + "</button></td>\
+                                    <td class='text-center'>" + value.lama_menginap + " Malam</td>\
                         			<td class='text-center'>Rp. " + numberWithCommas(value.total_biaya) + "</td>\
-                        			<td class='text-center'>" + tgl_indo(value.tanggal_booking)  + "</td>\
+                        			<td class='text-center'>" + tgl_indo(value.tanggal_booking) + "</td>\
                         			</tr>");
             });
         }
     }
-
-
 
     function getDetailBooking(id) {
         postData = {
@@ -366,11 +442,14 @@ $(document).on('click', '#btnDibatalkan', function (e) {
                 let data = res.data[0];
                 let status = '';
                 if (data.status_final == 0) {
-                    status = '<button type="button" class="btn rounded-pill btn-outline-youtube waves-effect btn-xs"> <i class="tf-icons mdi mdi-close-circle me-1"></i>Belum Bayar</button>';
+                    status =
+                        '<button type="button" class="btn rounded-pill btn-outline-youtube waves-effect btn-xs"> <i class="tf-icons mdi mdi-close-circle me-1"></i>Belum Bayar</button>';
                 } else if (data.status_final == 1) {
-                    status = '<button type="button" class="btn btn-outline-twitter waves-effect btn-xs"> <i class="tf-icons mdi mdi-check-decagram me-1">Pembayaran Diproses</i></button>';
-                } else if(data.status_final == 2){
-                    status = '<button type="button" class="btn btn-outline-whatsapp waves-effect btn-xs"> <i class="tf-icons mdi mdi-check-decagram me-1">Pembayaran Diterima</i></button>';
+                    status =
+                        '<button type="button" class="btn btn-outline-twitter waves-effect btn-xs"> <i class="tf-icons mdi mdi-check-decagram me-1">Pembayaran Diproses</i></button>';
+                } else if (data.status_final == 2) {
+                    status =
+                        '<button type="button" class="btn btn-outline-whatsapp waves-effect btn-xs"> <i class="tf-icons mdi mdi-check-decagram me-1">Pembayaran Diterima</i></button>';
                 }
                 $('#nama_lengkap').html(data.name);
                 $('#email').html(data.email);
@@ -382,23 +461,24 @@ $(document).on('click', '#btnDibatalkan', function (e) {
             })
     }
 
-        // OPEN IMG
-        $(document).on('click', '#lihat_bukti', function (e) {
+    // OPEN IMG
+    $(document).on('click', '#lihat_bukti', function (e) {
         e.preventDefault();
         let img = $(this).data('img');
         $('#imgku').attr('src', img);
     });
 
-// -------------------------------------------------------------------------------------------LIBRARY
+    // -------------------------------------------------------------------------------------------LIBRARY
 
     function numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
+
     function tgl_indo(date) {
         var hasil = date.split("-");
-        var tanggal =hasil[2];
-        var bulan =hasil[1];
-        var tahun =hasil[0];
+        var tanggal = hasil[2];
+        var bulan = hasil[1];
+        var tahun = hasil[0];
         switch (bulan) {
             case '01':
                 bulan = "Januari";
@@ -437,7 +517,7 @@ $(document).on('click', '#btnDibatalkan', function (e) {
                 bulan = "Desember";
                 break;
         }
-        var tampilTanggal =  tanggal + " " + bulan + " " + tahun;
+        var tampilTanggal = tanggal + " " + bulan + " " + tahun;
         return tampilTanggal;
     }
 

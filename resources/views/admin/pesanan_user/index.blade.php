@@ -54,10 +54,11 @@
                                     <thead>
                                         <tr>
                                             <th width="5%" class="text-center">No</th>
-                                            <th width="15%">No Booking</th>
+                                            <th width="10%">No Booking</th>
+                                            <th width="10%">Nama</th>
                                             <th width="15%" class="text-center">Lama Menginap</th>
                                             <th width="15%" class="text-center">Tanggal Booking</th>
-                                            <th width="20%" class="text-center">Total Biaya</th>
+                                            <th width="15%" class="text-center">Total Biaya</th>
                                             <th width="15%" class="text-center">Status</th>
                                             <th width="15%" class="text-center">Actions</th>
                                         </tr>
@@ -72,12 +73,14 @@
                                     <thead>
                                         <tr>
                                             <th width="5%" class="text-center">No</th>
-                                            <th width="20%">No Booking</th>
-                                            <th width="15%" class="text-center">Lama Menginap</th>
-                                            <th width="15%" class="text-center">Total Biaya</th>
-                                            <th width="15%" class="text-center">Bukti Pembayaran</th>
-                                            <th width="20%" class="text-center">Status</th>
-                                            <th width="10%" class="text-center">Actions</th>
+                                            <th width="10%">No Booking</th>
+                                            <th width="10%">Nama</th>
+                                            <th width="10%" class="text-center">Lama Menginap</th>
+                                            <th width="10%" class="text-center">Tanggal Booking</th>
+                                            <th width="10%" class="text-center">Total Biaya</th>
+                                            <th width="15%" class="text-center">File</th>
+                                            <th width="15%" class="text-center">Status</th>
+                                            <th width="15%" class="text-center">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody id="tbody_diproses">
@@ -90,12 +93,14 @@
                                     <thead>
                                         <tr>
                                             <th width="5%" class="text-center">No</th>
-                                            <th width="20%">No Booking</th>
-                                            <th width="15%" class="text-center">Lama Menginap</th>
-                                            <th width="15%" class="text-center">Total Biaya</th>
-                                            <th width="15%" class="text-center">Bukti Pembayaran</th>
-                                            <th width="20%" class="text-center">Status</th>
-                                            <th width="10%" class="text-center">Actions</th>
+                                            <th width="10%">No Booking</th>
+                                            <th width="10%">Nama</th>
+                                            <th width="10%" class="text-center">Lama Menginap</th>
+                                            <th width="10%" class="text-center">Tanggal Booking</th>
+                                            <th width="10%" class="text-center">Total Biaya</th>
+                                            <th width="15%" class="text-center">File</th>
+                                            <th width="15%" class="text-center">Status</th>
+                                            <th width="15%" class="text-center">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody id="tbody_diterima">
@@ -108,9 +113,11 @@
                                     <thead>
                                         <tr>
                                             <th width="5%" class="text-center">No</th>
-                                            <th width="25%">No Booking</th>
-                                            <th width="20%" class="text-center">Lama Menginap</th>
-                                            <th width="20%" class="text-center">Total Biaya</th>
+                                            <th width="10%">No Booking</th>
+                                            <th width="10%">Nama</th>
+                                            <th width="15%" class="text-center">Lama Menginap</th>
+                                            <th width="15%" class="text-center">Tanggal Booking</th>
+                                            <th width="15%" class="text-center">Total Biaya</th>
                                             <th width="15%" class="text-center">Status</th>
                                             <th width="15%" class="text-center">Actions</th>
                                         </tr>

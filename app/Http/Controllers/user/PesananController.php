@@ -28,9 +28,9 @@ class PesananController extends Controller
                     if ($item->status_final == 0) {
                         $status = '<button type="button" class="btn rounded-pill btn-outline-youtube waves-effect btn-xs"> <i class="tf-icons mdi mdi-close-circle me-1"></i> Belum Bayar</button>';
                     } else if ($item->status_final == 1) {
-                        $status = '<button type="button" class="btn rounded-pill btn-outline-twitter waves-effect btn-xs"> <i class="tf-icons mdi mdi-check-decagram me-1"> </i>Pembayaran Diproses</button>';
+                        $status = '<button type="button" class="btn rounded-pill btn-outline-twitter waves-effect btn-xs"> <i class="tf-icons mdi mdi-check-decagram me-1"> </i>Diproses</button>';
                     } else if ($item->status_final == 2) {
-                        $status = '<button type="button" class="btn rounded-pill btn-outline-whatsapp waves-effect btn-xs"> <i class="tf-icons mdi mdi-check-decagram me-1"> Pembayaran Diterima</i></button>';
+                        $status = '<button type="button" class="btn rounded-pill btn-outline-whatsapp waves-effect btn-xs"> <i class="tf-icons mdi mdi-check-decagram me-1"></i>Diterima</button>';
                     } else if ($item->status_final == 3) {
                         $status = '<button type="button" class="btn rounded-pill btn-outline-youtube waves-effect btn-xs"> <i class="tf-icons mdi mdi-close-circle me-1"></i>Dibatalkan</button>';
                     }
@@ -56,8 +56,7 @@ class PesananController extends Controller
                     if ($item->nama_file_pembayaran == null) {
                         $file = '<button type="button" class="btn rounded-pill btn-outline-youtube waves-effect btn-xs"> <i class="tf-icons mdi mdi-close-circle me-1"></i> Tidak ada file</button>';
                     } else {
-                        // $file = '<button type="button" class="btn btn-outline-whatsapp waves-effect btn-xs"> <i class="tf-icons mdi mdi-check-decagram me-1" data-bs-toggle="modal" data-bs-target="#LIhatBukti" id="lihat_bukti" data-img="' . url('/foto_pembayaran/' . $item->nama_file_pembayaran) . '"> Lihat File</i></button>';
-                        $file = '<button type="button" data-bs-toggle="modal" data-bs-target="#LIhatBukti" id="lihat_bukti" data-img="' . url('/foto_pembayaran/' . $item->nama_file_pembayaran) . '" class="btn rounded-pill btn-outline-twitter waves-effect btn-xs"> <i class="tf-icons mdi mdi-check-decagram me-1"></i> Lihat File</button>';
+                        $file = '<button type="button" data-bs-toggle="modal" data-bs-target="#LIhatBukti" id="lihat_bukti" data-img="' . url('/foto_pembayaran/' . $item->nama_file_pembayaran) . '" class="btn rounded-pill btn-outline-whatsapp waves-effect btn-xs"> <i class="tf-icons mdi mdi-check-decagram me-1"></i> Lihat File</button>';
                     }
                     return $file;
                 })
@@ -69,7 +68,7 @@ class PesananController extends Controller
                     } else if ($item->status_final == 1) {
                         $btn = '<button type="button" data-id="' . $item->id_final_booking . '" data-no_booking="' . $item->no_booking . '" title="Detail data" class="btn btn-icon btn-primary waves-effect waves-light" id="BtnDetail"><span class="fa-solid fa-circle-info"></span></button>';
                     } else if ($item->status_final == 2) {
-                        $btn = '<button type="button" data-id="' . $item->id_final_booking . '" data-no_booking="' . $item->no_booking . '" title="Detail data" class="btn btn-icon btn-primary waves-effect waves-light" id="BtnDetail"><span class="fa-solid fa-circle-info"></span></button>';
+                        $btn = '<button type="button" data-id="' . $item->id_final_booking . '" data-no_booking="' . $item->no_booking . '" title="Detail data" class="btn btn-icon btn-primary waves-effect waves-light" id="BtnDetail"><span class="fa-solid fa-circle-info"></span></button> <a href="' . url('cetak_invoice/' . $item->id_final_booking) . '" title="Cetak Invoice" class="btn btn-icon btn-success waves-effect waves-light" id="BtnCetak"><span class="mdi mdi-printer-outline"></span></a>';
                     } else {
                         $btn = '<button type="button" data-id="' . $item->id_final_booking . '" data-no_booking="' . $item->no_booking . '" title="Detail data" class="btn btn-icon btn-primary waves-effect waves-light" id="BtnDetail"><span class="fa-solid fa-circle-info"></span></button>';
                     }
