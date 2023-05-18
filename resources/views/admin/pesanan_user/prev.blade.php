@@ -173,11 +173,8 @@
         <div class="col-xl-3 col-md-4 col-12 invoice-actions">
             <div class="card">
                 <div class="card-body">
-                    <button class="btn btn-outline-secondary d-grid w-100 mb-3">
-                        Download
-                    </button>
                     <a class="btn btn-outline-secondary d-grid w-100 mb-3" target="_blank"
-                        href="app-invoice-print.html">
+                        href="{{ route('print_invoice', ['id'=> $data[0]['id_final_booking'] ]) }}">
                         Print
                     </a>
                 </div>

@@ -273,6 +273,7 @@ class Pesanan_userController extends Controller
         foreach ($data_booking as $key => $value) {
 
             $array_usulan[$key] = [
+                'id_final_booking'  => $value->id_final_booking,
                 'name'              => $value->name,
                 'email'             => $value->email,
                 'no_telp'           => $value->no_telp,
@@ -286,5 +287,61 @@ class Pesanan_userController extends Controller
             ];
         }
         return view('admin.pesanan_user.prev', ['data' => $array_usulan]);
+    }
+
+
+    public function print_invoice($id)
+    {
+        $data_booking = DB::table('ta_final_booking')
+            ->Join('users', 'users.id', '=', 'ta_final_booking.id_user')
+            ->where('ta_final_booking.id_final_booking', '=', $id)
+            ->select('ta_final_booking.*', 'users.*')
+            ->get()
+            ->toArray();
+
+        $array_file = [];
+        $rincian_file = DB::table('ta_file_pembayaran')
+            ->select('ta_file_pembayaran.*')
+            ->get()
+            ->toArray();
+        foreach ($rincian_file as $key => $pecah1) {
+            $array_file[$pecah1->no_booking] = [
+                'nama_file_pembayaran'  => $pecah1->nama_file_pembayaran,
+                'ctt_pembayaran'        => $pecah1->ctt_pembayaran,
+            ];
+        }
+
+        $array_rincian = [];
+        $rincian_boking = DB::table('ta_booking')
+            ->Join('ms_kavling', 'ta_booking.id_kavling', '=', 'ms_kavling.id_kavling')
+            ->select('ta_booking.*', 'ms_kavling.*')
+            ->get()
+            ->toArray();
+        foreach ($rincian_boking as $key => $pecah) {
+            $array_rincian[$pecah->no_booking][] = [
+                'kode_kavling'      => $pecah->kode_kavling,
+                'nama_kavling'      => $pecah->nama_kavling,
+                'tanggal_booking'   => Carbon::parse($pecah->tanggal_booking)->translatedFormat('l, d F Y'),
+                'lama_menginap'     => $pecah->lama_menginap,
+                'total_biaya'       => $pecah->total_biaya,
+            ];
+        }
+        $array_usulan = [];
+        foreach ($data_booking as $key => $value) {
+            $array_usulan[$key] = [
+                'id_final_booking'  => $value->id_final_booking,
+                'name'              => $value->name,
+                'email'             => $value->email,
+                'no_telp'           => $value->no_telp,
+                'alamat_lengkap'    => $value->alamat_lengkap,
+                'no_booking'        => $value->no_booking,
+                'total_menginap'    => $value->total_menginap,
+                'final_biaya'       => $value->final_biaya,
+                'created_at'        => Carbon::parse($value->created_at)->translatedFormat('l, d F Y'),
+                'list_kavling'      => isset($array_rincian[$value->no_booking]) ? $array_rincian[$value->no_booking] : [],
+                'file'              => isset($array_file[$value->no_booking]) ? $array_file[$value->no_booking] : [],
+            ];
+        }
+        return view('admin.pesanan_user.print', ['data' => $array_usulan]);
     }
 }

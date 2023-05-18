@@ -7,9 +7,9 @@
     </li>
 
     <!-- Apps & Pages -->
-    <li class="menu-header fw-light mt-4">
+    {{-- <li class="menu-header fw-light mt-4">
         <span class="menu-header-text">Apps &amp; Pages</span>
-    </li>
+    </li> --}}
     <li class="menu-item">
         <a href="{{ route('profil') }}" class="menu-link">
             <I class="menu-icon tf-icons mdi mdi-account"></I>
@@ -21,6 +21,12 @@
         <a href="{{ route('user') }}" class="menu-link">
             <I class="menu-icon tf-icons mdi mdi-account-group"></I>
             <div data-i18n="Profil">Data User</div>
+        </a>
+    </li>
+    <li class="menu-item">
+        <a href="{{ route('kavling') }}" class="menu-link">
+            <span class="menu-icon tf-icons mdi mdi-tent"></span>
+            <div data-i18n="Profil">Data Kavling</div>
         </a>
     </li>
     <li class="menu-item">
