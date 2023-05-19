@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\Ms_KavlingController;
 use App\Http\Controllers\admin\Pesanan_userController;
+use App\Http\Controllers\admin\Syarat_ketentuanController;
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ProfileController;
@@ -55,6 +56,13 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::post('/hapus-kavling', [Ms_KavlingController::class, 'hapus_kavling'])->name('hapus-kavling');
     Route::post('/detail-kavling', [Ms_KavlingController::class, 'detail_kavling'])->name('detail-kavling');
     Route::post('/edit-kavling', [Ms_KavlingController::class, 'edit_kavling'])->name('edit-kavling');
+
+    // LIST SYARAT DAN KETENTUAN
+    Route::get('/syarat-ketentuan', [Syarat_ketentuanController::class, 'index'])->name('syarat-ketentuan');
+    Route::post('/tambah-syarat', [Syarat_ketentuanController::class, 'add_syarat'])->name('tambah-syarat');
+    Route::post('/hapus-syarat', [Syarat_ketentuanController::class, 'hapus_syarat'])->name('hapus-syarat');
+    Route::post('/detail-syarat', [Syarat_ketentuanController::class, 'detail_syarat'])->name('detail-syarat');
+    Route::post('/edit-syarat', [Syarat_ketentuanController::class, 'edit_syarat'])->name('edit-syarat');
 
 
     Route::get('list-pesanan-user', [Pesanan_userController::class, 'index'])->name('list-pesanan-user');

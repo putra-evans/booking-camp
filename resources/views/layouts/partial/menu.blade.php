@@ -24,10 +24,22 @@
         </a>
     </li>
     <li class="menu-item">
-        <a href="{{ route('kavling') }}" class="menu-link">
-            <span class="menu-icon tf-icons mdi mdi-tent"></span>
-            <div data-i18n="Profil">Data Kavling</div>
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+            <i class='menu-icon tf-icons mdi mdi-database-arrow-down'></i>
+            <div data-i18n="Invoice">Master Data</div>
         </a>
+        <ul class="menu-sub">
+            <li class="menu-item">
+                <a href="{{ route('kavling') }}" class="menu-link">
+                    <div data-i18n="List">Data Kavling</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="{{ route('syarat-ketentuan') }}" class="menu-link">
+                    <div data-i18n="Preview">Syarat dan Ketentuan</div>
+                </a>
+            </li>
+        </ul>
     </li>
     <li class="menu-item">
         <a href="{{ route('list-pesanan-user') }}" class="menu-link">
@@ -53,32 +65,5 @@
     @endrole
 
 
-    {{-- <li class="menu-item">
-        <a href="javascript:void(0);" class="menu-link menu-toggle">
-            <i class='menu-icon tf-icons mdi mdi-file-document-outline'></i>
-            <div data-i18n="Invoice">Invoice</div>
-        </a>
-        <ul class="menu-sub">
-            <li class="menu-item">
-                <a href="app-invoice-list.html" class="menu-link">
-                    <div data-i18n="List">List</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="app-invoice-preview.html" class="menu-link">
-                    <div data-i18n="Preview">Preview</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="app-invoice-edit.html" class="menu-link">
-                    <div data-i18n="Edit">Edit</div>
-                </a>
-            </li>
-            <li class="menu-item">
-                <a href="app-invoice-add.html" class="menu-link">
-                    <div data-i18n="Add">Add</div>
-                </a>
-            </li>
-        </ul>
-    </li> --}}
+
 </ul>
