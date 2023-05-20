@@ -39,6 +39,16 @@
                     <div data-i18n="Preview">Syarat dan Ketentuan</div>
                 </a>
             </li>
+            <li class="menu-item">
+                <a href="{{ route('tata_tertib') }}" class="menu-link">
+                    <div data-i18n="Preview">Tata Tertib</div>
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="{{ route('cara-booking') }}" class="menu-link">
+                    <div data-i18n="Preview">Cara Booking</div>
+                </a>
+            </li>
         </ul>
     </li>
     <li class="menu-item">

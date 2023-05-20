@@ -22,10 +22,10 @@
         });
     }
     tinymce.init({
-        selector: 'textarea#input_syarat_ketentuan',
-        plugins: 'code table lists',
-        toolbar: 'undo redo | formatselect| bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
-    });
+     selector: 'textarea#input_tertib',
+     plugins: 'code table lists',
+     toolbar: 'undo redo | formatselect| bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
+   });
 
 
     $(document).ready(function () {
@@ -34,21 +34,21 @@
 
     function getData() {
         'use strict';
-        var listSyarat = $("#listSyarat").DataTable({
+        var listTataTertib = $("#listTataTertib").DataTable({
             dom: 'Bfrtip',
             responsive: false,
             scrollX: true,
             autoWidth: false,
             bDestroy: true,
-            ajax: "{{ route('syarat-ketentuan') }}",
+            ajax: "{{ route('tata_tertib') }}",
             columns: [{
                     data: 'DT_RowIndex',
                     name: 'DT_RowIndex',
                     className: 'text-center'
                 },
                 {
-                    data: 'syarat',
-                    name: 'syarat'
+                    data: 'tata_tertib',
+                    name: 'tata_tertib'
                 },
                 {
                     data: 'action',
@@ -63,40 +63,35 @@
         });
     }
 
-
-
-
-
     function reset() {
         $('#errEntry').html('');
         $('#errSuccess').html('');
-        $('form#formAddSyaratKetentuan').trigger('reset');
-        $('form#formAddSyaratKetentuan').removeClass('was-validated');
+        $('form#formAddTertib').trigger('reset');
+        $('form#formAddTertib').removeClass('was-validated');
     }
-
     function reset_edit() {
         $('#errEntry').html('');
         $('#errSuccess').html('');
-        $('form#formEditSyarat').trigger('reset');
-        $('form#formEditSyarat').removeClass('was-validated');
+        $('form#formEditTertib').trigger('reset');
+        $('form#formEditTertib').removeClass('was-validated');
     }
 
 
-    $(document).on('click', '#addSyaratKetentuan', function (e) {
+    $(document).on('click', '#addTertib', function (e) {
         reset();
         e.preventDefault();
-        $('#addSyaratKetentuanModal').modal('show');
+        $('#addTertibModal').modal('show');
     });
 
-    $(document).on('submit', '#formAddSyaratKetentuan', function (e) {
+    $(document).on('submit', '#formAddTertib', function (e) {
         e.preventDefault();
         var form = $(this)[0];
         var postData = new FormData(form);
-        $("#simpan_syarat").html(
+        $("#simpan_tertib").html(
             '<i class="spinner-grow spinner-grow-sm mr-2" role="status" aria-hidden="true"></i> DIPROSES...'
         );
-        $("#simpan_syarat").addClass('disabled');
-        loading($('#formAddSyaratKetentuan'));
+        $("#simpan_tertib").addClass('disabled');
+        loading($('#formAddTertib'));
         swalWithBootstrapButtons.fire({
             title: 'Konfirmasi',
             text: 'Apakah anda ingin menyimpan data ini ?',
@@ -106,7 +101,7 @@
             cancelButtonText: 'Tidak, batalkan!',
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.post("{{ route('tambah-syarat') }}", postData)
+                axios.post("{{ route('tambah-tertib') }}", postData)
                     .then(function (response) {
                         console.log('then', response);
                         swalWithBootstrapButtons.fire({
@@ -116,16 +111,14 @@
                             confirmButtonText: '<i class="fas fa-check"></i> Oke',
                             showCancelButton: false,
                         });
-
-                        $('#formAddSyaratKetentuan').waitMe('hide');
-                        $('#addSyaratKetentuanModal').modal('toggle');
+                        $('#formAddTertib').waitMe('hide');
+                        $('#addTertibModal').modal('toggle');
                         window.location.reload();
-
 
                     })
                     .catch(function (error) {
                         if (error.response.status == 422) {
-                            $('#formAddSyaratKetentuan').addClass('was-validated');
+                            $('#formAddTertib').addClass('was-validated');
                             swalWithBootstrapButtons.fire({
                                 title: 'Batal',
                                 text: 'Periksa kembali form inputan anda, jangan sampai ada data kosong dan tipe file sesuai',
@@ -137,17 +130,13 @@
                                     $.each(error.response.data, function (key, value) {
                                         console.log(value[0]);
                                         if (key != 'isi') {
-                                            $('input[name="' + key +
-                                                '"], textarea[name="' + key +
-                                                '"], select[name="' + key + '"]'
-                                                ).closest('div.required').find(
-                                                'div.invalid-feedback').text(
+                                            $('input[name="' + key + '"], textarea[name="' + key + '"], select[name="' + key + '"]' ).closest('div.required').find('div.invalid-feedback').text(
                                                 value[0]);
                                         } else {
                                             $('#pesanErr').html(value);
                                         }
                                     });
-                                    $('#formAddSyaratKetentuan').waitMe('hide');
+                                    $('#formAddTertib').waitMe('hide');
                                 }
                             })
                         } else {
@@ -158,17 +147,15 @@
                                 confirmButtonText: '<i class="fas fa-check"></i> Oke',
                                 showCancelButton: false,
                             }).then((result) => {
-                                $('#formAddSyaratKetentuan').waitMe('hide');
-                                $('#addSyaratKetentuanModal').modal('toggle');
-
+                                $('#formAddTertib').waitMe('hide');
+                                $('#addTertibModal').modal('toggle');
                                 window.location.reload();
-
                             })
                         }
                     });
-                $('#formAddSyaratKetentuan').waitMe('hide');
-                $("#simpan_syarat").html('Upload');
-                $("#simpan_syarat").removeClass('disabled');
+                $('#formAddTertib').waitMe('hide');
+                $("#simpan_tertib").html('Simpan');
+                $("#simpan_tertib").removeClass('disabled');
             } else if (result.dismiss === Swal.DismissReason.cancel) {
                 swalWithBootstrapButtons.fire({
                     title: 'Batal',
@@ -177,9 +164,9 @@
                     confirmButtonText: '<i class="fas fa-check"></i> Oke',
                     showCancelButton: false,
                 })
-                $('#formAddSyaratKetentuan').waitMe('hide');
-                $("#simpan_syarat").html('Upload');
-                $("#simpan_syarat").removeClass('disabled');
+                $('#formAddTertib').waitMe('hide');
+                $("#simpan_tertib").html('Simpan');
+                $("#simpan_tertib").removeClass('disabled');
                 window.location.reload();
             }
         })
@@ -201,14 +188,14 @@
             cancelButtonText: 'Tidak, batal!',
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.post("{{ route('hapus-syarat') }}", postData)
-                    .then(function (r) {
-                        swalWithBootstrapButtons.fire(
-                            'Terhapus',
-                            'Data berhasil dihapus.',
-                            'success'
+                axios.post("{{ route('hapus-tertib') }}", postData)
+                .then(function (r) {
+                    swalWithBootstrapButtons.fire(
+                        'Terhapus',
+                        'Data berhasil dihapus.',
+                        'success'
                         )
-                        $('#listSyarat').DataTable().ajax.reload();
+                        $('#listTataTertib').DataTable().ajax.reload();
                     });
             } else if (
                 /* Read more about handling dismissals below */
@@ -233,7 +220,7 @@
         e.preventDefault();
         reset_edit();
         let id = $(this).data('id')
-        $('#editSyaratModal').modal('show');
+        $('#editTertibModal').modal('show');
         getDetailData(id);
     });
 
@@ -241,26 +228,27 @@
         postData = {
             'id': id
         };
-        loading($('#editSyaratModal'));
-        axios.post("{{ route('detail-syarat') }}", postData)
+        loading($('#editTertibModal'));
+        axios.post("{{ route('detail-tertib') }}", postData)
             .then(function (res) {
-                $('#editSyaratModal').waitMe('hide');
+                $('#editTertibModal').waitMe('hide');
                 let data = res.data[0];
-                $('#id_syarat_ketentuan').val(data.id_syarat_ketentuan);
-                tinymce.activeEditor.selection.setContent(data.syarat_ketentuan);
+                $('#id_tata_tertib').val(data.id_tata_tertib);
+                tinymce.activeEditor.selection.setContent(data.tata_tertib);
+
 
             })
     }
 
-    $(document).on('submit', '#formEditSyarat', function (e) {
+    $(document).on('submit', '#formEditTertib', function (e) {
         e.preventDefault();
         var form = $(this)[0];
         var postData = new FormData(form);
-        $("#edit_syarat").html(
+        $("#edit_tertib").html(
             '<i class="spinner-grow spinner-grow-sm mr-2" role="status" aria-hidden="true"></i> DIPROSES...'
         );
-        $("#edit_syarat").addClass('disabled');
-        loading($('#formEditSyarat'));
+        $("#edit_tertib").addClass('disabled');
+        loading($('#formEditTertib'));
         swalWithBootstrapButtons.fire({
             title: 'Konfirmasi',
             text: 'Apakah anda ingin mengubah data ini ?',
@@ -270,7 +258,7 @@
             cancelButtonText: 'Tidak, batalkan!',
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.post("{{ route('edit-syarat') }}", postData)
+                axios.post("{{ route('edit-tertib') }}", postData)
                     .then(function (response) {
                         console.log('then', response);
                         swalWithBootstrapButtons.fire({
@@ -280,14 +268,15 @@
                             confirmButtonText: '<i class="fas fa-check"></i> Oke',
                             showCancelButton: false,
                         });
-                        window.location.reload();
-                        $('#formEditSyarat').waitMe('hide');
-                        $('#editSyaratModal').modal('toggle');
+                        $('#formEditTertib').waitMe('hide');
+                        $('#editTertibModal').modal('toggle');
+                    window.location.reload();
+
 
                     })
                     .catch(function (error) {
                         if (error.response.status == 422) {
-                            $('#formEditSyarat').addClass('was-validated');
+                            $('#formEditTertib').addClass('was-validated');
                             swalWithBootstrapButtons.fire({
                                 title: 'Batal',
                                 text: 'Periksa kembali form inputan anda, jangan sampai ada data kosong dan tipe file sesuai',
@@ -299,38 +288,32 @@
                                     $.each(error.response.data, function (key, value) {
                                         console.log(value[0]);
                                         if (key != 'isi') {
-                                            $('input[name="' + key +
-                                                '"], textarea[name="' + key +
-                                                '"], select[name="' + key + '"]'
-                                                ).closest('div.required').find(
-                                                'div.invalid-feedback').text(
+                                            $('input[name="' + key + '"], textarea[name="' + key + '"], select[name="' + key + '"]' ).closest('div.required').find('div.invalid-feedback').text(
                                                 value[0]);
                                         } else {
                                             $('#pesanErr').html(value);
                                         }
                                     });
-                                    $('#formEditSyarat').waitMe('hide');
+                                    $('#formEditTertib').waitMe('hide');
                                 }
                             })
                         } else {
                             swalWithBootstrapButtons.fire({
                                 title: 'Batal',
-                                text: 'Data kavling sudah ada, masukkan kavling yang lain',
+                                text: 'Data sudah ada, masukkan yang lain',
                                 icon: 'error',
                                 confirmButtonText: '<i class="fas fa-check"></i> Oke',
                                 showCancelButton: false,
                             }).then((result) => {
-                                $('#formEditSyarat').waitMe('hide');
-                                $('#addSyaratKetentuanModal').modal('toggle');
-
+                                $('#formEditTertib').waitMe('hide');
+                                $('#editTertibModal').modal('toggle');
                                 window.location.reload();
-
                             })
                         }
                     });
-                $('#formEditSyarat').waitMe('hide');
-                $("#edit_syarat").html('Edit Data');
-                $("#edit_syarat").removeClass('disabled');
+                $('#formEditTertib').waitMe('hide');
+                $("#edit_tertib").html('Edit Data');
+                $("#edit_tertib").removeClass('disabled');
             } else if (result.dismiss === Swal.DismissReason.cancel) {
                 swalWithBootstrapButtons.fire({
                     title: 'Batal',
@@ -339,13 +322,15 @@
                     confirmButtonText: '<i class="fas fa-check"></i> Oke',
                     showCancelButton: false,
                 })
-                $('#formEditSyarat').waitMe('hide');
-                $("#edit_syarat").html('Edit Data');
-                $("#edit_syarat").removeClass('disabled');
+                $('#formEditTertib').waitMe('hide');
+                $("#edit_tertib").html('Edit Data');
+                $("#edit_tertib").removeClass('disabled');
                 window.location.reload();
 
             }
         })
     });
+
+
 
 </script>

@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\admin\Ms_cara_bookingController;
 use App\Http\Controllers\admin\Ms_KavlingController;
+use App\Http\Controllers\admin\Ms_Tata_tertibController;
 use App\Http\Controllers\admin\Pesanan_userController;
 use App\Http\Controllers\admin\Syarat_ketentuanController;
 use App\Http\Controllers\admin\UserController;
@@ -8,6 +10,7 @@ use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\user\BookingController;
 use App\Http\Controllers\user\PesananController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,7 +29,14 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $syarat  =  DB::table('ms_syarat_ketentuan')->get();
+    $tata_tertib  =  DB::table('ms_tata_tertib')->get();
+    $cara_booking  =  DB::table('ms_cara_booking')->get();
+    return view('dashboard', [
+        'syarat' => $syarat,
+        'tata_tertib' => $tata_tertib,
+        'cara_booking' => $cara_booking
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -63,6 +73,21 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::post('/hapus-syarat', [Syarat_ketentuanController::class, 'hapus_syarat'])->name('hapus-syarat');
     Route::post('/detail-syarat', [Syarat_ketentuanController::class, 'detail_syarat'])->name('detail-syarat');
     Route::post('/edit-syarat', [Syarat_ketentuanController::class, 'edit_syarat'])->name('edit-syarat');
+
+    // LIST TATA TERTIB
+    Route::get('/tata_tertib', [Ms_Tata_tertibController::class, 'index'])->name('tata_tertib');
+    Route::post('/tambah-tertib', [Ms_Tata_tertibController::class, 'add_tertib'])->name('tambah-tertib');
+    Route::post('/hapus-tertib', [Ms_Tata_tertibController::class, 'hapus_tertib'])->name('hapus-tertib');
+    Route::post('/detail-tertib', [Ms_Tata_tertibController::class, 'detail_tertib'])->name('detail-tertib');
+    Route::post('/edit-tertib', [Ms_Tata_tertibController::class, 'edit_tertib'])->name('edit-tertib');
+    // LIST CARA BOOKING
+    Route::get('/cara-booking', [Ms_cara_bookingController::class, 'index'])->name('cara-booking');
+    Route::post('/tambah-cara', [Ms_cara_bookingController::class, 'add_cara'])->name('tambah-cara');
+    Route::post('/hapus-cara', [Ms_cara_bookingController::class, 'hapus_cara'])->name('hapus-cara');
+    Route::post('/detail-cara', [Ms_cara_bookingController::class, 'detail_cara'])->name('detail-cara');
+    Route::post('/edit-cara', [Ms_cara_bookingController::class, 'edit_cara'])->name('edit-cara');
+
+
 
 
     Route::get('list-pesanan-user', [Pesanan_userController::class, 'index'])->name('list-pesanan-user');
