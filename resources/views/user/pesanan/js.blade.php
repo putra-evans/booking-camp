@@ -93,13 +93,13 @@
     });
 
 
-    function getDataAnggota(id) {
+    function getDataAnggota(no_booking) {
         postData = {
             'no_booking': no_booking
         };
         $('#tbody_anggota').empty();
         loading($('#tbl_list_anggota'));
-        axios.post("{{ route('get_anggota') }}", postData)
+        axios.post("{{ route('get_all_anggota') }}", postData)
             .then(function (res) {
                 list_anggota(res.data)
                 $('#tbl_list_anggota').waitMe('hide');
@@ -118,6 +118,7 @@
                 console.log
                 $('#tbody_anggota').append("<tr>\
                         			<td class='text-center'>" + ++i + "</td>\
+                        			<td>" + value.kode_kavling + "</td>\
                         			<td>" + value.nama_anggota + "</td>\
                                     <td class='text-center'>" + value.umur_anggota + "</td>\
                                     <td class='text-center'>" + value.jk_anggota + "</td>\

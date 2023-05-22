@@ -171,9 +171,9 @@ class BookingController extends Controller
 
     public function get_anggota(Request $request)
     {
-        $no_booking = $request['no_booking'];
+        $id = $request['id'];
         $booking =  DB::table('ta_anggota')
-            ->where('no_booking', $no_booking)
+            ->where('id_booking', $id)
             ->orderBy('id_anggota', 'ASC')
             ->get();
         return response()->json($booking, 200);

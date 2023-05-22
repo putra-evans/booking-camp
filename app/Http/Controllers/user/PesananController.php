@@ -161,4 +161,17 @@ class PesananController extends Controller
             return response()->json('Berhasil melakukan upload', 200);
         }
     }
+
+    public function get_all_anggota(Request $request)
+    {
+        $no_booking = $request['no_booking'];
+        $booking =  DB::table('ta_anggota')
+            // ->join('ta_bookin', 'ta_booking.no_booking', '=', 'ta_anggota.no_booking')
+            // ->join('ms_kavling', 'ms_kavling.id_kavling', '=', 'ta_booking.id_kavling')
+            ->where('ta_anggota.no_booking', $no_booking)
+            ->orderBy('ta_anggota.id_anggota', 'ASC')
+            ->get();
+
+        return response()->json($booking, 200);
+    }
 }
