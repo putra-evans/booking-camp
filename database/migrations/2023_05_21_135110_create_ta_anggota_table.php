@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('ta_anggota', function (Blueprint $table) {
             $table->bigIncrements('id_anggota');
             $table->bigInteger('id_booking');
+            $table->string('no_booking')->nullable();
             $table->string('nama_anggota');
             $table->integer('umur_anggota');
             $table->string('jk_anggota');

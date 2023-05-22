@@ -107,6 +107,11 @@ class BookingController extends Controller
                     'no_booking' => $no_booking,
                     'status_pesanan' => 1
                 ]);
+            DB::table('ta_anggota')
+                ->where('id_booking', $value)
+                ->update([
+                    'no_booking' => $no_booking,
+                ]);
         }
 
         DB::table('ta_final_booking')->insert([
@@ -166,9 +171,9 @@ class BookingController extends Controller
 
     public function get_anggota(Request $request)
     {
-        $id = $request['id'];
+        $no_booking = $request['no_booking'];
         $booking =  DB::table('ta_anggota')
-            ->where('id_booking', $id)
+            ->where('no_booking', $no_booking)
             ->orderBy('id_anggota', 'ASC')
             ->get();
         return response()->json($booking, 200);
