@@ -108,6 +108,12 @@ Route::group(['middleware' => ['role:user']], function () {
     Route::post('destroy_booking', [BookingController::class, 'destroy_booking'])->name('destroy_booking');
     Route::post('proses_booking', [BookingController::class, 'proses_booking'])->name('proses_booking');
 
+    Route::post('tambah_anggota', [BookingController::class, 'tambah_anggota'])->name('tambah_anggota');
+    Route::post('get_anggota', [BookingController::class, 'get_anggota'])->name('get_anggota');
+    Route::post('destroy_anggota', [BookingController::class, 'destroy_anggota'])->name('destroy_anggota');
+
+
+
     Route::get('user-pesanan', [PesananController::class, 'index'])->name('user-pesanan');
 
     Route::post('/upload_pembayaran', [PesananController::class, 'upload_pembayaran'])->name('upload_pembayaran');

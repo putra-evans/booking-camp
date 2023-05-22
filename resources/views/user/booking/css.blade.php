@@ -27,4 +27,15 @@
 .styled-table tbody tr:last-of-type {
     border-bottom: 2px solid #666CFF;
 }
+
+.posisi_danau{
+    background-color: #589FA4;
+    width: 50%;
+    height: 50px;
+    font-weight: bold;
+    padding: 15px;
+    justify-content: center;
+    border-radius: 20%
+
+}
 </style>

@@ -7,6 +7,7 @@ use Illuminate\Database\Query\JoinClause;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class BookingController extends Controller
@@ -55,7 +56,7 @@ class BookingController extends Controller
             'no_booking' => '',
             'tanggal_booking' => $tgl_asli,
             'lama_menginap' => '1',
-            'total_biaya' => '25000',
+            'total_biaya' => '0',
             'status_pesanan' => 0,
         ]);
         // $lastInsertId = DB::getPdo()->lastInsertId();
@@ -81,6 +82,7 @@ class BookingController extends Controller
     public function destroy_booking(Request $request)
     {
         DB::table('ta_booking')->where('id_booking', $request->id)->delete();
+        DB::table('ta_anggota')->where('id_booking', $request->id)->delete();
         return response()->json('Berhasil dihapus', 200);
     }
 
@@ -115,5 +117,76 @@ class BookingController extends Controller
             'status_final' => 0,
         ]);
         return response()->json('Berhasil Booking', 200);
+    }
+
+    public function tambah_anggota(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'id_booking'        => 'required',
+            'nama_anggota'      => 'required',
+            'umur_anggota'      => 'required',
+            'jenis_kelamin_anggota'     => 'required',
+            'status_anggota'    => 'required',
+            'no_telp'           => 'required',
+            'alamat_lengkap_anggota'    => 'required',
+            'riwayat_penyakit'  => 'required'
+        ]);
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        $jumlah_anggota = DB::table('ta_anggota')
+            ->where('id_booking', $request->id_booking)
+            ->count();
+        if ($jumlah_anggota == 5) {
+            return response()->json('Maksimal 5 anggota untuk 1 Kavling', 403);
+        }
+
+
+        $total_biaya = ($jumlah_anggota + 1) * 15000;
+        DB::table('ta_booking')
+            ->where('id_booking', $request->id_booking)
+            ->update([
+                'total_biaya' => $total_biaya
+            ]);
+
+        DB::table('ta_anggota')->insert([
+            'id_booking'        => $request->id_booking,
+            'nama_anggota'      => $request->nama_anggota,
+            'umur_anggota'      => $request->umur_anggota,
+            'jk_anggota'        => $request->jenis_kelamin_anggota,
+            'status_anggota'    => $request->status_anggota,
+            'notelp_anggota'    => $request->no_telp,
+            'biaya_perorang'    => '15000',
+            'alamat_lengkap_anggota'    => $request->alamat_lengkap_anggota,
+            'riwayat_penyakit_anggota'  => $request->riwayat_penyakit,
+        ]);
+        return response()->json('Berhasil Tambah Anggota', 200);
+    }
+
+    public function get_anggota(Request $request)
+    {
+        $id = $request['id'];
+        $booking =  DB::table('ta_anggota')
+            ->where('id_booking', $id)
+            ->orderBy('id_anggota', 'ASC')
+            ->get();
+        return response()->json($booking, 200);
+    }
+
+    public function destroy_anggota(Request $request)
+    {
+        $jumlah_anggota = DB::table('ta_anggota')
+            ->where('id_booking', $request->id_booking)
+            ->count();
+
+        $total_biaya = ($jumlah_anggota - 1) * 15000;
+        DB::table('ta_booking')
+            ->where('id_booking', $request->id_booking)
+            ->update([
+                'total_biaya' => $total_biaya
+            ]);
+        DB::table('ta_anggota')->where('id_anggota', $request->id)->delete();
+        return response()->json('Berhasil dihapus', 200);
     }
 }
