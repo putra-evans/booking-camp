@@ -139,8 +139,8 @@
                                         enctype="multipart/form-data">
                                         @csrf
                                         <div class="row gy-4">
-                                            <input required class="form-control" type="hidden" id="id_booking"
-                                                name="id_booking" readonly />
+                                            <input required class="form-control" type="text" id="id_booking" name="id_booking" readonly />
+                                            <input required class="form-control" type="text" id="id_kavling" name="id_kavling" readonly />
                                             <div class="col-md-6">
                                                 <div class="form-floating form-floating-outline required">
                                                     <input required class="form-control" type="text" id="nama_anggota"

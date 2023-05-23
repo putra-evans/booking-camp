@@ -98,7 +98,7 @@ class PesananController extends Controller
         $booking =  DB::table('ta_booking as A')
             ->join('ms_kavling as B', 'A.id_kavling', '=', 'B.id_kavling')
             ->where('A.no_booking', '=', $no_booking)
-            ->orderBy('A.id_booking', 'DESC')
+            ->orderBy('A.id_kavling', 'ASC')
             ->get();
         return response()->json($booking, 200);
     }
@@ -166,10 +166,9 @@ class PesananController extends Controller
     {
         $no_booking = $request['no_booking'];
         $booking =  DB::table('ta_anggota')
-            // ->join('ta_bookin', 'ta_booking.no_booking', '=', 'ta_anggota.no_booking')
-            // ->join('ms_kavling', 'ms_kavling.id_kavling', '=', 'ta_booking.id_kavling')
+            ->join('ms_kavling', 'ms_kavling.id_kavling', '=', 'ta_anggota.id_kavling')
             ->where('ta_anggota.no_booking', $no_booking)
-            ->orderBy('ta_anggota.id_anggota', 'ASC')
+            ->orderBy('ta_anggota.id_kavling', 'ASC')
             ->get();
 
         return response()->json($booking, 200);

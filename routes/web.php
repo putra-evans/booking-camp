@@ -113,7 +113,6 @@ Route::group(['middleware' => ['role:user']], function () {
     Route::post('destroy_anggota', [BookingController::class, 'destroy_anggota'])->name('destroy_anggota');
 
 
-    Route::post('get_all_anggota', [PesananController::class, 'get_all_anggota'])->name('get_all_anggota');
     Route::get('user-pesanan', [PesananController::class, 'index'])->name('user-pesanan');
     Route::post('/upload_pembayaran', [PesananController::class, 'upload_pembayaran'])->name('upload_pembayaran');
 });
@@ -124,6 +123,8 @@ Route::post('list_booking', [PesananController::class, 'list_booking'])->name('l
 
 Route::get('cetak_invoice/{id}', [Pesanan_userController::class, 'cetak_invoice'])->name('cetak_invoice');
 Route::get('print_invoice/{id}', [Pesanan_userController::class, 'print_invoice'])->name('print_invoice');
+
+Route::post('get_all_anggota', [PesananController::class, 'get_all_anggota'])->name('get_all_anggota');
 
 
 require __DIR__ . '/auth.php';

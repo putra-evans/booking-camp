@@ -118,7 +118,7 @@
                 console.log
                 $('#tbody_anggota').append("<tr>\
                         			<td class='text-center'>" + ++i + "</td>\
-                        			<td>" + value.kode_kavling + "</td>\
+                        			<td class='text-center'><button type='button' style='width: 80px !important;margin:5px' class='btn btn-twitter waves-effect waves-light'>" + value.kode_kavling + "</button></td>\
                         			<td>" + value.nama_anggota + "</td>\
                                     <td class='text-center'>" + value.umur_anggota + "</td>\
                                     <td class='text-center'>" + value.jk_anggota + "</td>\

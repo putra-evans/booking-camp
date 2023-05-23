@@ -127,14 +127,15 @@ class BookingController extends Controller
     public function tambah_anggota(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'id_booking'        => 'required',
-            'nama_anggota'      => 'required',
-            'umur_anggota'      => 'required',
+            'id_booking'                => 'required',
+            'id_kavling'                => 'required',
+            'nama_anggota'              => 'required',
+            'umur_anggota'              => 'required',
             'jenis_kelamin_anggota'     => 'required',
-            'status_anggota'    => 'required',
-            'no_telp'           => 'required',
+            'status_anggota'            => 'required',
+            'no_telp'                   => 'required',
             'alamat_lengkap_anggota'    => 'required',
-            'riwayat_penyakit'  => 'required'
+            'riwayat_penyakit'          => 'required'
         ]);
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
@@ -157,6 +158,7 @@ class BookingController extends Controller
 
         DB::table('ta_anggota')->insert([
             'id_booking'        => $request->id_booking,
+            'id_kavling'        => $request->id_kavling,
             'nama_anggota'      => $request->nama_anggota,
             'umur_anggota'      => $request->umur_anggota,
             'jk_anggota'        => $request->jenis_kelamin_anggota,

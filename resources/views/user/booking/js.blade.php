@@ -183,9 +183,7 @@
                         			<td>" + tgl_indo(value.tanggal_booking) + "</td>\
                         			<td class='text-center'><button type='button' title='Tambah Anggota Tim' data-id='" + value
                     .id_booking +
-                    "' class='btn btn-icon btn-primary waves-effect waves-light' id='BtnAddAnggota'><span class='fa-regular fa-plus'></span></button> <button type='button' title='Hapus data' data-id='" +
-                    value.id_booking +
-                    "' class='btn btn-icon btn-danger waves-effect waves-light' id='BtnHapus'><span class='fa-regular fa-trash-can'></span></button> &nbsp;</td>\
+                    "' data-id_kavling='" + value.id_kavling + "' class='btn btn-icon btn-primary waves-effect waves-light' id='BtnAddAnggota'><span class='fa-regular fa-plus'></span></button> <button type='button' title='Hapus data' data-id='" + value.id_booking + "' class='btn btn-icon btn-danger waves-effect waves-light' id='BtnHapus'><span class='fa-regular fa-trash-can'></span></button> &nbsp;</td>\
                         			<td class='text-center'><div class='custom-control custom-checkbox mt-0 pt-0'><input style='color: 'red' !important' type='checkbox' class='custom-control-input' name='checkid[]' id='" +
                     value.id_booking + "' value='" + value.id_booking +
                     "'><label class='custom-control-label font-weight-bolder' for='" + value.id_booking + "'></label></div></td>\
@@ -317,7 +315,9 @@
         reset();
         e.preventDefault();
         let id = $(this).data('id')
+        let id_kavling = $(this).data('id_kavling')
         $('#id_booking').val(id);
+        $('#id_kavling').val(id_kavling);
         $('#addTimModal').modal('show');
         getDataAnggota(id);
     });

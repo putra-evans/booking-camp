@@ -162,8 +162,8 @@
                                       <thead>
                                         <tr>
                                             <th class="text-center">No</th>
-                                            <th class="text-center">Nama</th>
                                             <th class="text-center">Kode Kavling</th>
+                                            <th class="text-center">Nama</th>
                                             <th class="text-center">Umur</th>
                                             <th class="text-center">Jenis Kelamin</th>
                                             <th class="text-center">Status</th>

@@ -250,6 +250,24 @@
                                     <tbody id="tbody_booking">
                                     </tbody>
                                   </table>
+                                  <h4 class="card-header mt-5"> <u>List Anggota :</u> </h4>
+                                  <table class="table table-bordered" id="tbl_list_anggota">
+                                      <thead>
+                                        <tr>
+                                            <th class="text-center">No</th>
+                                            <th class="text-center">Kode Kavling</th>
+                                            <th class="text-center">Nama</th>
+                                            <th class="text-center">Umur</th>
+                                            <th class="text-center">Jenis Kelamin</th>
+                                            <th class="text-center">Status</th>
+                                            <th class="text-center">No Telp</th>
+                                            <th class="text-center">Alamat</th>
+                                            <th class="text-center">Riwayat Penyakit</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody id="tbody_anggota">
+                                      </tbody>
+                                    </table>
                                 </div>
                                 {{-- <div class="card-body pt-2 mt-1">
                                     <br>

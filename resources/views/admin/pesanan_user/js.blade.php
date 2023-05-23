@@ -390,8 +390,51 @@
         let no_booking = $(this).data('no_booking');
         $('#detailBooking').modal('show');
         getDetailBooking(id);
+        getDataAnggota(no_booking);
         getDataBooking(no_booking);
     });
+
+
+    function getDataAnggota(no_booking) {
+        postData = {
+            'no_booking': no_booking
+        };
+        $('#tbody_anggota').empty();
+        loading($('#tbl_list_anggota'));
+        axios.post("{{ route('get_all_anggota') }}", postData)
+            .then(function (res) {
+                list_anggota(res.data)
+                $('#tbl_list_anggota').waitMe('hide');
+            })
+    }
+
+    function list_anggota(data) {
+        if (data === undefined || data.length == 0) {
+            $('#tbody_anggota').append("<tr>\
+                        			<td colspan='9' class='text-center'>Belum ada data</td>\
+                        			</tr>");
+        } else {
+            var rows = '';
+            var i = 0;
+            $.each(data, function (key, value) {
+                console.log
+                $('#tbody_anggota').append("<tr>\
+                        			<td class='text-center'>" + ++i + "</td>\
+                        			<td class='text-center'><button type='button' style='width: 80px !important;margin:5px' class='btn btn-twitter waves-effect waves-light'>" + value.kode_kavling + "</button></td>\
+                        			<td>" + value.nama_anggota + "</td>\
+                                    <td class='text-center'>" + value.umur_anggota + "</td>\
+                                    <td class='text-center'>" + value.jk_anggota + "</td>\
+                                    <td class='text-center'>" + value.status_anggota + "</td>\
+                                    <td class='text-center'>" + value.notelp_anggota + "</td>\
+                        			<td class='text-center'>" + value.alamat_lengkap_anggota + "</td>\
+                        			<td class='text-center'>" + value.riwayat_penyakit_anggota + "</td>\
+                        			</tr>");
+            });
+        }
+    }
+
+
+
 
     function getDataBooking(no_booking) {
         postData = {
