@@ -57,6 +57,12 @@
             <div data-i18n="Email">Pesanan User</div>
         </a>
     </li>
+    <li class="menu-item">
+        <a href="{{ route('tampil-laporan') }}" class="menu-link">
+            <span class="menu-icon tf-icons mdi mdi-text-box-multiple-outline"></span>
+            <div data-i18n="Email">Laporan</div>
+        </a>
+    </li>
     @endrole
 
     @role('user')

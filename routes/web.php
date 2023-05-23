@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\LaporanController;
 use App\Http\Controllers\admin\Ms_cara_bookingController;
 use App\Http\Controllers\admin\Ms_KavlingController;
 use App\Http\Controllers\admin\Ms_Tata_tertibController;
@@ -97,6 +98,9 @@ Route::group(['middleware' => ['role:admin']], function () {
 
     Route::post('batalkan-pesanan', [Pesanan_userController::class, 'batalkan_pesanan'])->name('batalkan-pesanan');
     Route::post('proses_pembayaran', [Pesanan_userController::class, 'proses_pembayaran'])->name('proses_pembayaran');
+
+    Route::get('/tampil-laporan', [LaporanController::class, 'index'])->name('tampil-laporan');
+    Route::post('cetak_laporan', [LaporanController::class, 'cetak_laporan'])->name('cetak_laporan');
 });
 
 Route::group(['middleware' => ['role:user']], function () {

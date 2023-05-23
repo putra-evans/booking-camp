@@ -283,7 +283,6 @@
                         window.location.reload();
                         $('#formEditSyarat').waitMe('hide');
                         $('#editSyaratModal').modal('toggle');
-
                     })
                     .catch(function (error) {
                         if (error.response.status == 422) {
