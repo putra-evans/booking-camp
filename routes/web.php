@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\LaporanController;
 use App\Http\Controllers\admin\Ms_cara_bookingController;
+use App\Http\Controllers\admin\Ms_galeriController;
 use App\Http\Controllers\admin\Ms_KavlingController;
 use App\Http\Controllers\admin\Ms_Tata_tertibController;
 use App\Http\Controllers\admin\Pesanan_userController;
@@ -101,6 +102,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 
     Route::get('/tampil-laporan', [LaporanController::class, 'index'])->name('tampil-laporan');
     Route::post('cetak_laporan', [LaporanController::class, 'cetak_laporan'])->name('cetak_laporan');
+    Route::get('print_laporan/{bulantahun}', [LaporanController::class, 'print_laporan'])->name('print_laporan');
 });
 
 Route::group(['middleware' => ['role:user']], function () {
@@ -129,6 +131,12 @@ Route::get('cetak_invoice/{id}', [Pesanan_userController::class, 'cetak_invoice'
 Route::get('print_invoice/{id}', [Pesanan_userController::class, 'print_invoice'])->name('print_invoice');
 
 Route::post('get_all_anggota', [PesananController::class, 'get_all_anggota'])->name('get_all_anggota');
+
+// LIST GALLERY
+Route::get('/galeri', [Ms_galeriController::class, 'index'])->name('galeri');
+Route::post('/tambah-galeri', [Ms_galeriController::class, 'add_galeri'])->name('tambah-galeri');
+Route::post('/hapus-galeri', [Ms_galeriController::class, 'hapus_galeri'])->name('hapus-galeri');
+
 
 
 require __DIR__ . '/auth.php';

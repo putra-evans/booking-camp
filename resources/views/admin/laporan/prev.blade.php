@@ -67,13 +67,6 @@
                             </p>
                         </div>
                         <div>
-                            @php
-                                // echo '<pre>';
-                                // echo print_r($tgl_laporan);
-                                // echo '</pre>';
-                                // die;
-                            @endphp
-                            {{-- <h5>INVOICE asdasd </h5> --}}
                             <div class="mb-1">
                                 <span>Tanggal Cetak :</span>
                                 <span>{{$tgl_cetak}}</span>
@@ -93,25 +86,35 @@
                         <thead class="table-light border-top">
                             <tr class="text-center">
                                 <th>No</th>
-                                <th>Kavling Dipilih</th>
-                                <th>Jumlah/Malam</th>
+                                <th>Nama User</th>
+                                <th>No Telp</th>
+                                <th>No Booking</th>
+                                <th>Lama Menginap</th>
                                 <th>Harga</th>
-                                <th>Tanggal Menginap</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @php
+                            @php
                                 $no = 1;
+                                $total_biaya = 0;
                             @endphp
-                            @foreach($data[0]['list_kavling'] as $p)
+                            @foreach($data as $p)
+                            @php
+                            $total_biaya += $p->final_biaya;
+                            // echo '<pre>';
+                            // echo print_r($p);
+                            // echo '</pre>';
+                            // die;
+                            @endphp
                             <tr>
                                 <td class="text-center">{{$no ++}}</td>
-                                <td class="text-center"><button type="button" style="width: 80px !important;margin:5px" class="btn btn-twitter waves-effect waves-light">{{$p['kode_kavling']}}</button></td>
-                                <td class="text-center">{{$p['lama_menginap']}} Malam</td>
-                                <td class="text-center">Rp. {{number_format($p['total_biaya'])}}</td>
-                                <td class="text-center">{{$p['tanggal_booking']}}</td>
+                                <td class="text-center">{{$p->name}}</td>
+                                <td class="text-center">{{$p->no_telp}}</td>
+                                <td class="text-center">{{$p->no_booking}}</td>
+                                <td class="text-center">{{$p->total_menginap}} Malam</td>
+                                <td class="text-center">Rp. {{number_format($p->final_biaya)}} </td>
                             </tr>
-                            @endforeach --}}
+                            @endforeach
 
                             <tr>
                                 <td colspan="3" class="align-top px-4 py-5">
@@ -125,32 +128,30 @@
                                     <p class="mb-0">Total :</p>
                                 </td>
                                 <td class="px-4 py-5">
-                                    <p class="fw-semibold mb-0 text-end">Rp. asdasd</p>
+                                    <p class="fw-semibold mb-0 text-end">Rp. {{number_format($total_biaya)}}</p>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+                </div>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12">
                             <span class="fw-bold">Note:</span>
-                            <span>Simpan kertas invoice ini yang bertujuan sebagai bukti pemesanan kavling, lihatkan lah kertas ini kepada petugas yang ada dilokasi sesuai dengan tanggal anda menginap, pastikan sudah membaca persyaratan saat akan kamping</span>
+                            <span>Ini merupakan bukti laporan sah yang dicetak langsung menggunakan sistem</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- /Invoice -->
-
-        <!-- Invoice Actions -->
         <div class="col-xl-3 col-md-4 col-12 invoice-actions">
             <div class="card">
                 <div class="card-body">
-                    {{-- <a class="btn btn-outline-secondary d-grid w-100 mb-3" target="_blank"
-                        href="{{ route('print_invoice', ['id'=> $data[0]['id_final_booking'] ]) }}">
+                    <a class="btn btn-outline-secondary d-grid w-100 mb-3" target="_blank"
+                        href="{{ route('print_laporan', ['bulantahun'=> $bulan_tahun ]) }}">
                         Print
-                    </a> --}}
+                    </a>
                 </div>
             </div>
         </div>

@@ -38,7 +38,29 @@ class LaporanController extends Controller
         return view('admin.laporan.prev', [
             'data' => $data_booking,
             'tgl_cetak' => Carbon::parse(now())->translatedFormat('l, d F Y'),
-            'tgl_laporan' => Carbon::parse($request->bulan_tahun)->translatedFormat('F Y')
+            'tgl_laporan' => Carbon::parse($request->bulan_tahun)->translatedFormat('F Y'),
+            'bulan_tahun' => $request->bulan_tahun
+        ]);
+    }
+
+    public function print_laporan($bulantahun)
+    {
+        $explode    = explode('-', $bulantahun);
+        $tahun      = $explode[0];
+        $bulan      = $explode[1];
+
+        $data_booking = DB::table('ta_final_booking')
+            ->Join('users', 'users.id', '=', 'ta_final_booking.id_user')
+            ->whereYear('ta_final_booking.created_at', '=', $tahun)
+            ->whereMonth('ta_final_booking.created_at', '=', $bulan)
+            ->where('ta_final_booking.status_final', '=', 2)
+            ->get();
+
+        return view('admin.laporan.print', [
+            'data' => $data_booking,
+            'tgl_cetak' => Carbon::parse(now())->translatedFormat('l, d F Y'),
+            'tgl_laporan' => Carbon::parse($bulantahun)->translatedFormat('F Y'),
+            'bulan_tahun' => $bulantahun
         ]);
     }
 }

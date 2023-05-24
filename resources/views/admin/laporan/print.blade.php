@@ -85,26 +85,26 @@
                 </p>
             </div>
             <div>
-                <h5>INVOICE {{$data[0]['no_booking']}} </h5>
                 <div class="mb-1">
-                    <span>Tanggal:</span>
-                    <span>{{$data[0]['created_at']}}</span>
+                    <span>Tanggal Cetak :</span>
+                    <span>{{$tgl_cetak}}</span>
                 </div>
             </div>
         </div>
         <hr />
 
         <div class="d-flex justify-content-between mb-4">
-            <div class="my-2">
+            {{-- <div class="my-2">
                 <h6 class="pb-2">Diberikan kepada:</h6>
                 <p class="mb-1">{{$data[0]['name']}}</p>
                 <p class="mb-1">{{$data[0]['email']}}</p>
                 <p class="mb-1">{{$data[0]['no_telp']}}</p>
                 <p class="mb-0">{{$data[0]['alamat_lengkap']}}</p>
-            </div>
+            </div> --}}
             <div class="my-2">
-                <h6 class="pb-2">Biaya:</h6>
-                <table>
+                {{-- <h6 class="pb-2">Biaya:</h6> --}}
+                <h6 class="pb-2">Laporan bulan: {{$tgl_laporan}}  </h6>
+                {{-- <table>
                     <tbody>
                         <tr>
                             <td class="pe-3 fw-medium">Total biaya:</td>
@@ -115,7 +115,7 @@
                             <td>{{$data[0]['total_menginap']}} Malam</td>
                         </tr>
                     </tbody>
-                </table>
+                </table> --}}
             </div>
         </div>
 
@@ -124,23 +124,33 @@
                 <thead class="table-light border-top">
                     <tr class="text-center">
                         <th>No</th>
-                        <th>Kavling Dipilih</th>
-                        <th>Jumlah/Malam</th>
+                        <th>Nama User</th>
+                        <th>No Telp</th>
+                        <th>No Booking</th>
+                        <th>Lama Menginap</th>
                         <th>Harga</th>
-                        <th>Tanggal Menginap</th>
                     </tr>
                 </thead>
                 <tbody>
                     @php
-                    $no = 1;
+                        $no = 1;
+                        $total_biaya = 0;
                     @endphp
-                    @foreach($data[0]['list_kavling'] as $p)
+                    @foreach($data as $p)
+                    @php
+                    $total_biaya += $p->final_biaya;
+                    // echo '<pre>';
+                    // echo print_r($p);
+                    // echo '</pre>';
+                    // die;
+                    @endphp
                     <tr>
                         <td class="text-center">{{$no ++}}</td>
-                        <td class="text-center">{{$p['kode_kavling']}}</td>
-                        <td class="text-center">{{$p['lama_menginap']}} Malam</td>
-                        <td class="text-center">Rp. {{number_format($p['total_biaya'])}}</td>
-                        <td class="text-center">{{$p['tanggal_booking']}}</td>
+                        <td class="text-center">{{$p->name}}</td>
+                        <td class="text-center">{{$p->no_telp}}</td>
+                        <td class="text-center">{{$p->no_booking}}</td>
+                        <td class="text-center">{{$p->total_menginap}} Malam</td>
+                        <td class="text-center">Rp. {{number_format($p->final_biaya)}} </td>
                     </tr>
                     @endforeach
 
@@ -150,13 +160,12 @@
                                 <span class="me-1 fw-semibold">Booking Camp</span>
                                 <span></span>
                             </p>
-                            <span>Terima kasih atas kepercayaan anda</span>
                         </td>
                         <td class="text-end px-4 py-5">
                             <p class="mb-0">Total :</p>
                         </td>
                         <td class="px-4 py-5">
-                            <p class="fw-semibold mb-0 text-end">Rp. {{ number_format($data[0]['final_biaya'])}}</p>
+                            <p class="fw-semibold mb-0 text-end">Rp. {{number_format($total_biaya)}}</p>
                         </td>
                     </tr>
                 </tbody>
@@ -166,9 +175,7 @@
         <div class="row">
             <div class="col-12">
                 <span class="fw-bold">Note:</span>
-                <span>Simpan kertas invoice ini yang bertujuan sebagai bukti pemesanan kavling, lihatkan lah kertas ini
-                    kepada petugas yang ada dilokasi sesuai dengan tanggal anda menginap, pastikan sudah membaca
-                    persyaratan saat akan kamping</span>
+                            <span>Ini merupakan bukti laporan sah yang dicetak langsung menggunakan sistem</span>
             </div>
         </div>
     </div>
