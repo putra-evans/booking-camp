@@ -7,7 +7,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Invoice (Print version) - Pages | Booking Camp</title>
+    <title>Invoice (Print version) - Pages | Camp-Ground Danau Talang</title>
     <meta name="description"
         content="Materialize – is the most developer friendly &amp; highly customizable Admin Dashboard Template." />
     <meta name="keywords"
@@ -77,7 +77,7 @@
                     </span>
                 </div>
                 <p class="mb-1 text-bold">
-                    Booking Camp
+                    Camp-Ground Danau Talang
                 </p>
                 <p class="mb-1">Jl. Lintas Solok, Kec. Danau Kembar</p>
                 <p class="mb-0">
@@ -157,7 +157,7 @@
                     <tr>
                         <td colspan="3" class="align-top px-4 py-5">
                             <p class="mb-2">
-                                <span class="me-1 fw-semibold">Booking Camp</span>
+                                {{-- <span class="me-1 fw-semibold">Camp-Ground Danau Talang</span> --}}
                                 <span></span>
                             </p>
                         </td>

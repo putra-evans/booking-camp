@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-    <title>Register | Booking Camp</title>
+    <title>Register | Camp-Ground Danau Talang</title>
     <script>
         (function (w, d, s, l, i) {
             w[l] = w[l] || [];
@@ -50,7 +50,7 @@
                 <div class="card p-2">
                     <!-- Logo -->
                     <div class="app-brand justify-content-center mt-5 pb-4">
-                        <a href="index-2.html" class="app-brand-link gap-2">
+                        <a href="" class="app-brand-link gap-2">
                             <span class="app-brand-logo demo">
                                 <span style="color:var(--bs-primary);">
                                     <svg width="268" height="150" viewBox="0 0 38 20" fill="none"
@@ -88,7 +88,7 @@
                                     </svg>
                                 </span>
                             </span>
-                            <span class="app-brand-text demo text-heading fw-bold">Booking Camp</span>
+                            <span class="app-brand-text demo text-heading fw-bold">Camp-Ground Danau Talang</span>
                         </a>
                     </div>
                     <!-- /Logo -->

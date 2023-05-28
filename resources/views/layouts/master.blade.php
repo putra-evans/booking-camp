@@ -15,7 +15,7 @@
             <!-- Menu -->
             <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                 <div class="app-brand demo ">
-                    <a href="index-2.html" class="app-brand-link">
+                    <a href="" class="app-brand-link">
                         <span class="app-brand-logo demo">
                             <span style="color:var(--bs-primary);">
                                 <svg width="268" height="150" viewBox="0 0 38 20" fill="none"
@@ -53,7 +53,7 @@
                                 </svg>
                             </span>
                         </span>
-                        <span class="app-brand-text demo menu-text fw-bold ms-2">Booking-Camp</span>
+                        <span class="app-brand-text demo menu-text fw-bold ms-2">Camp-Ground</span>
                     </a>
                     <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
                         <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">

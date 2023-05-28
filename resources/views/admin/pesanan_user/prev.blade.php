@@ -59,7 +59,7 @@
                                 <span class="h4 mb-0 app-brand-text fw-bold"></span>
                             </div>
                             <p class="mb-1 text-bold">
-                                Booking Camp
+                                Camp-Ground Danau Talang
                             </p>
                             <p class="mb-1">Jl. Lintas Solok, Kec. Danau Kembar</p>
                             <p class="mb-0">
@@ -142,7 +142,7 @@
                             <tr>
                                 <td colspan="3" class="align-top px-4 py-5">
                                     <p class="mb-2">
-                                        <span class="me-1 fw-semibold">Booking Camp</span>
+                                        <span class="me-1 fw-semibold">Camp-Ground Danau Talang</span>
                                         <span></span>
                                     </p>
                                     <span>Terima kasih atas kepercayaan anda</span>

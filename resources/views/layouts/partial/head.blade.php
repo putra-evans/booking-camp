@@ -1,7 +1,7 @@
 <meta charset="utf-8" />
 <meta name="viewport"
     content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-<title>Booking Camp Ground Danau Talang</title>
+<title>Camp-Ground Danau Talang Ground Danau Talang</title>
 
 <!-- Favicon -->
 <link rel="icon" type="image/x-icon" href="https://demos.pixinvent.com/materialize-html-admin-template/assets/img/favicon/favicon.ico" />
