@@ -16,13 +16,14 @@
             <div data-i18n="Profil">Profil</div>
         </a>
     </li>
+
+    @role('admin')
     <li class="menu-item">
         <a href="{{ route('galeri') }}" class="menu-link">
             <span class="menu-icon tf-icons mdi mdi-view-gallery"></span>
             <div data-i18n="Profil">Galeri</div>
         </a>
     </li>
-    @role('admin')
     <li class="menu-item">
         <a href="{{ route('user') }}" class="menu-link">
             <I class="menu-icon tf-icons mdi mdi-account-group"></I>

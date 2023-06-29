@@ -156,77 +156,77 @@
 
 
 
-    $(document).on('click', '.btnNonAktif', function (e) {
-        e.preventDefault();
-        let id = $(this).data('id');
-        postData = {
-            'id': id
-        };
-        swalWithBootstrapButtons.fire({
-            title: 'Apakah anda yakin? ',
-            text: "Anda akan mengaktifkan user ini!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Ya, Aktifkan!',
-            cancelButtonText: 'Tidak, batal!',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                axios.post("{{ route('aktif_akun') }}", postData).then(function (r) {
-                    swalWithBootstrapButtons.fire(
-                        'Berhasil',
-                        'Akun sudah aktif.',
-                        'success'
-                        )
-                        $('#listUser').DataTable().ajax.reload();
-                });
-            } else if (
-                /* Read more about handling dismissals below */
-                result.dismiss === Swal.DismissReason.cancel
-            ) {
-                swalWithBootstrapButtons.fire(
-                    'Dibatalkan',
-                    'Data anda aman :)',
-                    'error'
-                )
-            }
-        })
-    });
+    // $(document).on('click', '.btnNonAktif', function (e) {
+    //     e.preventDefault();
+    //     let id = $(this).data('id');
+    //     postData = {
+    //         'id': id
+    //     };
+    //     swalWithBootstrapButtons.fire({
+    //         title: 'Apakah anda yakin? ',
+    //         text: "Anda akan mengaktifkan user ini!",
+    //         icon: 'warning',
+    //         showCancelButton: true,
+    //         confirmButtonText: 'Ya, Aktifkan!',
+    //         cancelButtonText: 'Tidak, batal!',
+    //     }).then((result) => {
+    //         if (result.isConfirmed) {
+    //             axios.post("{{ route('aktif_akun') }}", postData).then(function (r) {
+    //                 swalWithBootstrapButtons.fire(
+    //                     'Berhasil',
+    //                     'Akun sudah aktif.',
+    //                     'success'
+    //                     )
+    //                     $('#listUser').DataTable().ajax.reload();
+    //             });
+    //         } else if (
+    //             /* Read more about handling dismissals below */
+    //             result.dismiss === Swal.DismissReason.cancel
+    //         ) {
+    //             swalWithBootstrapButtons.fire(
+    //                 'Dibatalkan',
+    //                 'Data anda aman :)',
+    //                 'error'
+    //             )
+    //         }
+    //     })
+    // });
 
 
-    $(document).on('click', '.btnAktif', function (e) {
-        e.preventDefault();
-        let id = $(this).data('id');
-        postData = {
-            'id': id
-        };
-        swalWithBootstrapButtons.fire({
-            title: 'Apakah anda yakin? ',
-            text: "Anda akan nonaktifkan user ini!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Ya, Non Aktifkan!',
-            cancelButtonText: 'Tidak, batal!',
-        }).then((result) => {
-            if (result.isConfirmed) {
-                axios.post("{{ route('nonaktif_akun') }}", postData).then(function (r) {
-                    swalWithBootstrapButtons.fire(
-                        'Berhasil',
-                        'Akun sudah Non Aktif.',
-                        'success'
-                        )
-                        $('#listUser').DataTable().ajax.reload();
-                });
-            } else if (
-                /* Read more about handling dismissals below */
-                result.dismiss === Swal.DismissReason.cancel
-            ) {
-                swalWithBootstrapButtons.fire(
-                    'Dibatalkan',
-                    'Data anda aman :)',
-                    'error'
-                )
-            }
-        })
-    });
+    // $(document).on('click', '.btnAktif', function (e) {
+    //     e.preventDefault();
+    //     let id = $(this).data('id');
+    //     postData = {
+    //         'id': id
+    //     };
+    //     swalWithBootstrapButtons.fire({
+    //         title: 'Apakah anda yakin? ',
+    //         text: "Anda akan nonaktifkan user ini!",
+    //         icon: 'warning',
+    //         showCancelButton: true,
+    //         confirmButtonText: 'Ya, Non Aktifkan!',
+    //         cancelButtonText: 'Tidak, batal!',
+    //     }).then((result) => {
+    //         if (result.isConfirmed) {
+    //             axios.post("{{ route('nonaktif_akun') }}", postData).then(function (r) {
+    //                 swalWithBootstrapButtons.fire(
+    //                     'Berhasil',
+    //                     'Akun sudah Non Aktif.',
+    //                     'success'
+    //                     )
+    //                     $('#listUser').DataTable().ajax.reload();
+    //             });
+    //         } else if (
+    //             /* Read more about handling dismissals below */
+    //             result.dismiss === Swal.DismissReason.cancel
+    //         ) {
+    //             swalWithBootstrapButtons.fire(
+    //                 'Dibatalkan',
+    //                 'Data anda aman :)',
+    //                 'error'
+    //             )
+    //         }
+    //     })
+    // });
 
 </script>

@@ -34,7 +34,7 @@
                 <div class="card p-2">
                     <!-- Logo -->
                     <div class="app-brand justify-content-center mt-5">
-                        <a href="#" class="app-brand-link gap-2">
+                        <a href="{{ route('beranda') }}" class="app-brand-link gap-2">
                             <span class="app-brand-logo demo">
                                 <span style="color:#666cff;">
                                     <svg width="268" height="150" viewBox="0 0 38 20" fill="none"
@@ -110,6 +110,12 @@
                             <span>Belum punya akun?</span>
                             <a href="{{ route('register') }}">
                                 <span>Registrasi disini</span>
+                            </a>
+                        </p>
+                        <p class="text-center">
+                            <span>Kembali ke</span>
+                            <a href="{{ route('beranda') }}">
+                                <span>Halaman Utama</span>
                             </a>
                         </p>
                     </div>

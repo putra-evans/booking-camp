@@ -8,6 +8,7 @@ use App\Http\Controllers\admin\Ms_Tata_tertibController;
 use App\Http\Controllers\admin\Pesanan_userController;
 use App\Http\Controllers\admin\Syarat_ketentuanController;
 use App\Http\Controllers\admin\UserController;
+use App\Http\Controllers\front\BerandaController;
 use App\Http\Controllers\ProfilController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\user\BookingController;
@@ -27,8 +28,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    return view('frontpage.home');
+});
+
+
+Route::get('/login', function () {
     return view('auth.login');
 });
+
+
+Route::get('beranda', [BerandaController::class, 'index'])->name('beranda');
+
+
 
 Route::get('/dashboard', function () {
     $syarat  =  DB::table('ms_syarat_ketentuan')->get();
