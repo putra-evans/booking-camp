@@ -27,9 +27,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('frontpage.home');
-});
+// Route::get('/', function () {
+//     return view('frontpage.home');
+// });
 
 
 Route::get('/login', function () {
@@ -38,6 +38,7 @@ Route::get('/login', function () {
 
 
 Route::get('beranda', [BerandaController::class, 'index'])->name('beranda');
+Route::get('/', [BerandaController::class, 'index']);
 
 
 

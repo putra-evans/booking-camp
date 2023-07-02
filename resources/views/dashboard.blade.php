@@ -4,54 +4,28 @@
 
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
-    <div class="row gy-4">
-        <div class="col-md-12 col-lg-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="mb-4">Syarat dan Ketentuan :</h5>
-
-                    @if ($syarat->isEmpty())
-                        <span>Tidak ada data</span>
-                    @else
-                        {!!$syarat[0]->syarat_ketentuan!!}
-                    @endif
-                </div>
-            </div>
+   <div class="row gy-4">
+  <!-- Gamification Card -->
+  <div class="col-md-12 col-lg-8">
+    <div class="card">
+      <div class="d-flex align-items-end row">
+        <div class="col-md-6 order-2 order-md-1">
+          <div class="card-body">
+            <h4 class="card-title pb-xl-2">Selamat Datang <strong> {{ Auth::user()->name }}</strong>🎉</h4>
+            {{-- <p class="mb-0">You have done <span class="fw-semibold">68%</span>😎 more sales today.</p> --}}
+            <p>Berhasil login 😎 <br> Selanjutnya silahkan melakukan pemesanan</p>
+          </div>
         </div>
-        <div class="col-md-12 col-lg-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="mb-4">Tata Tertib :</h5>
-                    @if ($tata_tertib->isEmpty())
-                        <span>Tidak ada data</span>
-                    @else
-                        {!!$tata_tertib[0]->tata_tertib!!}
-                    @endif
-                </div>
-            </div>
+        <div class="col-md-6 text-center text-md-end order-1 order-md-2">
+          <div class="card-body pb-0 px-0 px-md-4 ps-0">
+            <img src="../../assets/img/illustrations/illustration-john-light.png" height="180" alt="View Profile" data-app-light-img="illustrations/illustration-john-light.png" data-app-dark-img="illustrations/illustration-john-dark.html">
+          </div>
         </div>
-        <div class="col-md-12 col-lg-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="mb-4">Tata Cara Pemesanan :</h5>
-
-                    @if ($cara_booking->isEmpty())
-                    <span>Tidak ada data</span>
-                @else
-                    {!!$cara_booking[0]->cara_booking!!}
-                @endif
-                </div>
-            </div>
-        </div>
-        {{-- <div class="col-md-12 col-lg-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="mb-4">Tata Tertib :</h5>
-                    {!!$tata_tertib[0]->tata_tertib!!}
-                </div>
-            </div>
-        </div> --}}
+      </div>
     </div>
+  </div>
+  <!--/ Gamification Card -->
+</div>
 </div>
 
 @endsection
