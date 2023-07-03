@@ -40,7 +40,7 @@ class BookingController extends Controller
 
         $status_akun = DB::table('users')->where('id', $userId)->get()->toArray();
         if ($status_akun[0]->status_akun == 0) {
-            return response()->json('Akun Tidak Aktif', 403);
+            return response()->json('Profil Belum Lengkap', 403);
         }
 
 
@@ -129,6 +129,7 @@ class BookingController extends Controller
         $validator = Validator::make($request->all(), [
             'id_booking'                => 'required',
             'id_kavling'                => 'required',
+            'nik'                       => 'required',
             'nama_anggota'              => 'required',
             'umur_anggota'              => 'required',
             'jenis_kelamin_anggota'     => 'required',
@@ -159,6 +160,7 @@ class BookingController extends Controller
         DB::table('ta_anggota')->insert([
             'id_booking'        => $request->id_booking,
             'id_kavling'        => $request->id_kavling,
+            'nik'               => $request->nik,
             'nama_anggota'      => $request->nama_anggota,
             'umur_anggota'      => $request->umur_anggota,
             'jk_anggota'        => $request->jenis_kelamin_anggota,

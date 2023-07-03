@@ -43,13 +43,19 @@
                 '<button type="button" class="BtnPilihKavling btn btn-twitter waves-effect waves-light ' +
                 disable + '" data-id="' + value.id_ms_kavling + '" data-tanggal_pilih="' + tanggal_pilih +
                 '" data-nama_kavling="' + value.nama_kavling +
-                '" style="width: 80px !important;margin:5px">' + value.kode_kavling + '</button>');
+                '" style="width: 40px !important;margin:2px;font-size:12px ">' + value.kode_kavling + '</button>');
         });
     }
 
     function calender() {
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        today = yyyy + '-' + mm + '-' + dd;
         jSuites.calendar(document.getElementById('calendar'), {
             format: 'YYYY-MM-DD',
+            validRange: [ today, '2024-12-31' ],
             onupdate: function (a, b) {
                 loading($('.loading-kalender'));
                 tanggal_pilih = b;
@@ -134,7 +140,7 @@
                         } else if (error.response.status == 403) {
                             swalWithBootstrapButtons.fire({
                                 title: 'Batal',
-                                text: 'Akun anda tidak aktif',
+                                text: 'Profil belum lengkap, silahkan lengkapi profil anda',
                                 icon: 'error',
                                 showConfirmButton: false,
                                 timer: 1500
@@ -428,6 +434,7 @@
                 console.log
                 $('#tbody_list_anggota').append("<tr>\
                         			<td class='text-center'>" + ++i + "</td>\
+                        			<td>" + value.nik + "</td>\
                         			<td>" + value.nama_anggota + "</td>\
                                     <td class='text-center'>" + value.umur_anggota + "</td>\
                                     <td class='text-center'>" + value.jk_anggota + "</td>\

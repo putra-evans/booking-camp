@@ -128,16 +128,16 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        {{-- <div class="col-md-6">
                             <div class="form-floating form-floating-outline required">
                                 @if ($data[0]->status_akun == 1)
-                                <input type="text" class="form-control" value="Aktif" readonly />
+                                <input type="text" class="form-control" value="Lengkap" readonly />
                                 @else
                                 <input type="text" class="form-control" value="Tidak Aktif" readonly />
                                 @endif
                                 <label for="state">Status Akun</label>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-md-12">
                             <div class="form-floating form-floating-outline required">
                                <textarea required name="alamat_lengkap" id="alamat_lengkap" class="form-control h-px-100">{{$data[0]->alamat_lengkap}}</textarea>
@@ -156,7 +156,7 @@
                     <li>Setelah profil lengkap dan status akun masih <b>Belum Aktif</b></li>
                     <li>Tunggu sampai admin melakukan verifikasi terhadap data</li>
                     <li>Setelah akun anda  <button type="button" class="btn btn-outline-whatsapp waves-effect btn-xs"> <i
-                        class="tf-icons mdi mdi-check-decagram me-1"></i>Aktif</button>, maka anda dapat melakukan Booking</li>
+                        class="tf-icons mdi mdi-check-decagram me-1"></i>Lengkap</button>, maka anda dapat melakukan Booking</li>
                 </span>
             </div>
         </div>

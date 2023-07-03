@@ -141,6 +141,15 @@
                                         <div class="row gy-4">
                                             <input required class="form-control" type="hidden" id="id_booking" name="id_booking" readonly />
                                             <input required class="form-control" type="hidden" id="id_kavling" name="id_kavling" readonly />
+                                            <div class="col-md-12">
+                                                <div class="form-floating form-floating-outline required">
+                                                    <input required class="form-control" type="text" id="nik"
+                                                        name="nik" placeholder="Masukkan nama lengkap..."
+                                                        autofocus />
+                                                    <label for="nik">NIK</label>
+                                                    <div class="invalid-feedback"></div>
+                                                </div>
+                                            </div>
                                             <div class="col-md-6">
                                                 <div class="form-floating form-floating-outline required">
                                                     <input required class="form-control" type="text" id="nama_anggota"
@@ -232,6 +241,7 @@
                                             <thead>
                                                 <tr>
                                                     <th class="text-center">No</th>
+                                                    <th class="text-center">NIK</th>
                                                     <th class="text-center">Nama</th>
                                                     <th class="text-center">Umur</th>
                                                     <th class="text-center">Jenis Kelamin</th>

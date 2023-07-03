@@ -115,6 +115,7 @@ class ProfilController extends Controller
                 'tempat_lahir'      => $request->tempat_lahir,
                 'tanggal_lahir'     => $request->tanggal_lahir,
                 'alamat_lengkap'    => $request->alamat_lengkap,
+                'status_akun'       => 1,
             ]);
         return response()->json('Berhasil melakukan update data', 200);
     }

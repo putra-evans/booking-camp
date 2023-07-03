@@ -133,11 +133,11 @@
                                     <span>
                                         @if ($data[0]->status_akun == 1)
                                         <button type="button" class="btn btn-outline-whatsapp waves-effect btn-xs"> <i
-                                                class="tf-icons mdi mdi-check-decagram me-1"></i>Aktif</button>
+                                                class="tf-icons mdi mdi-check-decagram me-1"></i>Lengkap</button>
                                         @elseif ($data[0]->status_akun == 0)
                                         <button type="button"
                                             class="btn rounded-pill btn-outline-youtube waves-effect btn-xs"> <i
-                                                class="tf-icons mdi mdi-close-circle me-1"></i>Tidak Aktif </button>
+                                                class="tf-icons mdi mdi-close-circle me-1"></i>Tidak Lengkap </button>
                                         @else
                                         <span>-</span>
                                         @endif
