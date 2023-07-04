@@ -22,9 +22,9 @@ class UserController extends Controller
                 ->addColumn('status_akun', function ($item) {
 
                     if ($item->status_akun == 1) {
-                        $status = '<button type="button" data-id="' . $item->id . '" class="btn btn-outline-whatsapp waves-effect btn-xs btnAktif"> <i class="tf-icons mdi mdi-check-decagram me-1"></i>Aktif</button>';
+                        $status = '<button type="button" data-id="' . $item->id . '" class="btn btn-outline-whatsapp waves-effect btn-xs btnAktif"> <i class="tf-icons mdi mdi-check-decagram me-1"></i>Lengkap</button>';
                     } else {
-                        $status = '<button type="button" data-id="' . $item->id . '" class="btn rounded-pill btn-outline-youtube waves-effect btn-xs  btnNonAktif"> <i class="tf-icons mdi mdi-close-circle me-1"></i>Tidak Aktif </button>';
+                        $status = '<button type="button" data-id="' . $item->id . '" class="btn rounded-pill btn-outline-youtube waves-effect btn-xs  btnNonAktif"> <i class="tf-icons mdi mdi-close-circle me-1"></i>Belum Lengkap </button>';
                     }
                     return $status;
                 })

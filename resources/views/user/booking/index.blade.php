@@ -14,7 +14,7 @@
     </h4>
     <!-- Header -->
     <div class="row gy-4">
-        <div class="col-8 loading-kalender">
+        <div class="col-9 loading-kalender">
             <div class="card p-2">
                 <div class="card-header">
                     <span>Kavling tersedia :</span>
@@ -28,7 +28,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-4">
+        <div class="col-3">
             <div class="card">
                 <div class="card-header">
                     <span>Cek tanggal :</span>
@@ -93,7 +93,8 @@
                                     </tbody>
                                 </table>
                                 <div class="pt-3 float-right">
-                                    <button type="button" class="btn btn-whatsapp waves-effect btnBookingSekarang"> <i
+                                    <button type="button"
+                                        class="btn btn-sm btn-whatsapp waves-effect btnBookingSekarang"> <i
                                             class="tf-icons mdi mdi-check-decagram me-1"></i>Booking Sekarang</button>
                                 </div>
                             </div>
@@ -125,7 +126,7 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header border-0">
-                <button type="button" class="btn-close BtnKeluarAnggota" data-bs-dismiss="modal" aria-label="Close">
+                <button type="button" class="btn-close  BtnKeluarAnggota" data-bs-dismiss="modal" aria-label="Close">
                 </button>
             </div>
             <div class="modal-body">
@@ -139,13 +140,14 @@
                                         enctype="multipart/form-data">
                                         @csrf
                                         <div class="row gy-4">
-                                            <input required class="form-control" type="hidden" id="id_booking" name="id_booking" readonly />
-                                            <input required class="form-control" type="hidden" id="id_kavling" name="id_kavling" readonly />
+                                            <input required class="form-control" type="hidden" id="id_booking"
+                                                name="id_booking" readonly />
+                                            <input required class="form-control" type="hidden" id="id_kavling"
+                                                name="id_kavling" readonly />
                                             <div class="col-md-12">
                                                 <div class="form-floating form-floating-outline required">
-                                                    <input required class="form-control" type="text" id="nik"
-                                                        name="nik" placeholder="Masukkan nama lengkap..."
-                                                        autofocus />
+                                                    <input required class="form-control" type="text" id="nik" name="nik"
+                                                        placeholder="Masukkan nama lengkap..." autofocus />
                                                     <label for="nik">NIK</label>
                                                     <div class="invalid-feedback"></div>
                                                 </div>
@@ -231,32 +233,89 @@
                                         </div>
                                         <br>
                                         <div class="modal-footer border-0">
-                                            <button type="submit" class="btn btn-primary" id="add_tim">Tambah Anggota</button>
-                                            <button type="button" class="btn btn-label-danger BtnKeluarAnggota"  data-bs-dismiss="modal">Keluar</button>
+                                            <button type="submit" class="btn btn-sm btn-info" id="add_tim_ada">Tambah
+                                                Sudah Ada</button>
+                                            <button type="submit" class="btn btn-sm btn-primary" id="add_tim">Tambah
+                                                Baru</button>
+                                            <button type="button" class="btn btn-sm btn-label-danger BtnKeluarAnggota"
+                                                data-bs-dismiss="modal">Keluar</button>
                                         </div>
-                                        </form>
-                                        <hr style="color: black">
-                                        <h4 class="card-header">List Anggota :</h4>
-                                        <table class="table table-bordered" id="ListAnggota">
-                                            <thead>
-                                                <tr>
-                                                    <th class="text-center">No</th>
-                                                    <th class="text-center">NIK</th>
-                                                    <th class="text-center">Nama</th>
-                                                    <th class="text-center">Umur</th>
-                                                    <th class="text-center">Jenis Kelamin</th>
-                                                    <th class="text-center">Status</th>
-                                                    <th class="text-center">No Telp</th>
-                                                    <th class="text-center">Alamat</th>
-                                                    <th class="text-center">Riwayat Penyakit</th>
-                                                    <th class="text-center">Aksi</th>
-
-                                                </tr>
-                                            </thead>
-                                            <tbody id="tbody_list_anggota">
-                                            </tbody>
-                                        </table>
+                                    </form>
+                                    <hr style="color: black">
+                                    <h4 class="card-header">List Anggota :</h4>
+                                    <table class="table table-bordered" id="ListAnggota">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">No</th>
+                                                <th class="text-center">NIK</th>
+                                                <th class="text-center">Nama</th>
+                                                <th class="text-center">Umur</th>
+                                                <th class="text-center">Jenis Kelamin</th>
+                                                <th class="text-center">Status</th>
+                                                <th class="text-center">No Telp</th>
+                                                <th class="text-center">Alamat</th>
+                                                <th class="text-center">Riwayat Penyakit</th>
+                                                <th class="text-center">Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbody_list_anggota">
+                                        </tbody>
+                                    </table>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{{-- modal Anggota Sudah Ada --}}
+<div class="modal-onboarding modal fade animate__animated" data-bs-backdrop="static" data-bs-keyboard="false"
+    id="addTimAdaModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <button type="button" class="btn-close  BtnKeluar" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card mb-4">
+                            <h4 class="card-header">Tambah Anggota Tim Yang Sudah Ada</h4>
+                            <div class="card-body">
+                                <hr style="color: black">
+
+                                <h4 class="card-header">List Anggota :</h4>
+                                <div class="col-md-6">
+                                    <div class="form-floating form-floating-outline required">
+                                        <select required id="pilih_kavling" name="pilih_kavling" class="select2 form-select">
+                                            <option value="">-- PILIH --</option>
+                                            @foreach ($anggota as $pecah )
+                                            <option value="{{$pecah->id_kavling}}">{{$pecah->kode_kavling}}</option>
+                                            @endforeach
+                                        </select>
+                                        <label for="pilih_kavling">Pilih Kavling</label>
+                                        <div class="invalid-feedback"></div>
+                                    </div>
+                                </div>
+                                <br>
+                                <table class="table table-bordered" id="ListAnggotaAda">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">No</th>
+                                            <th class="text-center">NIK</th>
+                                            <th class="text-center">Nama</th>
+                                            <th class="text-center">No Telp</th>
+                                            <th class="text-center">Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbody_list_anggota_ada">
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

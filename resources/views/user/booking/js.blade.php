@@ -43,7 +43,8 @@
                 '<button type="button" class="BtnPilihKavling btn btn-twitter waves-effect waves-light ' +
                 disable + '" data-id="' + value.id_ms_kavling + '" data-tanggal_pilih="' + tanggal_pilih +
                 '" data-nama_kavling="' + value.nama_kavling +
-                '" style="width: 40px !important;margin:2px;font-size:12px ">' + value.kode_kavling + '</button>');
+                '" style="width: 40px !important;margin:2px;font-size:12px ">' + value.kode_kavling +
+                '</button>');
         });
     }
 
@@ -55,7 +56,7 @@
         today = yyyy + '-' + mm + '-' + dd;
         jSuites.calendar(document.getElementById('calendar'), {
             format: 'YYYY-MM-DD',
-            validRange: [ today, '2024-12-31' ],
+            validRange: [today, '2024-12-31'],
             onupdate: function (a, b) {
                 loading($('.loading-kalender'));
                 tanggal_pilih = b;
@@ -182,14 +183,17 @@
                 $('#tbody_organisasi').append("<tr>\
                         			<td class='text-center'>" + ++i +
                     "</td>\
-                        			<td><button type='button' style='width: 80px !important;margin:5px' class='btn btn-twitter waves-effect waves-light'>" +
+                        			<td><button type='button' style='width: 80px !important;margin:5px' class='btn-sm btn btn-twitter waves-effect waves-light'>" +
                     value.kode_kavling + "</button></td>\
                                     <td class='text-center'>" + value.lama_menginap + " Malam</td>\
                         			<td class='text-center'>Rp. " + numberWithCommas(value.total_biaya) + "</td>\
                         			<td>" + tgl_indo(value.tanggal_booking) + "</td>\
                         			<td class='text-center'><button type='button' title='Tambah Anggota Tim' data-id='" + value
                     .id_booking +
-                    "' data-id_kavling='" + value.id_kavling + "' class='btn btn-icon btn-primary waves-effect waves-light' id='BtnAddAnggota'><span class='fa-regular fa-plus'></span></button> <button type='button' title='Hapus data' data-id='" + value.id_booking + "' class='btn btn-icon btn-danger waves-effect waves-light' id='BtnHapus'><span class='fa-regular fa-trash-can'></span></button> &nbsp;</td>\
+                    "' data-id_kavling='" + value.id_kavling +
+                    "' class='btn btn-sm btn-icon btn-primary waves-effect waves-light' id='BtnAddAnggota'><span class='fa-regular fa-plus'></span></button> <button type='button' title='Hapus data' data-id='" +
+                    value.id_booking +
+                    "' class='btn btn-sm btn-icon btn-danger waves-effect waves-light' id='BtnHapus'><span class='fa-regular fa-trash-can'></span></button> &nbsp;</td>\
                         			<td class='text-center'><div class='custom-control custom-checkbox mt-0 pt-0'><input style='color: 'red' !important' type='checkbox' class='custom-control-input' name='checkid[]' id='" +
                     value.id_booking + "' value='" + value.id_booking +
                     "'><label class='custom-control-label font-weight-bolder' for='" + value.id_booking + "'></label></div></td>\
@@ -310,6 +314,7 @@
         // $('form#formAddTim').trigger('reset');
         $('input[name=nama_anggota').val('');
         $('input[name=umur_anggota').val('');
+        $('input[name=nik').val('');
         $('#jenis_kelamin_anggota').prop('selectedIndex', 0);
         $('#status_anggota').prop('selectedIndex', 0);
         $('input[name=no_telp').val('');
@@ -367,7 +372,7 @@
                             $('#formAddTim').addClass('was-validated');
                             swalWithBootstrapButtons.fire({
                                 title: 'Batal',
-                                text: 'Periksa kembali form inputan anda, jangan sampai ada data kosong dan tipe file sesuai',
+                                text: 'Periksa kembali form inputan anda, jangan sampai ada data kosong dan NIK tidak ada yang sama',
                                 icon: 'error',
                                 confirmButtonText: '<i class="fas fa-check"></i> Oke',
                                 showCancelButton: false,
@@ -379,7 +384,7 @@
                                             $('input[name="' + key +
                                                 '"], textarea[name="' + key +
                                                 '"], select[name="' + key + '"]'
-                                                ).closest('div.required').find(
+                                            ).closest('div.required').find(
                                                 'div.invalid-feedback').text(
                                                 value[0]);
                                         } else {
@@ -442,7 +447,8 @@
                                     <td class='text-center'>" + value.notelp_anggota + "</td>\
                         			<td class='text-center'>" + value.alamat_lengkap_anggota + "</td>\
                         			<td class='text-center'>" + value.riwayat_penyakit_anggota + "</td>\
-                        			<td class='text-center'><button type='button' title='Hapus data' data-id='" + value.id_anggota + "' data-id_booking='" + value.id_booking + "' class='btn btn-icon btn-danger waves-effect waves-light' id='BtnHapusAnggota'><span class='fa-regular fa-trash-can'></span></button> &nbsp;</td>\
+                        			<td class='text-center'><button type='button' title='Hapus data' data-id='" + value
+                    .id_anggota + "' data-id_booking='" + value.id_booking + "' class='btn btn-icon btn-danger waves-effect waves-light' id='BtnHapusAnggota'><span class='fa-regular fa-trash-can'></span></button> &nbsp;</td>\
                         			</tr>");
             });
         }
@@ -555,5 +561,145 @@
         var tampilTanggal = tanggal + " " + bulan + " " + tahun;
         return tampilTanggal;
     }
+
+    // ANGGOTA YANG SUDAH ADA
+    $(document).on('click', '#add_tim_ada', function (e) {
+        reset();
+        e.preventDefault();
+        $('#pilih_kavling').prop('selectedIndex', 0);
+
+        // let id = $(this).data('id')
+        // let id_kavling = $(this).data('id_kavling')
+        $('#id_booking').val();
+
+        // $('#id_kavling').val(id_kavling);
+        $('#addTimAdaModal').modal('show');
+        // getDataAnggota(id);
+    });
+
+    $('.BtnKeluar').click(function (e) {
+        e.preventDefault();
+        let booking = $('#id_booking').val();
+        $('#addTimAdaModal').modal('hide');
+        getDataAnggota(booking);
+    });
+
+
+    function list_anggota_ada(data) {
+        if (data === undefined || data.length == 0) {
+            $('#tbody_list_anggota_ada').append("<tr>\
+                        			<td colspan='5' class='text-center'>Belum ada data</td>\
+                        			</tr>");
+        } else {
+            var rows = '';
+            var i = 0;
+            $.each(data, function (key, value) {
+                console.log
+                $('#tbody_list_anggota_ada').append("<tr>\
+                        			<td class='text-center'>" + ++i + "</td>\
+                        			<td>" + value.nik + "</td>\
+                        			<td>" + value.nama_anggota + "</td>\
+                                    <td class='text-center'>" + value.notelp_anggota + "</td>\
+                        			<td class='text-center'><button type='button' title='Tambah Anggota' data-id_anggota='" +
+                    value.id_anggota + "' data-id_booking='" + value.id_booking + "' data-id_kavling='" +
+                    value.id_kavling + "' class='btn btn-icon btn-success waves-effect waves-light btn-sm' id='BtnAddAnggotaAda'><span class='fa-regular fa-plus'></span></button> &nbsp;</td>\
+                        			</tr>");
+            });
+        }
+    }
+
+    function getDataAnggotaAda(idnya) {
+        $('#tbody_list_anggota_ada').empty();
+        loading($('#ListAnggotaAda'));
+        postData = {
+            'id': idnya
+        };
+        axios.post("{{ route('get_anggota_ada') }}", postData)
+            .then(function (res) {
+                console.log('data anggota ada', res.data);
+                list_anggota_ada(res.data)
+                $('#ListAnggotaAda').waitMe('hide');
+            })
+    }
+
+    $('#pilih_kavling').change(function (e) {
+        e.preventDefault();
+        var id_kavling = $(this).val();
+        getDataAnggotaAda(id_kavling);
+    });
+
+    $(document).on('click', '#BtnAddAnggotaAda', function (e) {
+        e.preventDefault();
+        // LAMA
+        let id_anggota_lama = $(this).data('id_anggota')
+        // let id_booking = $(this).data('id_booking')
+        // let id_kavling = $(this).data('id_kavling')
+        // ID Baru
+        let id_booking_baru = $('#id_booking').val();
+        let id_kavling_baru = $('#id_kavling').val()
+
+        postData = {
+            'id_anggota_lama': id_anggota_lama,
+            'id_booking_baru': id_booking_baru,
+            'id_kavling_baru': id_kavling_baru,
+        };
+
+        axios.post("{{ route('tambah_anggota_ada') }}", postData)
+            .then(function (response) {
+                console.log('then', response);
+                swalWithBootstrapButtons.fire({
+                    title: 'Berhasil',
+                    text: 'Data berhasil ditambahkan.',
+                    icon: 'success',
+                    confirmButtonText: '<i class="fas fa-check"></i> Oke',
+                    showCancelButton: false,
+                });
+                // $('#formAddTim').waitMe('hide');
+                $('#addTimAdaModal').modal('hide');
+                $('#pilih_kavling').prop('selectedIndex', 0);
+
+
+                getDataDraftBooking();
+                getDataAnggota($('#id_booking').val());
+
+            })
+            .catch(function (error) {
+                if (error.response.status == 403) {
+                    swalWithBootstrapButtons.fire({
+                        title: 'Batal',
+                        text: 'Maksimal 5 anggota untuk 1 Kavling',
+                        icon: 'error',
+                        confirmButtonText: '<i class="fas fa-check"></i> Oke',
+                        showCancelButton: false,
+                    }).then((result) => {
+                        // $('#formAddTim').waitMe('hide');
+                    })
+                } else if (error.response.status == 404) {
+                    swalWithBootstrapButtons.fire({
+                        title: 'Batal',
+                        text: 'Anggota sudah ada',
+                        icon: 'error',
+                        confirmButtonText: '<i class="fas fa-check"></i> Oke',
+                        showCancelButton: false,
+                    }).then((result) => {
+                        // $('#formAddTim').waitMe('hide');
+                    })
+                } else {
+                    swalWithBootstrapButtons.fire({
+                        title: 'Batal',
+                        text: 'Gagal Tambah Anggota',
+                        icon: 'error',
+                        confirmButtonText: '<i class="fas fa-check"></i> Oke',
+                        showCancelButton: false,
+                    }).then((result) => {
+                        // $('#formAddTim').waitMe('hide');
+                    })
+                }
+            });
+
+        // console.log('LAMAAA', id_anggota, id_booking, id_kavling);
+        // console.log('BARUU', id_booking_baru, id_kavling_baru);
+
+    });
 
 </script>

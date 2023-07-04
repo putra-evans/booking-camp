@@ -14,7 +14,17 @@ class BookingController extends Controller
 {
     public function index(Request $request)
     {
-        return view('user.booking.index');
+        $userId = Auth::id();
+        $anggota =  DB::table('ta_booking as A')
+            ->select('A.*', 'B.*')
+            ->join('ms_kavling as B', 'A.id_kavling', '=', 'B.id_kavling')
+            ->where('A.status_pesanan', '=', 0)
+            ->where('A.id_user', '=', $userId)
+            ->orderBy('A.id_kavling', 'ASC')
+            ->get();
+        return view('user.booking.index', [
+            'anggota' => $anggota
+        ]);
     }
 
     public function get_booking(Request $request)
@@ -129,7 +139,7 @@ class BookingController extends Controller
         $validator = Validator::make($request->all(), [
             'id_booking'                => 'required',
             'id_kavling'                => 'required',
-            'nik'                       => 'required',
+            'nik'                       => 'required|unique:ta_anggota,nik',
             'nama_anggota'              => 'required',
             'umur_anggota'              => 'required',
             'jenis_kelamin_anggota'     => 'required',
@@ -172,12 +182,81 @@ class BookingController extends Controller
         ]);
         return response()->json('Berhasil Tambah Anggota', 200);
     }
+    public function tambah_anggota_ada(Request $request)
+    {
+
+        $id_anggota_lama = $request['id_anggota_lama'];
+        $id_booking_baru = $request['id_booking_baru'];
+        $id_kavling_baru = $request['id_kavling_baru'];
+
+        $jumlah_anggota = DB::table('ta_anggota')
+            ->where('id_booking', $id_booking_baru)
+            ->count();
+        if ($jumlah_anggota == 5) {
+            return response()->json('Maksimal 5 anggota untuk 1 Kavling', 403);
+        }
+
+
+        $anggota_lama =  DB::table('ta_anggota')
+            ->where('id_anggota', $id_anggota_lama)
+            ->get();
+
+
+        $anggota_baru =  DB::table('ta_anggota')
+            ->where('id_booking', $id_booking_baru)
+            ->where('id_kavling', $id_kavling_baru)
+            ->get();
+
+        // dd($anggota_baru);
+
+        if (!$anggota_baru->isEmpty()) {
+            $lama = $anggota_lama[0]->nik;
+            $baru = $anggota_baru[0]->nik;
+
+            if ($lama == $baru) {
+                return response()->json('Anggota Sudah Ada', 404);
+            }
+        }
+
+
+
+        $total_biaya = ($jumlah_anggota + 1) * 15000;
+        DB::table('ta_booking')
+            ->where('id_booking', $id_booking_baru)
+            ->update([
+                'total_biaya' => $total_biaya
+            ]);
+
+        DB::table('ta_anggota')->insert([
+            'id_booking'        => $id_booking_baru,
+            'id_kavling'        => $id_kavling_baru,
+            'nik'               => $anggota_lama[0]->nik,
+            'nama_anggota'      => $anggota_lama[0]->nama_anggota,
+            'umur_anggota'      => $anggota_lama[0]->umur_anggota,
+            'jk_anggota'        => $anggota_lama[0]->jk_anggota,
+            'status_anggota'    => $anggota_lama[0]->status_anggota,
+            'notelp_anggota'    => $anggota_lama[0]->notelp_anggota,
+            'biaya_perorang'    => '15000',
+            'alamat_lengkap_anggota'    => $anggota_lama[0]->alamat_lengkap_anggota,
+            'riwayat_penyakit_anggota'  => $anggota_lama[0]->riwayat_penyakit_anggota,
+        ]);
+        return response()->json('Berhasil Tambah Anggota', 200);
+    }
 
     public function get_anggota(Request $request)
     {
         $id = $request['id'];
         $booking =  DB::table('ta_anggota')
             ->where('id_booking', $id)
+            ->orderBy('id_anggota', 'ASC')
+            ->get();
+        return response()->json($booking, 200);
+    }
+    public function get_anggota_ada(Request $request)
+    {
+        $id = $request['id'];
+        $booking =  DB::table('ta_anggota')
+            ->where('id_kavling', $id)
             ->orderBy('id_anggota', 'ASC')
             ->get();
         return response()->json($booking, 200);

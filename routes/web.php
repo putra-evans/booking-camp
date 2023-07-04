@@ -127,7 +127,9 @@ Route::group(['middleware' => ['role:user']], function () {
     Route::post('proses_booking', [BookingController::class, 'proses_booking'])->name('proses_booking');
 
     Route::post('tambah_anggota', [BookingController::class, 'tambah_anggota'])->name('tambah_anggota');
+    Route::post('tambah_anggota_ada', [BookingController::class, 'tambah_anggota_ada'])->name('tambah_anggota_ada');
     Route::post('get_anggota', [BookingController::class, 'get_anggota'])->name('get_anggota');
+    Route::post('get_anggota_ada', [BookingController::class, 'get_anggota_ada'])->name('get_anggota_ada');
     Route::post('destroy_anggota', [BookingController::class, 'destroy_anggota'])->name('destroy_anggota');
 
 
