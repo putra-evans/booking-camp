@@ -567,14 +567,24 @@
         reset();
         e.preventDefault();
         $('#pilih_kavling').prop('selectedIndex', 0);
-
-        // let id = $(this).data('id')
-        // let id_kavling = $(this).data('id_kavling')
-        $('#id_booking').val();
-
-        // $('#id_kavling').val(id_kavling);
+        let id_k = $('#id_booking').val();
         $('#addTimAdaModal').modal('show');
-        // getDataAnggota(id);
+        $("#tbody_list_anggota_ada").empty();
+
+        postData = {
+            'id': id_k
+        };
+        axios.post("{{ route('AmbilKavlingAda') }}", postData)
+            .then(function (res) {
+                console.log('data kavling yang ada', res.data);
+                lblReg = '<option value="">Pilih Data</option>';
+                    $.each(res.data, function(key, value) {
+                        lblReg += '<option value="' + value['id_kavling'] + '">' + value['kode_kavling'] + '</option>';
+                    });
+                $('select[name="pilih_kavling"]').html(lblReg);
+            })
+
+
     });
 
     $('.BtnKeluar').click(function (e) {

@@ -131,6 +131,7 @@ Route::group(['middleware' => ['role:user']], function () {
     Route::post('get_anggota', [BookingController::class, 'get_anggota'])->name('get_anggota');
     Route::post('get_anggota_ada', [BookingController::class, 'get_anggota_ada'])->name('get_anggota_ada');
     Route::post('destroy_anggota', [BookingController::class, 'destroy_anggota'])->name('destroy_anggota');
+    Route::post('AmbilKavlingAda', [BookingController::class, 'AmbilKavlingAda'])->name('AmbilKavlingAda');
 
 
     Route::get('user-pesanan', [PesananController::class, 'index'])->name('user-pesanan');

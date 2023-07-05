@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 03 Jul 2023 pada 19.42
--- Versi server: 10.4.27-MariaDB
--- Versi PHP: 8.2.0
+-- Host: localhost:3306
+-- Generation Time: Jul 05, 2023 at 11:37 AM
+-- Server version: 5.7.24
+-- PHP Version: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,33 +24,33 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `failed_jobs`
+-- Table structure for table `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) NOT NULL,
-  `connection` text NOT NULL,
-  `queue` text NOT NULL,
-  `payload` longtext NOT NULL,
-  `exception` longtext NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -72,29 +72,29 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `model_has_permissions`
+-- Table structure for table `model_has_permissions`
 --
 
 CREATE TABLE `model_has_permissions` (
   `permission_id` bigint(20) UNSIGNED NOT NULL,
-  `model_type` varchar(255) NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `model_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `model_has_roles`
+-- Table structure for table `model_has_roles`
 --
 
 CREATE TABLE `model_has_roles` (
   `role_id` bigint(20) UNSIGNED NOT NULL,
-  `model_type` varchar(255) NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `model_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `model_has_roles`
+-- Dumping data for table `model_has_roles`
 --
 
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
@@ -107,18 +107,18 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ms_cara_booking`
+-- Table structure for table `ms_cara_booking`
 --
 
 CREATE TABLE `ms_cara_booking` (
   `id_cara_booking` bigint(20) UNSIGNED NOT NULL,
-  `cara_booking` text NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `cara_booking` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `ms_cara_booking`
+-- Dumping data for table `ms_cara_booking`
 --
 
 INSERT INTO `ms_cara_booking` (`id_cara_booking`, `cara_booking`, `created_at`, `updated_at`) VALUES
@@ -127,20 +127,20 @@ INSERT INTO `ms_cara_booking` (`id_cara_booking`, `cara_booking`, `created_at`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ms_galeri`
+-- Table structure for table `ms_galeri`
 --
 
 CREATE TABLE `ms_galeri` (
   `id_galeri` bigint(20) UNSIGNED NOT NULL,
-  `file_galeri` varchar(255) NOT NULL,
-  `judul_galeri` varchar(255) NOT NULL,
-  `tentang_galeri` text NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `file_galeri` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `judul_galeri` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tentang_galeri` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `ms_galeri`
+-- Dumping data for table `ms_galeri`
 --
 
 INSERT INTO `ms_galeri` (`id_galeri`, `file_galeri`, `judul_galeri`, `tentang_galeri`, `created_at`, `updated_at`) VALUES
@@ -151,20 +151,20 @@ INSERT INTO `ms_galeri` (`id_galeri`, `file_galeri`, `judul_galeri`, `tentang_ga
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ms_kavling`
+-- Table structure for table `ms_kavling`
 --
 
 CREATE TABLE `ms_kavling` (
   `id_kavling` bigint(20) UNSIGNED NOT NULL,
-  `kode_kavling` varchar(255) NOT NULL,
-  `nama_kavling` varchar(255) NOT NULL,
+  `kode_kavling` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama_kavling` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status_kavling` int(11) NOT NULL COMMENT '0 = Tidak Aktif, 1 = Aktif',
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `ms_kavling`
+-- Dumping data for table `ms_kavling`
 --
 
 INSERT INTO `ms_kavling` (`id_kavling`, `kode_kavling`, `nama_kavling`, `status_kavling`, `created_at`, `updated_at`) VALUES
@@ -200,18 +200,18 @@ INSERT INTO `ms_kavling` (`id_kavling`, `kode_kavling`, `nama_kavling`, `status_
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ms_syarat_ketentuan`
+-- Table structure for table `ms_syarat_ketentuan`
 --
 
 CREATE TABLE `ms_syarat_ketentuan` (
   `id_syarat_ketentuan` bigint(20) UNSIGNED NOT NULL,
-  `syarat_ketentuan` text NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `syarat_ketentuan` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `ms_syarat_ketentuan`
+-- Dumping data for table `ms_syarat_ketentuan`
 --
 
 INSERT INTO `ms_syarat_ketentuan` (`id_syarat_ketentuan`, `syarat_ketentuan`, `created_at`, `updated_at`) VALUES
@@ -220,18 +220,18 @@ INSERT INTO `ms_syarat_ketentuan` (`id_syarat_ketentuan`, `syarat_ketentuan`, `c
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ms_tata_tertib`
+-- Table structure for table `ms_tata_tertib`
 --
 
 CREATE TABLE `ms_tata_tertib` (
   `id_tata_tertib` bigint(20) UNSIGNED NOT NULL,
-  `tata_tertib` text NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `tata_tertib` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `ms_tata_tertib`
+-- Dumping data for table `ms_tata_tertib`
 --
 
 INSERT INTO `ms_tata_tertib` (`id_tata_tertib`, `tata_tertib`, `created_at`, `updated_at`) VALUES
@@ -240,25 +240,25 @@ INSERT INTO `ms_tata_tertib` (`id_tata_tertib`, `tata_tertib`, `created_at`, `up
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `password_reset_tokens`
+-- Table structure for table `password_reset_tokens`
 --
 
 CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `permissions`
+-- Table structure for table `permissions`
 --
 
 CREATE TABLE `permissions` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `guard_name` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -266,16 +266,16 @@ CREATE TABLE `permissions` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `personal_access_tokens`
+-- Table structure for table `personal_access_tokens`
 --
 
 CREATE TABLE `personal_access_tokens` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `token` varchar(64) NOT NULL,
-  `abilities` text DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -285,19 +285,19 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `roles`
+-- Table structure for table `roles`
 --
 
 CREATE TABLE `roles` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `guard_name` varchar(255) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `roles`
+-- Dumping data for table `roles`
 --
 
 INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
@@ -307,7 +307,7 @@ INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VAL
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `role_has_permissions`
+-- Table structure for table `role_has_permissions`
 --
 
 CREATE TABLE `role_has_permissions` (
@@ -318,123 +318,106 @@ CREATE TABLE `role_has_permissions` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ta_anggota`
+-- Table structure for table `ta_anggota`
 --
 
 CREATE TABLE `ta_anggota` (
   `id_anggota` bigint(20) UNSIGNED NOT NULL,
   `id_booking` bigint(20) NOT NULL,
   `id_kavling` bigint(20) NOT NULL,
-  `no_booking` varchar(255) DEFAULT NULL,
-  `nik` varchar(20) NOT NULL,
-  `nama_anggota` varchar(255) NOT NULL,
+  `no_booking` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nik` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama_anggota` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `umur_anggota` int(11) NOT NULL,
-  `jk_anggota` varchar(255) NOT NULL,
-  `status_anggota` varchar(255) NOT NULL,
-  `notelp_anggota` varchar(255) NOT NULL,
-  `biaya_perorang` varchar(255) NOT NULL,
-  `alamat_lengkap_anggota` text NOT NULL,
-  `riwayat_penyakit_anggota` text NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `jk_anggota` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status_anggota` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `notelp_anggota` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `biaya_perorang` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `alamat_lengkap_anggota` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `riwayat_penyakit_anggota` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data untuk tabel `ta_anggota`
---
-
-INSERT INTO `ta_anggota` (`id_anggota`, `id_booking`, `id_kavling`, `no_booking`, `nik`, `nama_anggota`, `umur_anggota`, `jk_anggota`, `status_anggota`, `notelp_anggota`, `biaya_perorang`, `alamat_lengkap_anggota`, `riwayat_penyakit_anggota`, `created_at`, `updated_at`) VALUES
-(10, 7, 18, NULL, '1311032110970001', 'udin', 23, 'Laki-laki', 'Pelajar', '082285248130', '15000', 'padang', 'demam dalam', '2023-07-03 15:32:53', '2023-07-03 15:32:53');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ta_booking`
+-- Table structure for table `ta_booking`
 --
 
 CREATE TABLE `ta_booking` (
   `id_booking` bigint(20) UNSIGNED NOT NULL,
   `id_user` bigint(20) NOT NULL,
   `id_kavling` bigint(20) NOT NULL,
-  `no_booking` varchar(255) DEFAULT NULL,
+  `no_booking` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `tanggal_booking` date NOT NULL,
-  `lama_menginap` varchar(255) NOT NULL,
-  `total_biaya` varchar(255) NOT NULL,
+  `lama_menginap` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total_biaya` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status_pesanan` int(11) NOT NULL COMMENT '0 = Belum Booking, 1 = Berhasil Booking',
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data untuk tabel `ta_booking`
---
-
-INSERT INTO `ta_booking` (`id_booking`, `id_user`, `id_kavling`, `no_booking`, `tanggal_booking`, `lama_menginap`, `total_biaya`, `status_pesanan`, `created_at`, `updated_at`) VALUES
-(6, 5, 17, '', '2023-07-03', '1', '0', 0, '2023-07-03 15:09:47', '2023-07-03 15:09:47'),
-(7, 5, 18, '', '2023-07-03', '1', '15000', 0, '2023-07-03 15:10:56', '2023-07-03 15:32:53'),
-(8, 5, 4, '', '2023-07-03', '1', '0', 0, '2023-07-03 17:00:51', '2023-07-03 17:00:51'),
-(9, 5, 11, '', '2023-07-05', '1', '0', 0, '2023-07-03 17:30:25', '2023-07-03 17:30:25');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ta_file_pembayaran`
+-- Table structure for table `ta_file_pembayaran`
 --
 
 CREATE TABLE `ta_file_pembayaran` (
   `id_file_pembayaran` bigint(20) UNSIGNED NOT NULL,
   `id_final_booking` bigint(20) NOT NULL,
   `id_user` bigint(20) NOT NULL,
-  `no_booking` varchar(255) NOT NULL,
-  `nama_file_pembayaran` varchar(255) NOT NULL,
-  `ctt_pembayaran` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `no_booking` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama_file_pembayaran` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ctt_pembayaran` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ta_final_booking`
+-- Table structure for table `ta_final_booking`
 --
 
 CREATE TABLE `ta_final_booking` (
   `id_final_booking` bigint(20) UNSIGNED NOT NULL,
   `id_user` bigint(20) NOT NULL,
-  `no_booking` varchar(255) NOT NULL,
-  `total_menginap` varchar(255) NOT NULL,
-  `final_biaya` varchar(255) NOT NULL,
+  `no_booking` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total_menginap` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `final_biaya` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status_final` int(11) NOT NULL COMMENT '0 = Belum Bayar, 1 = Pembayaran diproses, 2 = pembayaran diterima, 3 = pembayaran ditolak',
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `no_telp` varchar(255) DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `nama_panggilan` varchar(255) DEFAULT NULL,
-  `jenis_kelamin` varchar(255) DEFAULT NULL,
-  `tempat_lahir` varchar(255) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `no_telp` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nama_panggilan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `jenis_kelamin` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tempat_lahir` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `tanggal_lahir` date DEFAULT NULL,
-  `foto_user` varchar(255) DEFAULT NULL,
-  `foto_ktp` varchar(255) DEFAULT NULL,
-  `alamat_lengkap` text DEFAULT NULL,
+  `foto_user` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `foto_ktp` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `alamat_lengkap` text COLLATE utf8mb4_unicode_ci,
   `status_akun` int(11) DEFAULT NULL COMMENT '0 = Tidak Aktif, 1 = Aktif',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `no_telp`, `password`, `nama_panggilan`, `jenis_kelamin`, `tempat_lahir`, `tanggal_lahir`, `foto_user`, `foto_ktp`, `alamat_lengkap`, `status_akun`, `created_at`, `updated_at`) VALUES
@@ -446,77 +429,77 @@ INSERT INTO `users` (`id`, `name`, `email`, `no_telp`, `password`, `nama_panggil
 --
 
 --
--- Indeks untuk tabel `failed_jobs`
+-- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Indeks untuk tabel `migrations`
+-- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `model_has_permissions`
+-- Indexes for table `model_has_permissions`
 --
 ALTER TABLE `model_has_permissions`
   ADD PRIMARY KEY (`permission_id`,`model_id`,`model_type`),
   ADD KEY `model_has_permissions_model_id_model_type_index` (`model_id`,`model_type`);
 
 --
--- Indeks untuk tabel `model_has_roles`
+-- Indexes for table `model_has_roles`
 --
 ALTER TABLE `model_has_roles`
   ADD PRIMARY KEY (`role_id`,`model_id`,`model_type`),
   ADD KEY `model_has_roles_model_id_model_type_index` (`model_id`,`model_type`);
 
 --
--- Indeks untuk tabel `ms_cara_booking`
+-- Indexes for table `ms_cara_booking`
 --
 ALTER TABLE `ms_cara_booking`
   ADD PRIMARY KEY (`id_cara_booking`);
 
 --
--- Indeks untuk tabel `ms_galeri`
+-- Indexes for table `ms_galeri`
 --
 ALTER TABLE `ms_galeri`
   ADD PRIMARY KEY (`id_galeri`);
 
 --
--- Indeks untuk tabel `ms_kavling`
+-- Indexes for table `ms_kavling`
 --
 ALTER TABLE `ms_kavling`
   ADD PRIMARY KEY (`id_kavling`);
 
 --
--- Indeks untuk tabel `ms_syarat_ketentuan`
+-- Indexes for table `ms_syarat_ketentuan`
 --
 ALTER TABLE `ms_syarat_ketentuan`
   ADD PRIMARY KEY (`id_syarat_ketentuan`);
 
 --
--- Indeks untuk tabel `ms_tata_tertib`
+-- Indexes for table `ms_tata_tertib`
 --
 ALTER TABLE `ms_tata_tertib`
   ADD PRIMARY KEY (`id_tata_tertib`);
 
 --
--- Indeks untuk tabel `password_reset_tokens`
+-- Indexes for table `password_reset_tokens`
 --
 ALTER TABLE `password_reset_tokens`
   ADD PRIMARY KEY (`email`);
 
 --
--- Indeks untuk tabel `permissions`
+-- Indexes for table `permissions`
 --
 ALTER TABLE `permissions`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `permissions_name_guard_name_unique` (`name`,`guard_name`);
 
 --
--- Indeks untuk tabel `personal_access_tokens`
+-- Indexes for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
@@ -524,162 +507,162 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
--- Indeks untuk tabel `roles`
+-- Indexes for table `roles`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `roles_name_guard_name_unique` (`name`,`guard_name`);
 
 --
--- Indeks untuk tabel `role_has_permissions`
+-- Indexes for table `role_has_permissions`
 --
 ALTER TABLE `role_has_permissions`
   ADD PRIMARY KEY (`permission_id`,`role_id`),
   ADD KEY `role_has_permissions_role_id_foreign` (`role_id`);
 
 --
--- Indeks untuk tabel `ta_anggota`
+-- Indexes for table `ta_anggota`
 --
 ALTER TABLE `ta_anggota`
   ADD PRIMARY KEY (`id_anggota`);
 
 --
--- Indeks untuk tabel `ta_booking`
+-- Indexes for table `ta_booking`
 --
 ALTER TABLE `ta_booking`
   ADD PRIMARY KEY (`id_booking`);
 
 --
--- Indeks untuk tabel `ta_file_pembayaran`
+-- Indexes for table `ta_file_pembayaran`
 --
 ALTER TABLE `ta_file_pembayaran`
   ADD PRIMARY KEY (`id_file_pembayaran`);
 
 --
--- Indeks untuk tabel `ta_final_booking`
+-- Indexes for table `ta_final_booking`
 --
 ALTER TABLE `ta_final_booking`
   ADD PRIMARY KEY (`id_final_booking`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `failed_jobs`
+-- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `migrations`
+-- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT untuk tabel `ms_cara_booking`
+-- AUTO_INCREMENT for table `ms_cara_booking`
 --
 ALTER TABLE `ms_cara_booking`
   MODIFY `id_cara_booking` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `ms_galeri`
+-- AUTO_INCREMENT for table `ms_galeri`
 --
 ALTER TABLE `ms_galeri`
   MODIFY `id_galeri` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `ms_kavling`
+-- AUTO_INCREMENT for table `ms_kavling`
 --
 ALTER TABLE `ms_kavling`
   MODIFY `id_kavling` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
--- AUTO_INCREMENT untuk tabel `ms_syarat_ketentuan`
+-- AUTO_INCREMENT for table `ms_syarat_ketentuan`
 --
 ALTER TABLE `ms_syarat_ketentuan`
   MODIFY `id_syarat_ketentuan` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `ms_tata_tertib`
+-- AUTO_INCREMENT for table `ms_tata_tertib`
 --
 ALTER TABLE `ms_tata_tertib`
   MODIFY `id_tata_tertib` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `permissions`
+-- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `personal_access_tokens`
+-- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `roles`
+-- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `ta_anggota`
+-- AUTO_INCREMENT for table `ta_anggota`
 --
 ALTER TABLE `ta_anggota`
-  MODIFY `id_anggota` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_anggota` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `ta_booking`
+-- AUTO_INCREMENT for table `ta_booking`
 --
 ALTER TABLE `ta_booking`
-  MODIFY `id_booking` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_booking` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `ta_file_pembayaran`
+-- AUTO_INCREMENT for table `ta_file_pembayaran`
 --
 ALTER TABLE `ta_file_pembayaran`
-  MODIFY `id_file_pembayaran` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_file_pembayaran` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `ta_final_booking`
+-- AUTO_INCREMENT for table `ta_final_booking`
 --
 ALTER TABLE `ta_final_booking`
-  MODIFY `id_final_booking` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_final_booking` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `model_has_permissions`
+-- Constraints for table `model_has_permissions`
 --
 ALTER TABLE `model_has_permissions`
   ADD CONSTRAINT `model_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `model_has_roles`
+-- Constraints for table `model_has_roles`
 --
 ALTER TABLE `model_has_roles`
   ADD CONSTRAINT `model_has_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `role_has_permissions`
+-- Constraints for table `role_has_permissions`
 --
 ALTER TABLE `role_has_permissions`
   ADD CONSTRAINT `role_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,

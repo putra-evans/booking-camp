@@ -123,7 +123,7 @@
 {{-- modal Anggota --}}
 <div class="modal-onboarding modal fade animate__animated" data-bs-backdrop="static" data-bs-keyboard="false"
     id="addTimModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-dialog modal-fullscreen" role="document">
         <div class="modal-content">
             <div class="modal-header border-0">
                 <button type="button" class="btn-close  BtnKeluarAnggota" data-bs-dismiss="modal" aria-label="Close">
@@ -243,7 +243,7 @@
                                     </form>
                                     <hr style="color: black">
                                     <h4 class="card-header">List Anggota :</h4>
-                                    <table class="table table-bordered" id="ListAnggota">
+                                    <table class="table table-bordered table-responsive" width="100%" id="ListAnggota">
                                         <thead>
                                             <tr>
                                                 <th class="text-center">No</th>
@@ -275,7 +275,7 @@
 {{-- modal Anggota Sudah Ada --}}
 <div class="modal-onboarding modal fade animate__animated" data-bs-backdrop="static" data-bs-keyboard="false"
     id="addTimAdaModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header border-0">
                 <button type="button" class="btn-close  BtnKeluar" data-bs-dismiss="modal" aria-label="Close">
@@ -293,10 +293,10 @@
                                 <div class="col-md-6">
                                     <div class="form-floating form-floating-outline required">
                                         <select required id="pilih_kavling" name="pilih_kavling" class="select2 form-select">
-                                            <option value="">-- PILIH --</option>
+                                            {{-- <option value="">-- PILIH --</option>
                                             @foreach ($anggota as $pecah )
                                             <option value="{{$pecah->id_kavling}}">{{$pecah->kode_kavling}}</option>
-                                            @endforeach
+                                            @endforeach --}}
                                         </select>
                                         <label for="pilih_kavling">Pilih Kavling</label>
                                         <div class="invalid-feedback"></div>

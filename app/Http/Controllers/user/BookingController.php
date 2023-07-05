@@ -14,17 +14,8 @@ class BookingController extends Controller
 {
     public function index(Request $request)
     {
-        $userId = Auth::id();
-        $anggota =  DB::table('ta_booking as A')
-            ->select('A.*', 'B.*')
-            ->join('ms_kavling as B', 'A.id_kavling', '=', 'B.id_kavling')
-            ->where('A.status_pesanan', '=', 0)
-            ->where('A.id_user', '=', $userId)
-            ->orderBy('A.id_kavling', 'ASC')
-            ->get();
-        return view('user.booking.index', [
-            'anggota' => $anggota
-        ]);
+
+        return view('user.booking.index');
     }
 
     public function get_booking(Request $request)
@@ -207,18 +198,15 @@ class BookingController extends Controller
             ->where('id_kavling', $id_kavling_baru)
             ->get();
 
-        // dd($anggota_baru);
-
         if (!$anggota_baru->isEmpty()) {
-            $lama = $anggota_lama[0]->nik;
-            $baru = $anggota_baru[0]->nik;
-
-            if ($lama == $baru) {
-                return response()->json('Anggota Sudah Ada', 404);
+            foreach ($anggota_baru as $key => $value) {
+                $nik =  $value->nik;
+                $nama =  $value->nama_anggota;
+                if ($nik == $anggota_lama[0]->nik) {
+                    return response()->json('Anggota Sudah Ada', 404);
+                }
             }
         }
-
-
 
         $total_biaya = ($jumlah_anggota + 1) * 15000;
         DB::table('ta_booking')
@@ -276,5 +264,19 @@ class BookingController extends Controller
             ]);
         DB::table('ta_anggota')->where('id_anggota', $request->id)->delete();
         return response()->json('Berhasil dihapus', 200);
+    }
+
+    public function AmbilKavlingAda(Request $request)
+    {
+        $userId = Auth::id();
+        $anggota =  DB::table('ta_booking as A')
+            ->select('A.*', 'B.*')
+            ->join('ms_kavling as B', 'A.id_kavling', '=', 'B.id_kavling')
+            ->where('A.status_pesanan', '=', 0)
+            ->where('A.id_user', '=', $userId)
+            ->where('A.id_booking', '!=', $request['id'])
+            ->orderBy('A.id_kavling', 'ASC')
+            ->get();
+        return response()->json($anggota, 200);
     }
 }

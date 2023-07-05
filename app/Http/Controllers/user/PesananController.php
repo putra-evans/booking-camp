@@ -26,13 +26,13 @@ class PesananController extends Controller
                 ->addIndexColumn()
                 ->addColumn('status_pesanan', function ($item) {
                     if ($item->status_final == 0) {
-                        $status = '<button type="button" class="btn rounded-pill btn-outline-youtube waves-effect btn-xs"> <i class="tf-icons mdi mdi-close-circle me-1"></i> Belum Bayar</button>';
+                        $status = '<button type="button" class="btn btn-sm rounded-pill btn-outline-youtube waves-effect btn-xs"> <i class="tf-icons mdi mdi-close-circle me-1"></i> Belum Bayar</button>';
                     } else if ($item->status_final == 1) {
-                        $status = '<button type="button" class="btn rounded-pill btn-outline-twitter waves-effect btn-xs"> <i class="tf-icons mdi mdi-check-decagram me-1"> </i>Diproses</button>';
+                        $status = '<button type="button" class="btn btn-sm rounded-pill btn-outline-twitter waves-effect btn-xs"> <i class="tf-icons mdi mdi-check-decagram me-1"> </i>Diproses</button>';
                     } else if ($item->status_final == 2) {
-                        $status = '<button type="button" class="btn rounded-pill btn-outline-whatsapp waves-effect btn-xs"> <i class="tf-icons mdi mdi-check-decagram me-1"></i>Diterima</button>';
+                        $status = '<button type="button" class="btn btn-sm rounded-pill btn-outline-whatsapp waves-effect btn-xs"> <i class="tf-icons mdi mdi-check-decagram me-1"></i>Diterima</button>';
                     } else if ($item->status_final == 3) {
-                        $status = '<button type="button" class="btn rounded-pill btn-outline-youtube waves-effect btn-xs"> <i class="tf-icons mdi mdi-close-circle me-1"></i>Dibatalkan</button>';
+                        $status = '<button type="button" class="btn btn-sm rounded-pill btn-outline-youtube waves-effect btn-xs"> <i class="tf-icons mdi mdi-close-circle me-1"></i>Dibatalkan</button>';
                     }
                     return $status;
                 })
@@ -42,19 +42,19 @@ class PesananController extends Controller
                 })
                 ->addColumn('total_biaya', function ($item) {
                     if ($item->status_final == 0) {
-                        $total = '<button type="button" class="btn btn-text-danger text-bold waves-effect waves-light">Rp. ' . number_format($item->final_biaya) . '</button>';
+                        $total = '<button type="button" class="btn btn-sm btn-text-danger text-bold waves-effect waves-light">Rp. ' . number_format($item->final_biaya) . '</button>';
                     } else if ($item->status_final == 1) {
-                        $total = '<button type="button" class="btn btn-text-info text-bold waves-effect waves-light">Rp. ' . number_format($item->final_biaya) . '</button>';
+                        $total = '<button type="button" class="btn btn-sm btn-text-info text-bold waves-effect waves-light">Rp. ' . number_format($item->final_biaya) . '</button>';
                     } else if ($item->status_final == 2) {
-                        $total = '<button type="button" class="btn btn-text-success text-bold waves-effect waves-light">Rp. ' . number_format($item->final_biaya) . '</button>';
+                        $total = '<button type="button" class="btn btn-sm btn-text-success text-bold waves-effect waves-light">Rp. ' . number_format($item->final_biaya) . '</button>';
                     } else {
-                        $total = '<button type="button" class="btn btn-text-danger text-bold waves-effect waves-light">Rp. ' . number_format($item->final_biaya) . '</button>';
+                        $total = '<button type="button" class="btn btn-sm btn-text-danger text-bold waves-effect waves-light">Rp. ' . number_format($item->final_biaya) . '</button>';
                     }
                     return $total;
                 })
                 ->addColumn('file_pembayaran', function ($item) {
                     if ($item->nama_file_pembayaran == null) {
-                        $file = '<button type="button" class="btn rounded-pill btn-outline-youtube waves-effect btn-xs"> <i class="tf-icons mdi mdi-close-circle me-1"></i> Tidak ada file</button>';
+                        $file = '<button type="button" class="btn btn-sm rounded-pill btn-outline-youtube waves-effect btn-xs"> <i class="tf-icons mdi mdi-close-circle me-1"></i> Tidak ada file</button>';
                     } else {
                         $file = '<button type="button" data-bs-toggle="modal" data-bs-target="#LIhatBukti" id="lihat_bukti" data-img="' . url('/foto_pembayaran/' . $item->nama_file_pembayaran) . '" class="btn rounded-pill btn-outline-whatsapp waves-effect btn-xs"> <i class="tf-icons mdi mdi-check-decagram me-1"></i> Lihat File</button>';
                     }
