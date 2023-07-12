@@ -155,12 +155,16 @@
                     </div>
                 </div>
             </div>
-            <span style="color: red;font-size: 12px">Note : <br>
+            @role('user')
+                <span style="color: red;font-size: 12px">Note : <br>
                 <li>Silahkan lengkapi profil dengan meng klik menu <b>Lengkapi Profil</b></li>
-                <li>Setelah profil anda lengkapi, admin akan melakukan pengecekan data anda</li>
+                {{-- <li>Setelah profil anda lengkapi, admin akan melakukan pengecekan data anda</li> --}}
                 <li>Setelah akun anda  <button type="button" class="btn btn-outline-whatsapp waves-effect btn-xs"> <i
                     class="tf-icons mdi mdi-check-decagram me-1"></i>Lengkap</button>, maka anda dapat melakukan Booking</li>
             </span>
+            @endrole
+
+
         </div>
     </div>
 </div>

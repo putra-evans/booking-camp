@@ -16,9 +16,9 @@
         <div class="col-12">
             <div class="card p-2">
                 <div class="card-header">
-                    <button id="addSyaratKetentuan" type="button" class="btn rounded-pill btn-primary waves-effect waves-ligh btn-sm">
+                    {{-- <button id="addSyaratKetentuan" type="button" class="btn rounded-pill btn-primary waves-effect waves-ligh btn-sm">
                             <span class="tf-icons mdi mdi-plus-circle"></span> Tambah Data
-                    </button>
+                    </button> --}}
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">

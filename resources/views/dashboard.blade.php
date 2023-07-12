@@ -13,7 +13,7 @@
           <div class="card-body">
             <h4 class="card-title pb-xl-2">Selamat Datang <strong> {{ Auth::user()->name }}</strong>🎉</h4>
             {{-- <p class="mb-0">You have done <span class="fw-semibold">68%</span>😎 more sales today.</p> --}}
-            <p>Berhasil login 😎 <br> Selanjutnya silahkan melakukan pemesanan</p>
+            <p>Berhasil login 😎</p>
           </div>
         </div>
         <div class="col-md-6 text-center text-md-end order-1 order-md-2">
