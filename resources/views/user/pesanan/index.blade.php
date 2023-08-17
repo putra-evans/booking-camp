@@ -28,6 +28,7 @@
                                     <th width="25%" class="text-center">Total Biaya</th>
                                     <th width="15%" class="text-center">Bukti Pembayaran</th>
                                     <th width="15%" class="text-center">Status</th>
+                                    <th width="15%" class="text-center">EXP</th>
                                     <th width="10%" class="text-center">Actions</th>
                                 </tr>
                             </thead>

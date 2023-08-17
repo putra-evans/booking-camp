@@ -25,6 +25,10 @@
     }
 
     $(document).ready(function () {
+        axios.get("{{ route('cek_expired') }}")
+            .then(function (res) {
+               console.log(res);
+            })
         getDataBelumBayar();
     });
 

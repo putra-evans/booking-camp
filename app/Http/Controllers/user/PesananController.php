@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use DataTables;
@@ -59,6 +60,16 @@ class PesananController extends Controller
                         $file = '<button type="button" data-bs-toggle="modal" data-bs-target="#LIhatBukti" id="lihat_bukti" data-img="' . url('/foto_pembayaran/' . $item->nama_file_pembayaran) . '" class="btn rounded-pill btn-outline-whatsapp waves-effect btn-xs"> <i class="tf-icons mdi mdi-check-decagram me-1"></i> Lihat File</button>';
                     }
                     return $file;
+                })
+                ->addColumn('exp_date', function ($item) {
+                    $current = Carbon::now();
+                    if ($item->exp_date >= $current) {
+                        $exp = Carbon::parse($item->exp_date)->translatedFormat('d F Y - h:i:s');
+                        // $exp = Carbon::now()->diffInHours($item->exp_date, false);
+                    } else {
+                        $exp = '-';
+                    }
+                    return $exp;
                 })
                 ->addColumn('action', function ($item) {
                     if ($item->status_final == 0) {
@@ -172,5 +183,31 @@ class PesananController extends Controller
             ->get();
 
         return response()->json($booking, 200);
+    }
+
+    public function cek_expired()
+    {
+        $booking =  DB::table('ta_final_booking')
+            ->where('status_final', 0)
+            ->get();
+
+        foreach ($booking as $key => $value) {
+
+            $exp    = $value->exp_date;
+            $current = Carbon::now();
+
+            if ($exp >= $current) {
+                echo 'masih aktif';
+            } else {
+                echo 'exppired';
+
+                DB::table('ta_final_booking')
+                    ->where('status_final', 0)
+                    ->update([
+                        'status_final'  => 3,
+                    ]);
+                return response()->json('Data Expired', 200);
+            }
+        }
     }
 }

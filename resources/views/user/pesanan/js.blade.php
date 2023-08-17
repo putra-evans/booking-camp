@@ -1,4 +1,6 @@
 <script>
+
+
     const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
             confirmButton: 'btn btn-success',
@@ -24,6 +26,12 @@
 
 
     $(document).ready(function () {
+        // CEK EXPIRED
+        axios.get("{{ route('cek_expired') }}")
+            .then(function (res) {
+               console.log(res);
+            })
+
         getData();
     });
 
@@ -66,6 +74,11 @@
                 {
                     data: 'status_pesanan',
                     name: 'status_pesanan',
+                    className: 'text-center'
+                },
+                {
+                    data: 'exp_date',
+                    name: 'exp_date',
                     className: 'text-center'
                 },
                 {

@@ -113,8 +113,10 @@ Route::group(['middleware' => ['role:admin']], function () {
     Route::post('proses_pembayaran', [Pesanan_userController::class, 'proses_pembayaran'])->name('proses_pembayaran');
 
     Route::get('/tampil-laporan', [LaporanController::class, 'index'])->name('tampil-laporan');
+    Route::post('cetak_laporan_harian', [LaporanController::class, 'cetak_laporan_harian'])->name('cetak_laporan_harian');
     Route::post('cetak_laporan', [LaporanController::class, 'cetak_laporan'])->name('cetak_laporan');
     Route::get('print_laporan/{bulantahun}', [LaporanController::class, 'print_laporan'])->name('print_laporan');
+    Route::get('print_laporan_harian/{tgl_laporan}', [LaporanController::class, 'print_laporan_harian'])->name('print_laporan_harian');
 });
 
 Route::group(['middleware' => ['role:user']], function () {
@@ -151,6 +153,9 @@ Route::post('get_all_anggota', [PesananController::class, 'get_all_anggota'])->n
 Route::get('/galeri', [Ms_galeriController::class, 'index'])->name('galeri');
 Route::post('/tambah-galeri', [Ms_galeriController::class, 'add_galeri'])->name('tambah-galeri');
 Route::post('/hapus-galeri', [Ms_galeriController::class, 'hapus_galeri'])->name('hapus-galeri');
+
+Route::get('cek_expired', [PesananController::class, 'cek_expired'])->name('cek_expired');
+
 
 
 

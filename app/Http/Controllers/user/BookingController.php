@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\user;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -89,6 +90,10 @@ class BookingController extends Controller
 
     public function proses_booking(Request $request)
     {
+        $exp = Carbon::now()->addHour(2);
+
+
+
         $random = strtoupper(Str::random(10));
         $userId = Auth::id();
         $no_booking     = '#BO-KAV-' . $userId . '-' . $random;
@@ -121,6 +126,7 @@ class BookingController extends Controller
             'total_menginap' => $lama_inap . "",
             'final_biaya' => $total_biaya_final . "",
             'status_final' => 0,
+            'exp_date' => $exp,
         ]);
         return response()->json('Berhasil Booking', 200);
     }
