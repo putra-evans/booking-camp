@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 17 Agu 2023 pada 02.51
+-- Waktu pembuatan: 20 Agu 2023 pada 15.34
 -- Versi server: 10.4.27-MariaDB
 -- Versi PHP: 8.2.0
 
@@ -359,7 +359,9 @@ INSERT INTO `ta_anggota` (`id_anggota`, `id_booking`, `id_kavling`, `no_booking`
 (21, 14, 8, '#BO-KAV-5-EUG8JZQ1V2', 'Possimus blanditiis', 'Et nesciunt consequ', 19, 'Perempuan', 'Pelajar', '94', '15000', 'Atque corrupti exce', 'Placeat ut sit proi', '2023-08-16 16:19:30', '2023-08-16 16:19:49'),
 (22, 14, 8, '#BO-KAV-5-EUG8JZQ1V2', 'Eos dolor et volupta', 'Ut velit temporibus', 100, 'Laki-laki', 'Umum', '32', '15000', 'Ut deserunt officiis', 'Quo perferendis vita', '2023-08-16 16:19:37', '2023-08-16 16:19:49'),
 (23, 16, 11, '#BO-KAV-5-CV7TILTQMU', 'Dolor sed quisquam m', 'Ex ipsam qui consequ', 47, 'Perempuan', 'Umum', '23', '15000', 'Quia duis quis omnis', 'At voluptates est la', '2023-08-16 16:24:50', '2023-08-16 16:38:21'),
-(24, 17, 4, '#BO-KAV-5-UNBTXMVZ8R', 'Modi facilis ipsam c', 'Consequat Nemo sapi', 70, 'Laki-laki', 'Mahasiswa', '98', '15000', 'Voluptate et quas vo', 'Illum corporis eum', '2023-08-16 17:20:28', '2023-08-16 17:20:33');
+(24, 17, 4, '#BO-KAV-5-UNBTXMVZ8R', 'Modi facilis ipsam c', 'Consequat Nemo sapi', 70, 'Laki-laki', 'Mahasiswa', '98', '15000', 'Voluptate et quas vo', 'Illum corporis eum', '2023-08-16 17:20:28', '2023-08-16 17:20:33'),
+(25, 19, 5, '#BO-KAV-5-SQZEUHKOPD', 'Distinctio Et accus', 'Nulla aliquam et lab', 38, 'Perempuan', 'Umum', '46', '15000', 'Neque aperiam dolor', 'Accusamus qui autem', '2023-08-20 12:20:40', '2023-08-20 13:10:27'),
+(26, 18, 4, '#BO-KAV-5-SQZEUHKOPD', 'Mollitia in ullamco', 'Sunt minim dolor ut', 59, 'Perempuan', 'Pelajar', '21', '15000', 'Deleniti et dolore r', 'Ut enim consequuntur', '2023-08-20 12:20:51', '2023-08-20 13:10:27');
 
 -- --------------------------------------------------------
 
@@ -392,7 +394,10 @@ INSERT INTO `ta_booking` (`id_booking`, `id_user`, `id_kavling`, `no_booking`, `
 (14, 5, 8, '#BO-KAV-5-EUG8JZQ1V2', '2023-08-16', '1', '30000', 1, '2023-08-16 16:19:01', '2023-08-16 16:19:49'),
 (15, 5, 9, '#BO-KAV-5-EUG8JZQ1V2', '2023-08-16', '1', '30000', 1, '2023-08-16 16:19:05', '2023-08-16 16:19:49'),
 (16, 5, 11, '#BO-KAV-5-CV7TILTQMU', '2023-08-16', '1', '15000', 1, '2023-08-16 16:24:41', '2023-08-16 16:38:21'),
-(17, 5, 4, '#BO-KAV-5-UNBTXMVZ8R', '2023-08-17', '1', '15000', 1, '2023-08-16 17:20:21', '2023-08-16 17:20:33');
+(17, 5, 4, '#BO-KAV-5-UNBTXMVZ8R', '2023-08-17', '1', '15000', 1, '2023-08-16 17:20:21', '2023-08-16 17:20:33'),
+(18, 5, 4, '#BO-KAV-5-SQZEUHKOPD', '2023-08-20', '1', '15000', 1, '2023-08-20 12:18:24', '2023-08-20 13:10:27'),
+(19, 5, 5, '#BO-KAV-5-SQZEUHKOPD', '2023-08-20', '1', '15000', 1, '2023-08-20 12:18:29', '2023-08-20 13:10:27'),
+(20, 5, 1, '', '2023-08-20', '1', '0', 0, '2023-08-20 13:30:25', '2023-08-20 13:30:25');
 
 -- --------------------------------------------------------
 
@@ -418,7 +423,8 @@ CREATE TABLE `ta_file_pembayaran` (
 INSERT INTO `ta_file_pembayaran` (`id_file_pembayaran`, `id_final_booking`, `id_user`, `no_booking`, `nama_file_pembayaran`, `ctt_pembayaran`, `created_at`, `updated_at`) VALUES
 (2, 3, 5, '#BO-KAV-5-4DMN5EGJHR', '1692199481_bukti-transfer-brimo.jpg', 'sudah dibayar', '2023-08-16 15:24:41', '2023-08-16 15:24:41'),
 (3, 4, 5, '#BO-KAV-5-LXJFDNWKSS', '1692202132_7a2a54914b7408dbceb49246b0de929f.jpg', 'bayar', '2023-08-16 16:08:52', '2023-08-16 16:08:52'),
-(4, 5, 5, '#BO-KAV-5-EUG8JZQ1V2', '1692202805_f4ce2e63ec7be0e549d6de826ecb3de6.jpg', 'gas', '2023-08-16 16:20:05', '2023-08-16 16:20:05');
+(4, 5, 5, '#BO-KAV-5-EUG8JZQ1V2', '1692202805_f4ce2e63ec7be0e549d6de826ecb3de6.jpg', 'gas', '2023-08-16 16:20:05', '2023-08-16 16:20:05'),
+(5, 8, 5, '#BO-KAV-5-SQZEUHKOPD', '1692537685_bukti-transfer-brimo.jpg', 'gas', '2023-08-20 13:21:25', '2023-08-20 13:21:25');
 
 -- --------------------------------------------------------
 
@@ -434,6 +440,8 @@ CREATE TABLE `ta_final_booking` (
   `final_biaya` varchar(255) NOT NULL,
   `status_final` int(11) NOT NULL COMMENT '0 = Belum Bayar, 1 = Pembayaran diproses, 2 = pembayaran diterima, 3 = pembayaran ditolak',
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `jam_masuk` varchar(20) NOT NULL,
+  `jam_keluar` varchar(20) NOT NULL,
   `exp_date` datetime(6) DEFAULT NULL,
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -442,12 +450,13 @@ CREATE TABLE `ta_final_booking` (
 -- Dumping data untuk tabel `ta_final_booking`
 --
 
-INSERT INTO `ta_final_booking` (`id_final_booking`, `id_user`, `no_booking`, `total_menginap`, `final_biaya`, `status_final`, `created_at`, `exp_date`, `updated_at`) VALUES
-(3, 5, '#BO-KAV-5-4DMN5EGJHR', '2', '60000', 2, '2023-08-16 15:24:05', '0000-00-00 00:00:00.000000', '2023-08-16 17:12:11'),
-(4, 5, '#BO-KAV-5-LXJFDNWKSS', '2', '60000', 2, '2023-08-16 16:08:27', '0000-00-00 00:00:00.000000', '2023-08-16 17:12:13'),
-(5, 5, '#BO-KAV-5-EUG8JZQ1V2', '2', '60000', 2, '2023-08-16 16:19:49', '0000-00-00 00:00:00.000000', '2023-08-16 17:12:16'),
-(6, 5, '#BO-KAV-5-CV7TILTQMU', '1', '15000', 3, '2023-08-16 16:38:21', '2023-08-16 08:38:21.000000', '2023-08-16 17:20:03'),
-(7, 5, '#BO-KAV-5-UNBTXMVZ8R', '1', '15000', 0, '2023-08-16 17:20:33', '2023-08-17 02:20:33.000000', '2023-08-16 17:20:33');
+INSERT INTO `ta_final_booking` (`id_final_booking`, `id_user`, `no_booking`, `total_menginap`, `final_biaya`, `status_final`, `created_at`, `jam_masuk`, `jam_keluar`, `exp_date`, `updated_at`) VALUES
+(3, 5, '#BO-KAV-5-4DMN5EGJHR', '2', '60000', 2, '2023-08-16 15:24:05', '', '', '0000-00-00 00:00:00.000000', '2023-08-16 17:12:11'),
+(4, 5, '#BO-KAV-5-LXJFDNWKSS', '2', '60000', 2, '2023-08-16 16:08:27', '', '', '0000-00-00 00:00:00.000000', '2023-08-16 17:12:13'),
+(5, 5, '#BO-KAV-5-EUG8JZQ1V2', '2', '60000', 2, '2023-08-16 16:19:49', '', '', '0000-00-00 00:00:00.000000', '2023-08-16 17:12:16'),
+(6, 5, '#BO-KAV-5-CV7TILTQMU', '1', '15000', 3, '2023-08-16 16:38:21', '', '', '2023-08-16 08:38:21.000000', '2023-08-16 17:20:03'),
+(7, 5, '#BO-KAV-5-UNBTXMVZ8R', '1', '15000', 3, '2023-08-16 17:20:33', '', '', '2023-08-17 02:20:33.000000', '2023-08-20 12:16:20'),
+(8, 5, '#BO-KAV-5-SQZEUHKOPD', '2', '30000', 2, '2023-08-20 13:10:27', '08.00', '16.00', '2023-08-20 22:10:27.000000', '2023-08-20 13:21:46');
 
 -- --------------------------------------------------------
 
@@ -676,25 +685,25 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT untuk tabel `ta_anggota`
 --
 ALTER TABLE `ta_anggota`
-  MODIFY `id_anggota` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_anggota` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT untuk tabel `ta_booking`
 --
 ALTER TABLE `ta_booking`
-  MODIFY `id_booking` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_booking` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT untuk tabel `ta_file_pembayaran`
 --
 ALTER TABLE `ta_file_pembayaran`
-  MODIFY `id_file_pembayaran` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_file_pembayaran` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `ta_final_booking`
 --
 ALTER TABLE `ta_final_booking`
-  MODIFY `id_final_booking` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_final_booking` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`

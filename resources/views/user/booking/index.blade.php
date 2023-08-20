@@ -136,6 +136,7 @@
                             <div class="card mb-4">
                                 <h4 class="card-header">Tambah Anggota Tim</h4>
                                 <div class="card-body">
+                                    <span style="font-weight: bold;font-size: 14px;color: red;font-style: italic">Note : Maksimal 1 Kavling 5 Orang</span>
                                     <form id="formAddTim" method="POST" class="needs-validation" novalidate
                                         enctype="multipart/form-data">
                                         @csrf
