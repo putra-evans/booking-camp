@@ -264,6 +264,15 @@
 
     $(document).on('click', '.btnBookingSekarang', function (e) {
         e.preventDefault();
+        $('#addCheckin').modal('show');
+    });
+
+
+    $(document).on('submit', '#formAddJam', function (e) {
+        e.preventDefault();
+        // var form = $(this)[0];
+        // var postInput = new FormData(form);
+
         $('#tbl_draft > tbody input[type=checkbox]').prop('checked', true).trigger('change');
         let token = [];
         $.each($('#tbl_draft > tbody input[type=checkbox]:checked'), function () {
@@ -271,7 +280,10 @@
         });
         const postData = {
             'id_booking': token,
+            'jam_masuk'       : $('#jam_masuk').val(),
+            'jam_keluar'       : $('#jam_keluar').val(),
         };
+
         swalWithBootstrapButtons.fire({
             title: 'Apakah anda yakin?',
             text: "Semua Draft Booking akan diproses!",
@@ -288,6 +300,8 @@
                         'success'
                     )
                     getDataDraftBooking();
+                    $('#addCheckin').modal('hide');
+
                 });
             } else if (
                 /* Read more about handling dismissals below */
@@ -302,8 +316,11 @@
                 });
             }
         })
-
     });
+
+
+
+
 
 
     // MODAL ANGGOTA
@@ -511,6 +528,11 @@
     });
 
     $('.BtnKeluarAnggota').click(function (e) {
+        e.preventDefault();
+        window.location.reload();
+    });
+
+    $('.BtnKeluarJam').click(function (e) {
         e.preventDefault();
         window.location.reload();
     });

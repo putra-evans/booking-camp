@@ -114,6 +114,14 @@
                             <td class="pe-3 fw-medium">Lama menginap:</td>
                             <td>{{$data[0]['total_menginap']}} Malam</td>
                         </tr>
+                        <tr>
+                            <td class="pe-3 fw-medium">Jam Masuk:</td>
+                            <td>{{$data[0]['jam_masuk']}}</td>
+                        </tr>
+                        <tr>
+                            <td class="pe-3 fw-medium">Jam Keluar:</td>
+                            <td>{{$data[0]['jam_keluar']}}</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

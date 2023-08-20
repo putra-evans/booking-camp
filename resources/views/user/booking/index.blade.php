@@ -325,6 +325,80 @@
     </div>
 </div>
 
+
+{{-- Input Jam Checkin dan Checkout --}}
+<div class="modal-onboarding modal fade animate__animated" data-bs-backdrop="static" data-bs-keyboard="false"
+    id="addCheckin" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header border-0">
+                <button type="button" class="btn-close  BtnKeluar" data-bs-dismiss="modal" aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formAddJam" method="POST"                                        enctype="multipart/form-data">
+                                        @csrf
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card mb-6">
+                            <h4 class="card-header">Tambah Jam Checkin dan Checkout</h4>
+                            <div class="card-body">
+                                <hr style="color: black">
+                                <div class="col-md-12">
+                                    <div class="form-floating form-floating-outline">
+                                        <select class="form-control" name="jam_masuk" id="jam_masuk" required>
+                                            <option value="">-- Pilih --</option>
+                                            <option value="08.00">08.00</option>
+                                            <option value="09.00">09.00</option>
+                                            <option value="10.00">10.00</option>
+                                            <option value="11.00">11.00</option>
+                                            <option value="12.00">12.00</option>
+                                            <option value="13.00">13.00</option>
+                                            <option value="14.00">14.00</option>
+                                            <option value="15.00">15.00</option>
+                                            <option value="16.00">16.00</option>
+                                            <option value="17.00">17.00</option>
+                                        </select>
+                                        <label for="jam_masuk">Jam CheckIn</label>
+                                        <div class="invalid-feedback"></div>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="col-md-12">
+                                    <div class="form-floating form-floating-outline">
+                                        <select class="form-control" name="jam_keluar" id="jam_keluar" required>
+                                            <option value="">-- Pilih --</option>
+                                            <option value="08.00">08.00</option>
+                                            <option value="09.00">09.00</option>
+                                            <option value="10.00">10.00</option>
+                                            <option value="11.00">11.00</option>
+                                            <option value="12.00">12.00</option>
+                                            <option value="13.00">13.00</option>
+                                            <option value="14.00">14.00</option>
+                                            <option value="15.00">15.00</option>
+                                            <option value="16.00">16.00</option>
+                                            <option value="17.00">17.00</option>
+                                        </select>
+                                        <label for="jam_keluar">Jam CheckOut</label>
+                                        <div class="invalid-feedback"></div>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                    <button type="submit" class="btn btn-sm btn-primary" id="add_jam">Lanjutkan</button>
+                                            <button type="button" class="btn btn-sm btn-label-danger BtnKeluarJam"
+                                                data-bs-dismiss="modal">Keluar</button>
+                                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @push('js')

@@ -97,18 +97,14 @@
                                         <td class="pe-3 fw-medium">Lama menginap:</td>
                                         <td>{{$data[0]['total_menginap']}} Malam</td>
                                     </tr>
-                                    {{-- <tr>
-                                        <td class="pe-3 fw-medium">Country:</td>
-                                        <td>United States</td>
+                                    <tr>
+                                        <td class="pe-3 fw-medium">Jam Masuk:</td>
+                                        <td>{{$data[0]['jam_masuk']}}</td>
                                     </tr>
                                     <tr>
-                                        <td class="pe-3 fw-medium">IBAN:</td>
-                                        <td>ETD95476213874685</td>
+                                        <td class="pe-3 fw-medium">Jam Keluar:</td>
+                                        <td>{{$data[0]['jam_keluar']}}</td>
                                     </tr>
-                                    <tr>
-                                        <td class="pe-3 fw-medium">SWIFT code:</td>
-                                        <td>BR91905</td>
-                                    </tr> --}}
                                 </tbody>
                             </table>
                         </div>

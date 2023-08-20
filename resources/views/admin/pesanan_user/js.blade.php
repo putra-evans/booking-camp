@@ -505,6 +505,8 @@
                 $('#total_menginap').html(data.total_menginap + ' Malam');
                 $('#final_biaya').html(numberWithCommas('Rp. ' + data.final_biaya));
                 $('#status_final').html(status);
+                $('#jam_masuk').html(data.jam_masuk);
+                $('#jam_keluar').html(data.jam_keluar);
             })
     }
 

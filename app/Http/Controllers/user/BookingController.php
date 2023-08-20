@@ -90,9 +90,9 @@ class BookingController extends Controller
 
     public function proses_booking(Request $request)
     {
+        $jam_masuk = $request->jam_masuk;
+        $jam_keluar = $request->jam_keluar;
         $exp = Carbon::now()->addHour(2);
-
-
 
         $random = strtoupper(Str::random(10));
         $userId = Auth::id();
@@ -126,6 +126,8 @@ class BookingController extends Controller
             'total_menginap' => $lama_inap . "",
             'final_biaya' => $total_biaya_final . "",
             'status_final' => 0,
+            'jam_masuk' => $jam_masuk,
+            'jam_keluar' => $jam_keluar,
             'exp_date' => $exp,
         ]);
         return response()->json('Berhasil Booking', 200);

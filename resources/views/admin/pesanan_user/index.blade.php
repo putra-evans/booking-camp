@@ -225,6 +225,30 @@
                                         </tr>
                                         <tr>
                                             <td width="20%">
+                                                <span class="mdi mdi-account-clock mdi-24px"></span><span
+                                                    class="fw-semibold mx-2">Jam CheckIn</span>
+                                            </td>
+                                            <td width="2%">
+                                                :
+                                            </td>
+                                            <td width="78%">
+                                                <span id="jam_masuk"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="20%">
+                                                <span class="mdi mdi-account-clock mdi-24px"></span><span
+                                                    class="fw-semibold mx-2">Jam CheckOut</span>
+                                            </td>
+                                            <td width="2%">
+                                                :
+                                            </td>
+                                            <td width="78%">
+                                                <span id="jam_keluar"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="20%">
                                                 <span class="mdi mdi-cash-sync mdi-24px"></span><span
                                                     class="fw-semibold mx-2">Status</span>
                                             </td>
